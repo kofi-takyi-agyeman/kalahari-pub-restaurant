@@ -6,123 +6,168 @@ import { usePathname } from "next/navigation";
 import { useCart } from "@/lib/cartContext";
 import {
   Home,
-  UtensilsCrossed,
+  Flame,
   ShoppingBag,
   Store,
-  MapPin,
+  PhoneCall,
 } from "lucide-react";
 
 export function MobileBottomNav() {
   const pathname = usePathname();
   const { totalItems, setIsCartOpen } = useCart();
 
-  const navItems = [
-    {
-      href: "/",
-      label: "Home",
-      icon: Home,
-      exact: true,
-    },
-    {
-      href: "/menu",
-      label: "Menu",
-      icon: UtensilsCrossed,
-      exact: false,
-    },
-    {
-      label: "Bag",
-      icon: ShoppingBag,
-      isCart: true,
-      badge: totalItems,
-    },
-    {
-      href: "/about",
-      label: "About",
-      icon: Store,
-      exact: false,
-    },
-    {
-      href: "/contact",
-      label: "Contact",
-      icon: MapPin,
-      exact: false,
-    },
-  ];
+  const isMenu = pathname.startsWith("/menu");
+  const isHome = pathname === "/";
+  const isAbout = pathname.startsWith("/about");
+  const isContact = pathname.startsWith("/contact");
 
   return (
     <nav
-      className="fixed bottom-0 left-0 right-0 z-40 bg-white/95 backdrop-blur-md border-t border-brand-cream-border shadow-[0_-4px_20px_rgba(0,0,0,0.06)] md:hidden transition-all"
-      aria-label="Mobile Bottom Navigation"
-      style={{ paddingBottom: "max(env(safe-area-inset-bottom, 0px), 6px)" }}
+      className="fixed bottom-2 left-2 right-2 sm:left-4 sm:right-4 z-40 md:hidden transition-all duration-300"
+      aria-label="Mobile Navigation"
+      style={{ paddingBottom: "env(safe-area-inset-bottom, 0px)" }}
     >
-      <div className="grid grid-cols-5 items-center h-15 px-1 max-w-lg mx-auto">
-        {navItems.map((item, idx) => {
-          const isActive =
-            !item.isCart &&
-            (item.exact
-              ? pathname === item.href
-              : pathname.startsWith(item.href || ""));
-
-          // Cart trigger tab
-          if (item.isCart) {
-            return (
-              <button
-                key="cart-tab"
-                onClick={() => setIsCartOpen(true)}
-                className="flex flex-col items-center justify-center py-1 relative min-h-[48px] focus:outline-hidden group"
-                aria-label={`Open shopping bag with ${totalItems} items`}
-              >
-                <div className="relative flex items-center justify-center">
-                  <div className="w-10 h-10 rounded-full bg-brand-yellow/20 flex items-center justify-center text-brand-charcoal group-active:scale-95 transition-transform shadow-xs">
-                    <ShoppingBag className="w-5 h-5 text-brand-charcoal" />
-                  </div>
-                  {totalItems > 0 && (
-                    <span className="absolute -top-1 -right-1 bg-brand-red text-white text-[10px] font-black w-4.5 h-4.5 rounded-full flex items-center justify-center shadow-md animate-pulse">
-                      {totalItems}
-                    </span>
-                  )}
-                </div>
-                <span className="text-[10px] font-bold text-brand-charcoal tracking-wider uppercase mt-0.5">
-                  Bag
-                </span>
-              </button>
-            );
-          }
-
-          const IconComponent = item.icon;
-
-          return (
-            <Link
-              key={item.href || idx}
-              href={item.href || "/"}
-              className={`flex flex-col items-center justify-center py-1 min-h-[48px] transition-all relative focus:outline-hidden group ${
-                isActive
-                  ? "text-brand-red"
-                  : "text-gray-500 hover:text-brand-charcoal"
+      <div className="max-w-md mx-auto bg-[#171714]/95 backdrop-blur-xl border border-white/10 rounded-2xl sm:rounded-3xl shadow-[0_12px_40px_rgba(0,0,0,0.5)] px-2 py-1.5 flex items-center justify-between">
+        {/* 1. Home */}
+        <Link
+          href="/"
+          className={`flex-1 flex flex-col items-center justify-center py-1 transition-all duration-200 active:scale-90 focus:outline-hidden ${
+            isHome ? "text-brand-yellow" : "text-gray-400 hover:text-white"
+          }`}
+          aria-label="Home"
+        >
+          <div className="relative flex items-center justify-center">
+            <Home
+              className={`w-5 h-5 transition-transform ${
+                isHome ? "stroke-[2.5] scale-110" : "stroke-2"
               }`}
-            >
-              <div className="relative">
-                <IconComponent
-                  className={`w-5 h-5 transition-transform group-active:scale-90 ${
-                    isActive ? "stroke-[2.5] text-brand-red" : "stroke-2"
-                  }`}
-                />
+            />
+          </div>
+          <span
+            className={`text-[10px] tracking-wider uppercase mt-1 leading-none ${
+              isHome ? "font-black text-brand-yellow" : "font-bold text-gray-400"
+            }`}
+          >
+            Home
+          </span>
+          {isHome ? (
+            <span className="w-1.5 h-1.5 rounded-full bg-brand-yellow mt-1 shadow-xs shadow-brand-yellow" />
+          ) : (
+            <span className="w-1.5 h-1.5 mt-1" />
+          )}
+        </Link>
+
+        {/* 2. Menu (Flame Grill) */}
+        <Link
+          href="/menu"
+          className={`flex-1 flex flex-col items-center justify-center py-1 transition-all duration-200 active:scale-90 focus:outline-hidden ${
+            isMenu ? "text-brand-yellow" : "text-gray-400 hover:text-white"
+          }`}
+          aria-label="Menu and Grill"
+        >
+          <div className="relative flex items-center justify-center">
+            <Flame
+              className={`w-5 h-5 transition-transform ${
+                isMenu
+                  ? "stroke-[2.5] fill-brand-yellow/30 text-brand-yellow scale-110"
+                  : "stroke-2"
+              }`}
+            />
+          </div>
+          <span
+            className={`text-[10px] tracking-wider uppercase mt-1 leading-none ${
+              isMenu ? "font-black text-brand-yellow" : "font-bold text-gray-400"
+            }`}
+          >
+            Menu
+          </span>
+          {isMenu ? (
+            <span className="w-1.5 h-1.5 rounded-full bg-brand-yellow mt-1 shadow-xs shadow-brand-yellow" />
+          ) : (
+            <span className="w-1.5 h-1.5 mt-1" />
+          )}
+        </Link>
+
+        {/* 3. CENTER HERO ACTION: Bag / Cart */}
+        <div className="flex-1 flex flex-col items-center justify-center relative -top-3">
+          <button
+            onClick={() => setIsCartOpen(true)}
+            className="group relative flex flex-col items-center justify-center focus:outline-hidden"
+            aria-label={`View order bag with ${totalItems} items`}
+          >
+            <div className="w-13 h-13 rounded-full bg-gradient-to-tr from-brand-yellow via-[#FFE53B] to-[#F9D817] p-0.5 shadow-[0_8px_25px_rgba(249,216,23,0.45)] ring-4 ring-[#171714] active:scale-95 transition-transform duration-200 flex items-center justify-center">
+              <div className="w-full h-full rounded-full bg-brand-yellow flex items-center justify-center">
+                <ShoppingBag className="w-6 h-6 text-brand-charcoal stroke-[2.3] group-hover:scale-110 transition-transform" />
               </div>
-              <span
-                className={`text-[10px] tracking-wider uppercase mt-1 leading-none ${
-                  isActive
-                    ? "font-black text-brand-red"
-                    : "font-semibold text-gray-500"
-                }`}
-              >
-                {item.label}
-              </span>
-              {isActive && (
-                <span className="w-1 h-1 rounded-full bg-brand-red mt-1" />
+              {totalItems > 0 && (
+                <span className="absolute -top-1 -right-1 bg-brand-red text-white text-[10px] font-black w-5 h-5 rounded-full flex items-center justify-center shadow-lg border-2 border-[#171714] animate-bounce">
+                  {totalItems}
+                </span>
               )}
-            </Link>
-          );
-        })}
+            </div>
+            <span className="text-[10px] font-black text-brand-yellow tracking-widest uppercase mt-1 leading-none drop-shadow-sm">
+              Bag
+            </span>
+          </button>
+        </div>
+
+        {/* 4. About */}
+        <Link
+          href="/about"
+          className={`flex-1 flex flex-col items-center justify-center py-1 transition-all duration-200 active:scale-90 focus:outline-hidden ${
+            isAbout ? "text-brand-yellow" : "text-gray-400 hover:text-white"
+          }`}
+          aria-label="About Kalahari"
+        >
+          <div className="relative flex items-center justify-center">
+            <Store
+              className={`w-5 h-5 transition-transform ${
+                isAbout ? "stroke-[2.5] scale-110" : "stroke-2"
+              }`}
+            />
+          </div>
+          <span
+            className={`text-[10px] tracking-wider uppercase mt-1 leading-none ${
+              isAbout ? "font-black text-brand-yellow" : "font-bold text-gray-400"
+            }`}
+          >
+            About
+          </span>
+          {isAbout ? (
+            <span className="w-1.5 h-1.5 rounded-full bg-brand-yellow mt-1 shadow-xs shadow-brand-yellow" />
+          ) : (
+            <span className="w-1.5 h-1.5 mt-1" />
+          )}
+        </Link>
+
+        {/* 5. Contact & Map */}
+        <Link
+          href="/contact"
+          className={`flex-1 flex flex-col items-center justify-center py-1 transition-all duration-200 active:scale-90 focus:outline-hidden ${
+            isContact ? "text-brand-yellow" : "text-gray-400 hover:text-white"
+          }`}
+          aria-label="Contact and Map"
+        >
+          <div className="relative flex items-center justify-center">
+            <PhoneCall
+              className={`w-5 h-5 transition-transform ${
+                isContact ? "stroke-[2.5] scale-110" : "stroke-2"
+              }`}
+            />
+          </div>
+          <span
+            className={`text-[10px] tracking-wider uppercase mt-1 leading-none ${
+              isContact ? "font-black text-brand-yellow" : "font-bold text-gray-400"
+            }`}
+          >
+            Contact
+          </span>
+          {isContact ? (
+            <span className="w-1.5 h-1.5 rounded-full bg-brand-yellow mt-1 shadow-xs shadow-brand-yellow" />
+          ) : (
+            <span className="w-1.5 h-1.5 mt-1" />
+          )}
+        </Link>
       </div>
     </nav>
   );

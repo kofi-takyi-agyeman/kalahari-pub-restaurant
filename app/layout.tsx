@@ -35,7 +35,7 @@ export default function RootLayout({
       <body className="min-h-screen flex flex-col font-sans antialiased text-brand-charcoal bg-[#FDFCF9]">
         <CartProvider>
           <Header />
-          <main className="flex-1 pb-20 md:pb-0">{children}</main>
+          <main className="flex-1 pb-24 md:pb-0">{children}</main>
           <Footer />
           <CartDrawer />
           <MobileBottomNav />
