@@ -25,7 +25,7 @@ export interface MenuItem {
   isFeatured?: boolean;
   prepTimeNote?: string;
   tags?: string[];
-  isSamplePrice: true; // Conspicuously identified as sample price
+  isSamplePrice: boolean; // True for demonstration estimates; false when owner approves
 }
 
 export interface CartItem {

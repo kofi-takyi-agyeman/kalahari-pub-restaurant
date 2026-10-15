@@ -6,6 +6,9 @@ import { categories as fallbackCategories } from "@/data/categories";
 import { menuItems as fallbackMenuItems } from "@/data/menuItems";
 import { MenuItemWithCategory } from "@/types/database.types";
 
+import { devAdminStore } from "@/lib/admin/devAdminStore";
+import { CategoryId } from "@/types";
+
 export interface MenuQueryResult {
   categories: Category[];
   items: MenuItem[];
@@ -14,27 +17,53 @@ export interface MenuQueryResult {
   error: string | null;
 }
 
+function getLocalStoreMenuData(): { categories: Category[]; items: MenuItem[] } {
+  const devCats = devAdminStore.getAllCategories();
+  const devItems = devAdminStore.getAllMenuItems();
+
+  const categories: Category[] = devCats
+    .filter((c) => c.is_active)
+    .map(toCategory);
+
+  const items: MenuItem[] = devItems
+    .filter((item) => item.is_available)
+    .map((item) => {
+      const cat = devCats.find((c) => c.id === item.category_id || c.slug === item.category_id);
+      return {
+        id: item.id,
+        name: item.name,
+        description: item.description || "",
+        category: (cat?.slug || item.category_id || "local-dishes") as CategoryId,
+        samplePrice: Number(item.price),
+        currency: "GHS",
+        image: item.image_url || "/images/placeholder-dish.jpg",
+        isAvailable: item.is_available,
+        isFeatured: item.is_featured,
+        isSamplePrice: Boolean(item.is_sample_price),
+        prepTimeNote: item.is_featured ? "House Specialty" : "Prepared fresh",
+        tags: item.is_featured ? ["Specialty"] : undefined,
+      };
+    });
+
+  return {
+    categories: categories.length > 0 ? categories : fallbackCategories,
+    items: items.length > 0 ? items : fallbackMenuItems,
+  };
+}
+
 /**
- * Fetches active menu categories and available menu items from Supabase.
+ * Fetches active menu categories and available menu items from Supabase or local store.
  * Respects database Row Level Security (RLS).
- *
- * Behavior:
- * 1. If Supabase credentials are not configured:
- *    Returns fallback demo data with `isFallback: true` and `isDatabaseConnected: false`,
- *    allowing the UI to display a clear development advisory banner.
- * 2. If Supabase IS configured, but query returns an error:
- *    Returns the honest error and empty array (does NOT silently hide database failures).
- * 3. If Supabase query succeeds:
- *    Maps rows to UI models with `isDatabaseConnected: true` and `isFallback: false`.
  */
 export async function getLiveMenuData(): Promise<MenuQueryResult> {
   const configured = isSupabaseConfigured();
 
-  // If Supabase environment is not yet set up
+  // If Supabase environment is not yet set up, read from dynamic local store
   if (!configured) {
+    const local = getLocalStoreMenuData();
     return {
-      categories: fallbackCategories,
-      items: fallbackMenuItems,
+      categories: local.categories,
+      items: local.items,
       isDatabaseConnected: false,
       isFallback: true,
       error: null,
@@ -44,9 +73,10 @@ export async function getLiveMenuData(): Promise<MenuQueryResult> {
   try {
     const supabase = await createSupabaseServerClient();
     if (!supabase) {
+      const local = getLocalStoreMenuData();
       return {
-        categories: fallbackCategories,
-        items: fallbackMenuItems,
+        categories: local.categories,
+        items: local.items,
         isDatabaseConnected: false,
         isFallback: true,
         error: "Supabase client initialization failed.",

@@ -11,8 +11,6 @@ import {
   AlertTriangle,
   Utensils,
   RotateCcw,
-  Database,
-  DatabaseZap,
   PhoneCall,
   ServerCrash,
 } from "lucide-react";
@@ -29,8 +27,6 @@ interface MenuBrowserProps {
 export function MenuBrowser({
   initialCategories,
   initialItems,
-  isDatabaseConnected = false,
-  isFallback = false,
   error = null,
 }: MenuBrowserProps) {
   const searchParams = useSearchParams();
@@ -68,6 +64,11 @@ export function MenuBrowser({
     setSelectedCategory("all");
     setSearchQuery("");
   };
+
+  const hasSamplePricedItems = useMemo(
+    () => initialItems.some((item) => item.isSamplePrice),
+    [initialItems]
+  );
 
   // If a real database query failed, display an honest error state
   if (error) {
@@ -111,71 +112,32 @@ export function MenuBrowser({
 
   return (
     <div className="space-y-8">
-      {/* Database Connection Status & Sample Price Notice */}
-      <div className="space-y-3">
-        {/* Supabase Status Banner */}
-        {isFallback ? (
-          <div className="rounded-xl bg-blue-50 border border-blue-200 p-3.5 text-xs text-blue-900 flex items-start gap-2.5">
-            <Database className="w-4 h-4 text-blue-700 shrink-0 mt-0.5" />
-            <div className="flex-1">
-              <strong className="text-blue-950 font-semibold block mb-0.5">
-                Phase 2 Architecture: Supabase Schema Prepared (Viewing Local Seed Data)
-              </strong>
-              <span>
-                To connect to live Supabase PostgreSQL, set{" "}
-                <code className="bg-blue-100 px-1 py-0.5 rounded text-blue-900 font-mono text-[11px]">
-                  NEXT_PUBLIC_SUPABASE_URL
-                </code>{" "}
-                and{" "}
-                <code className="bg-blue-100 px-1 py-0.5 rounded text-blue-900 font-mono text-[11px]">
-                  NEXT_PUBLIC_SUPABASE_ANON_KEY
-                </code>{" "}
-                in your environment. See{" "}
-                <code className="bg-blue-100 px-1 py-0.5 rounded text-blue-900 font-mono text-[11px]">
-                  docs/SUPABASE_SETUP_GUIDE.md
-                </code>
-                .
-              </span>
-            </div>
-            <span className="shrink-0 bg-blue-200/80 text-blue-900 text-[10px] font-bold px-2 py-0.5 rounded">
-              Local Seed
-            </span>
-          </div>
-        ) : isDatabaseConnected ? (
-          <div className="rounded-xl bg-emerald-50 border border-emerald-200 p-3.5 text-xs text-emerald-900 flex items-center justify-between gap-2.5">
-            <div className="flex items-center gap-2">
-              <DatabaseZap className="w-4 h-4 text-emerald-700 shrink-0" />
-              <span>
-                <strong>Live Database Connected:</strong> Serving active menu items directly from Supabase PostgreSQL with Row Level Security.
-              </span>
-            </div>
-            <span className="shrink-0 bg-emerald-200/80 text-emerald-900 text-[10px] font-bold px-2 py-0.5 rounded">
-              PostgreSQL Active
-            </span>
-          </div>
-        ) : null}
-
-        {/* Conspicuous Sample Price Banner */}
+      {/* Sample Price Notice (only shown if dishes on the menu have unapproved sample prices) */}
+      {hasSamplePricedItems && (
         <div className="rounded-2xl bg-amber-50 border border-amber-200/90 p-4 sm:p-5 text-amber-950 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 shadow-xs">
           <div className="flex items-start gap-3">
             <AlertTriangle className="w-5 h-5 text-amber-700 shrink-0 mt-0.5" />
             <div className="text-xs sm:text-sm">
-              <span className="font-extrabold uppercase tracking-wide">
+              <span className="font-extrabold uppercase tracking-wide block text-amber-900">
                 {SAMPLE_PRICE_DISCLAIMER}
               </span>
-              <p className="text-amber-900/80 mt-0.5">
-                Official menu prices have not yet been finalized by Kalahari management.
-                All pricing figures below are temporary demonstration estimates and will
-                be updated in the Phase 3 owner dashboard.
+              <p className="text-amber-900/80 mt-0.5 leading-relaxed">
+                Some dish prices are currently awaiting management confirmation. Dishes with confirmed prices can be ordered online immediately. For dishes marked &quot;Sample Price&quot;, please call our kitchen lines for daily market rates.
               </p>
             </div>
           </div>
 
-          <div className="shrink-0 text-xs font-semibold bg-amber-200/60 text-amber-900 px-3 py-1.5 rounded-lg border border-amber-300">
-            Demonstration Content
+          <div className="shrink-0 flex items-center gap-2">
+            <a
+              href={businessConfig.phones[0].telLink}
+              className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-lg bg-brand-charcoal text-white text-xs font-bold hover:bg-black transition-colors"
+            >
+              <PhoneCall className="w-3.5 h-3.5 text-brand-yellow" />
+              <span>Call {businessConfig.phones[0].formatted}</span>
+            </a>
           </div>
         </div>
-      </div>
+      )}
 
       {/* Controls: Search Field & Category Pills */}
       <div className="space-y-4">

@@ -30,7 +30,7 @@ export function toMenuItem(row: MenuItemWithCategory): MenuItem {
     image: row.image_url || "/images/placeholder-dish.jpg",
     isAvailable: row.is_available,
     isFeatured: row.is_featured,
-    isSamplePrice: true, // Ensured true for demonstration/sample pricing
+    isSamplePrice: row.is_sample_price !== undefined ? Boolean(row.is_sample_price) : true,
     prepTimeNote: row.is_featured ? "House Specialty" : "Prepared fresh",
     tags: row.is_featured ? ["Specialty"] : undefined,
   };
