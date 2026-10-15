@@ -27,8 +27,11 @@ declare global {
 // 1. Initialize Menu Items
 if (!globalThis.__kalahari_dev_menu_items) {
   globalThis.__kalahari_dev_menu_items = new Map<string, MenuItemRow>();
-  const now = new Date().toISOString();
-  defaultMenuItems.forEach((item, index) => {
+}
+const now = new Date().toISOString();
+defaultMenuItems.forEach((item, index) => {
+  const existing = globalThis.__kalahari_dev_menu_items!.get(item.id);
+  if (!existing) {
     globalThis.__kalahari_dev_menu_items!.set(item.id, {
       id: item.id,
       category_id: item.category,
@@ -44,27 +47,37 @@ if (!globalThis.__kalahari_dev_menu_items) {
       created_at: now,
       updated_at: now,
     });
-  });
-}
+  } else {
+    if (item.image.startsWith("/dishes/") && existing.image_url !== item.image) {
+      existing.image_url = item.image;
+    }
+    existing.name = item.name;
+    existing.description = item.description;
+  }
+});
 
 // 2. Initialize Categories
 if (!globalThis.__kalahari_dev_categories) {
   globalThis.__kalahari_dev_categories = new Map<string, MenuCategoryRow>();
-  const now = new Date().toISOString();
-  defaultCategories.forEach((cat, index) => {
+}
+defaultCategories.forEach((cat, index) => {
+  const existing = globalThis.__kalahari_dev_categories!.get(cat.id);
+  if (!existing) {
     globalThis.__kalahari_dev_categories!.set(cat.id, {
       id: cat.id,
       name: cat.name,
       slug: cat.id,
       description: `Authentic ${cat.name} freshly prepared at Kalahari Pub.`,
-      image_url: null,
+      image_url: cat.image || null,
       display_order: index,
       is_active: true,
       created_at: now,
       updated_at: now,
     });
-  });
-}
+  } else if (cat.image && existing.image_url !== cat.image) {
+    existing.image_url = cat.image;
+  }
+});
 
 // 3. Initialize Settings
 if (!globalThis.__kalahari_dev_settings) {

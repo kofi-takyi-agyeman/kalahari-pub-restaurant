@@ -98,8 +98,8 @@ export function Hero() {
               <div className="relative overflow-hidden rounded-2xl bg-brand-charcoal-card border border-brand-charcoal-muted shadow-2xl">
                 <div className="relative aspect-[4/3] w-full">
                   <Image
-                    src="https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=1000&q=80"
-                    alt="Delicious Ghanaian grilled tilapia and traditional accompaniment"
+                    src="/dishes/grilled_tilapia_platter.jpg"
+                    alt="Delicious Ghanaian charcoal grilled whole tilapia platter with hot banku and shito"
                     fill
                     priority
                     sizes="(max-width: 1024px) 100vw, 40vw"
@@ -110,11 +110,11 @@ export function Hero() {
                   {/* Corner Badge */}
                   <div className="absolute top-4 left-4 bg-brand-charcoal/90 backdrop-blur-md border border-brand-yellow/40 text-brand-yellow text-xs font-bold px-3 py-1.5 rounded-lg flex items-center gap-1.5 shadow-md">
                     <Sparkles className="w-3.5 h-3.5" />
-                    <span>House Specialty</span>
+                    <span>House Signature</span>
                   </div>
 
                   <span className="absolute bottom-3 right-3 text-[10px] text-white/70 bg-brand-charcoal/80 px-2 py-0.5 rounded">
-                    Illustrative food presentation
+                    Charcoal grilled fresh daily
                   </span>
                 </div>
 
@@ -122,10 +122,10 @@ export function Hero() {
                   <div className="flex items-center justify-between">
                     <div>
                       <h3 className="text-lg font-bold text-white">
-                        Banku &amp; Grilled Tilapia
+                        Charcoal Grilled Tilapia Platter
                       </h3>
                       <p className="text-xs text-gray-400">
-                        Served with spicy okro stew, hot shito &amp; fresh pepper
+                        Served with hot banku, authentic black shito &amp; chilled Club beer
                       </p>
                     </div>
                   </div>
