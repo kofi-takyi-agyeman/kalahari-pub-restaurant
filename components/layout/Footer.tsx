@@ -1,7 +1,8 @@
 import React from "react";
 import Link from "next/link";
 import { businessConfig } from "@/lib/businessConfig";
-import { Phone, MapPin, UtensilsCrossed, ShieldAlert } from "lucide-react";
+import { Logo } from "@/components/ui/Logo";
+import { Phone, MapPin, ShieldAlert } from "lucide-react";
 
 export function Footer() {
   const currentYear = new Date().getFullYear();
@@ -13,13 +14,8 @@ export function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
           {/* Brand Col */}
           <div className="space-y-4">
-            <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-xl bg-brand-yellow text-brand-charcoal flex items-center justify-center font-bold">
-                <UtensilsCrossed className="w-5 h-5 stroke-[2.2]" />
-              </div>
-              <span className="font-display text-xl font-black tracking-tight text-white">
-                KALAHARI <span className="text-brand-yellow">PUB</span>
-              </span>
+            <div className="flex items-center">
+              <Logo variant="dark" size="lg" asLink href="/" />
             </div>
             <p className="text-brand-yellow font-bold text-sm tracking-wide">
               {businessConfig.slogan}

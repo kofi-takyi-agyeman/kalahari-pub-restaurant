@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import Image from "next/image";
 import { businessConfig } from "@/lib/businessConfig";
+import { Logo } from "@/components/ui/Logo";
 import { Utensils, Flame, Beer, MapPin, ArrowRight, ShieldCheck } from "lucide-react";
 
 export const metadata: Metadata = {
@@ -16,8 +17,11 @@ export default function AboutPage() {
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 space-y-16">
         {/* Intro */}
         <div className="text-center space-y-4 max-w-3xl mx-auto">
+          <div className="flex justify-center mb-2">
+            <Logo variant="primary" size="lg" />
+          </div>
           <div className="inline-flex items-center gap-1.5 text-brand-red font-bold text-xs uppercase tracking-widest">
-            <span>About Kalahari Pub</span>
+            <span>About Kalahari Pub &amp; Restaurant</span>
           </div>
           <h1 className="font-display text-3xl sm:text-4xl md:text-5xl font-black text-brand-charcoal tracking-tight">
             Good Food, Good Drinks, Great Vibes

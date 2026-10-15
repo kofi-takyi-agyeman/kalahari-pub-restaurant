@@ -1,0 +1,94 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="100%" height="100%">
+  <defs>
+    <linearGradient id="goldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FFE853" />
+      <stop offset="50%" stop-color="#F9D817" />
+      <stop offset="100%" stop-color="#C99E05" />
+    </linearGradient>
+    <linearGradient id="flameGrad" x1="0%" y1="100%" x2="0%" y2="0%">
+      <stop offset="0%" stop-color="#9E1212" />
+      <stop offset="30%" stop-color="#D92323" />
+      <stop offset="70%" stop-color="#F59E0B" />
+      <stop offset="100%" stop-color="#F9D817" />
+    </linearGradient>
+    <linearGradient id="flameCoreGrad" x1="0%" y1="100%" x2="0%" y2="0%">
+      <stop offset="0%" stop-color="#D92323" />
+      <stop offset="60%" stop-color="#F9D817" />
+      <stop offset="100%" stop-color="#FFF9C4" />
+    </linearGradient>
+    <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="3" result="blur" />
+      <feComposite in="SourceGraphic" in2="blur" operator="over" />
+    </filter>
+  </defs>
+
+  <!-- Base Dark Charcoal Circle -->
+  <circle cx="100" cy="100" r="96" fill="#171714" stroke="url(#goldGrad)" stroke-width="5" />
+  
+  <!-- Inner Ring Accent -->
+  <circle cx="100" cy="100" r="88" fill="none" stroke="#F9D817" stroke-width="1.5" stroke-opacity="0.4" stroke-dasharray="4 3" />
+  <circle cx="100" cy="100" r="84" fill="#1D1D19" />
+
+  <!-- Grill Base Embers Arc -->
+  <path d="M 45 130 Q 100 162 155 130" fill="none" stroke="#D92323" stroke-width="3" stroke-linecap="round" opacity="0.8" />
+  <path d="M 55 136 Q 100 168 145 136" fill="none" stroke="#F9D817" stroke-width="2" stroke-linecap="round" opacity="0.6" />
+
+  <!-- Roaring Charcoal Grill Flame -->
+  <!-- Outer Flame -->
+  <path d="M 100 28 
+           C 112 48, 126 56, 134 76 
+           C 144 100, 136 124, 118 136 
+           C 112 124, 116 112, 112 102 
+           C 108 92, 98 84, 96 72 
+           C 92 86, 84 94, 82 106 
+           C 80 118, 86 128, 82 136 
+           C 64 124, 56 100, 66 76 
+           C 74 56, 88 48, 100 28 Z" 
+        fill="url(#flameGrad)" />
+
+  <!-- Inner High-Heat Flame Core -->
+  <path d="M 100 52 
+           C 107 68, 116 76, 120 90 
+           C 125 106, 118 120, 107 128 
+           C 103 118, 107 110, 104 102 
+           C 101 94, 95 88, 93 80 
+           C 91 90, 85 96, 84 104 
+           C 83 112, 87 118, 84 124 
+           C 73 114, 75 100, 80 88 
+           C 85 74, 93 68, 100 52 Z" 
+        fill="url(#flameCoreGrad)" />
+
+  <!-- Crossed Culinary Grill Forks -->
+  <!-- Fork 1: Bottom-Left to Top-Right -->
+  <g id="fork1">
+    <!-- Shaft & Handle -->
+    <line x1="38" y1="156" x2="152" y2="76" stroke="url(#goldGrad)" stroke-width="4.5" stroke-linecap="round" />
+    <!-- Handle wrap (Crimson Red) -->
+    <line x1="42" y1="153" x2="68" y2="135" stroke="#D92323" stroke-width="7" stroke-linecap="round" />
+    <line x1="40" y1="154" x2="43" y2="152" stroke="#F9D817" stroke-width="8" stroke-linecap="round" />
+    <!-- Fork Head & 2 Prongs -->
+    <path d="M 144 82 L 158 72 M 140 76 L 154 66" stroke="url(#goldGrad)" stroke-width="3" stroke-linecap="round" />
+    <path d="M 136 87 Q 146 80 152 76" fill="none" stroke="url(#goldGrad)" stroke-width="3.5" />
+  </g>
+
+  <!-- Fork 2: Bottom-Right to Top-Left -->
+  <g id="fork2">
+    <!-- Shaft & Handle -->
+    <line x1="162" y1="156" x2="48" y2="76" stroke="url(#goldGrad)" stroke-width="4.5" stroke-linecap="round" />
+    <!-- Handle wrap (Crimson Red) -->
+    <line x1="158" y1="153" x2="132" y2="135" stroke="#D92323" stroke-width="7" stroke-linecap="round" />
+    <line x1="160" y1="154" x2="157" y2="152" stroke="#F9D817" stroke-width="8" stroke-linecap="round" />
+    <!-- Fork Head & 2 Prongs -->
+    <path d="M 56 82 L 42 72 M 60 76 L 46 66" stroke="url(#goldGrad)" stroke-width="3" stroke-linecap="round" />
+    <path d="M 64 87 Q 54 80 48 76" fill="none" stroke="url(#goldGrad)" stroke-width="3.5" />
+  </g>
+
+  <!-- Center Joint Star / Embers -->
+  <circle cx="100" cy="114" r="5" fill="#FFE853" />
+  <circle cx="100" cy="114" r="2.5" fill="#FFFFFF" />
+
+  <!-- Stars flanking bottom -->
+  <polygon points="100,172 102,177 107,177 103,180 105,185 100,182 95,185 97,180 93,177 98,177" fill="#F9D817" />
+  <circle cx="82" cy="178" r="2" fill="#D92323" />
+  <circle cx="118" cy="178" r="2" fill="#D92323" />
+</svg>

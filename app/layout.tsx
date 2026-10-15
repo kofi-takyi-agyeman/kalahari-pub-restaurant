@@ -15,6 +15,13 @@ export const metadata: Metadata = {
     type: "website",
     locale: "en_GH",
   },
+  icons: {
+    icon: [
+      { url: "/icon.svg", type: "image/svg+xml" },
+      { url: "/favicon.ico", sizes: "any" },
+    ],
+    apple: "/brand/logo-icon.svg",
+  },
 };
 
 export default function RootLayout({

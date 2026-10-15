@@ -2,6 +2,7 @@ import React from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { businessConfig } from "@/lib/businessConfig";
+import { Logo } from "@/components/ui/Logo";
 import { ArrowRight, Flame, Beer, Utensils, Sparkles, MapPin } from "lucide-react";
 
 export function Hero() {
@@ -19,7 +20,7 @@ export function Hero() {
           <div className="lg:col-span-7 space-y-6 text-center lg:text-left">
             {/* Pill Tag */}
             <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-brand-charcoal-card border border-brand-yellow/30 text-brand-yellow text-xs font-semibold tracking-wide shadow-xs">
-              <Sparkles className="w-3.5 h-3.5 fill-current" />
+              <Logo variant="icon" size="xs" />
               <span>Authentic Ghanaian Flavors &amp; Chilled Pub Drinks</span>
             </div>
 

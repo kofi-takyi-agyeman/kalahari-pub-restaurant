@@ -116,8 +116,120 @@ export function MenuTableClient({ items, categories }: MenuTableClientProps) {
         </div>
       </div>
 
-      {/* Table */}
-      <div className="bg-brand-charcoal-card rounded-3xl border border-brand-charcoal-muted p-6 shadow-xs overflow-x-auto">
+      {/* Mobile Dish Cards Stream (Phones < 768px) */}
+      <div className="md:hidden space-y-4">
+        {filteredItems.map((item) => {
+          const category = categories.find((c) => c.id === item.category_id);
+          const isItemLoading = loadingId === item.id;
+
+          return (
+            <div
+              key={item.id}
+              className="bg-brand-charcoal border border-brand-charcoal-muted rounded-2xl p-4 space-y-3.5 shadow-xs"
+            >
+              {/* Dish Top Row: Image + Name + Category + Price */}
+              <div className="flex items-start gap-3">
+                <div className="relative w-16 h-16 rounded-xl overflow-hidden bg-brand-charcoal shrink-0 border border-brand-charcoal-muted">
+                  <Image
+                    src={item.image_url || "/images/dishes/banku-tilapia.jpg"}
+                    alt={item.name}
+                    fill
+                    className="object-cover"
+                  />
+                </div>
+
+                <div className="flex-1 min-w-0">
+                  <span className="text-[10px] uppercase font-bold text-gray-400 tracking-wider block">
+                    {category?.name || item.category_id}
+                  </span>
+                  <h4 className="font-bold text-white text-sm truncate">{item.name}</h4>
+                  <div className="flex items-baseline gap-2 mt-1">
+                    <span className="text-base font-black text-brand-yellow">
+                      {formatCurrency(item.price)}
+                    </span>
+                    {item.is_sample_price && (
+                      <span className="text-[10px] text-amber-400 font-semibold">
+                        (Sample Price)
+                      </span>
+                    )}
+                  </div>
+                </div>
+              </div>
+
+              {/* Status Controls Row: Price Approval & Stock Availability */}
+              <div className="pt-2 border-t border-brand-charcoal-muted/60 grid grid-cols-2 gap-2 text-xs">
+                {/* Price Approval Control */}
+                <div>
+                  {item.is_sample_price ? (
+                    <button
+                      onClick={() => handleApprovePrice(item.id)}
+                      disabled={isItemLoading}
+                      className="w-full flex items-center justify-center gap-1.5 px-3 py-2.5 rounded-xl bg-brand-yellow hover:bg-brand-yellow-hover text-brand-charcoal font-black text-xs min-h-[44px] shadow-xs active:scale-95 disabled:opacity-60"
+                      title="Ratify official price"
+                    >
+                      <ShieldCheck className="w-4 h-4" />
+                      <span>Approve Price</span>
+                    </button>
+                  ) : (
+                    <div className="w-full flex items-center justify-center gap-1 px-3 py-2.5 rounded-xl bg-emerald-500/10 border border-emerald-500/30 text-emerald-300 font-bold text-xs min-h-[44px]">
+                      <CheckCircle2 className="w-4 h-4 text-emerald-400" />
+                      <span>Approved</span>
+                    </div>
+                  )}
+                </div>
+
+                {/* Stock Toggle Control */}
+                <div>
+                  <button
+                    onClick={() => handleToggleAvailability(item.id)}
+                    disabled={isItemLoading}
+                    className={`w-full flex items-center justify-center gap-1.5 px-3 py-2.5 rounded-xl text-xs font-bold border transition-colors min-h-[44px] active:scale-95 disabled:opacity-60 ${
+                      item.is_available
+                        ? "bg-emerald-950/40 text-emerald-300 border-emerald-800 hover:bg-emerald-900/60"
+                        : "bg-red-950/40 text-red-300 border-red-800 hover:bg-red-900/60"
+                    }`}
+                  >
+                    {item.is_available ? (
+                      <>
+                        <Eye className="w-4 h-4 text-emerald-400" />
+                        <span>In Stock</span>
+                      </>
+                    ) : (
+                      <>
+                        <EyeOff className="w-4 h-4 text-red-400" />
+                        <span>Out of Stock</span>
+                      </>
+                    )}
+                  </button>
+                </div>
+              </div>
+
+              {/* Edit / Delete Footer Actions */}
+              <div className="pt-2 border-t border-brand-charcoal-muted/60 flex items-center justify-end gap-2">
+                <Link
+                  href={`/admin/menu/${item.id}/edit`}
+                  className="inline-flex items-center gap-1 px-3.5 py-2 rounded-xl bg-brand-charcoal-card hover:bg-white/10 text-gray-200 text-xs font-bold border border-brand-charcoal-muted min-h-[40px]"
+                >
+                  <Edit2 className="w-3.5 h-3.5" />
+                  <span>Edit Details</span>
+                </Link>
+
+                <button
+                  onClick={() => handleDelete(item.id, item.name)}
+                  disabled={isItemLoading}
+                  className="inline-flex items-center gap-1 px-3.5 py-2 rounded-xl bg-red-950/40 hover:bg-red-900/60 text-red-300 text-xs font-bold border border-red-800/60 min-h-[40px]"
+                >
+                  <Trash2 className="w-3.5 h-3.5" />
+                  <span>Delete</span>
+                </button>
+              </div>
+            </div>
+          );
+        })}
+      </div>
+
+      {/* Desktop Table View (>= 768px) */}
+      <div className="hidden md:block bg-brand-charcoal-card rounded-3xl border border-brand-charcoal-muted p-6 shadow-xs overflow-x-auto">
         <table className="w-full text-left text-xs">
           <thead>
             <tr className="border-b border-brand-charcoal-muted text-gray-400 uppercase tracking-wider font-semibold">

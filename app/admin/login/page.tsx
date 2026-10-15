@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { businessConfig } from "@/lib/businessConfig";
 import { adminLoginAction } from "@/app/actions/adminAuthActions";
+import { Logo } from "@/components/ui/Logo";
 import {
   ShieldCheck,
   Lock,
@@ -61,9 +62,9 @@ export default function AdminLoginPage() {
         </div>
 
         {/* Brand Header */}
-        <div className="text-center space-y-2">
-          <div className="w-14 h-14 rounded-2xl bg-brand-yellow text-brand-charcoal flex items-center justify-center mx-auto shadow-md">
-            <Lock className="w-7 h-7 stroke-[2.2]" />
+        <div className="text-center space-y-3">
+          <div className="flex justify-center mb-1">
+            <Logo variant="primary" size="md" />
           </div>
           <h1 className="font-display text-2xl sm:text-3xl font-black text-white tracking-tight">
             Owner &amp; Staff Portal

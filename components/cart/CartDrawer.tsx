@@ -188,25 +188,25 @@ export function CartDrawer() {
                       </div>
 
                       {/* Quantity Controls */}
-                      <div className="flex items-center gap-1.5 border border-brand-cream-border rounded-lg p-1 bg-brand-cream/40">
+                      <div className="flex items-center gap-1 border border-brand-cream-border rounded-xl p-1 bg-brand-cream/60">
                         <button
                           onClick={() =>
                             updateQuantity(cartItem.id, cartItem.quantity - 1)
                           }
-                          className="p-1 hover:bg-white rounded text-gray-600 hover:text-brand-charcoal transition-colors"
-                          aria-label="Decrease quantity"
+                          className="w-8 h-8 flex items-center justify-center hover:bg-white rounded-lg text-gray-700 hover:text-brand-charcoal transition-colors active:scale-95"
+                          aria-label={`Decrease quantity of ${cartItem.item.name}`}
                         >
                           <Minus className="w-3.5 h-3.5" />
                         </button>
-                        <span className="text-xs font-bold w-5 text-center text-brand-charcoal">
+                        <span className="text-xs font-bold w-6 text-center text-brand-charcoal">
                           {cartItem.quantity}
                         </span>
                         <button
                           onClick={() =>
                             updateQuantity(cartItem.id, cartItem.quantity + 1)
                           }
-                          className="p-1 hover:bg-white rounded text-gray-600 hover:text-brand-charcoal transition-colors"
-                          aria-label="Increase quantity"
+                          className="w-8 h-8 flex items-center justify-center hover:bg-white rounded-lg text-gray-700 hover:text-brand-charcoal transition-colors active:scale-95"
+                          aria-label={`Increase quantity of ${cartItem.item.name}`}
                         >
                           <Plus className="w-3.5 h-3.5" />
                         </button>
@@ -214,8 +214,8 @@ export function CartDrawer() {
 
                       <button
                         onClick={() => removeFromCart(cartItem.id)}
-                        className="p-1.5 text-gray-400 hover:text-brand-red transition-colors"
-                        aria-label="Remove item"
+                        className="w-9 h-9 flex items-center justify-center text-gray-400 hover:text-brand-red hover:bg-red-50 rounded-lg transition-colors"
+                        aria-label={`Remove ${cartItem.item.name} from cart`}
                       >
                         <Trash2 className="w-4 h-4" />
                       </button>

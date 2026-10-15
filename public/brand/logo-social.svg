@@ -1,0 +1,83 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="100%" height="100%">
+  <defs>
+    <linearGradient id="sGoldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FFE853" />
+      <stop offset="50%" stop-color="#F9D817" />
+      <stop offset="100%" stop-color="#C99E05" />
+    </linearGradient>
+    <linearGradient id="sFlameGrad" x1="0%" y1="100%" x2="0%" y2="0%">
+      <stop offset="0%" stop-color="#9E1212" />
+      <stop offset="35%" stop-color="#D92323" />
+      <stop offset="70%" stop-color="#F59E0B" />
+      <stop offset="100%" stop-color="#F9D817" />
+    </linearGradient>
+    <linearGradient id="sFlameCore" x1="0%" y1="100%" x2="0%" y2="0%">
+      <stop offset="0%" stop-color="#D92323" />
+      <stop offset="60%" stop-color="#F9D817" />
+      <stop offset="100%" stop-color="#FFF9C4" />
+    </linearGradient>
+    <radialGradient id="bgGlow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#262621" />
+      <stop offset="100%" stop-color="#141411" />
+    </radialGradient>
+  </defs>
+
+  <!-- Full Square Canvas Background -->
+  <rect width="512" height="512" fill="url(#bgGlow)" />
+
+  <!-- Circular Safe Zone Boundary: radius 236 (well within 256 for round avatars) -->
+  <circle cx="256" cy="256" r="236" fill="#171714" stroke="url(#sGoldGrad)" stroke-width="8" />
+  <circle cx="256" cy="256" r="222" fill="none" stroke="#D92323" stroke-width="2.5" stroke-dasharray="6 4" opacity="0.8" />
+  <circle cx="256" cy="256" r="214" fill="#20201C" />
+
+  <!-- Center Roaring Flame -->
+  <path d="M 256 100 
+           C 278 140, 304 156, 318 196 
+           C 336 242, 320 286, 286 312 
+           C 278 288, 284 266, 278 244 
+           C 270 224, 252 210, 248 186 
+           C 240 214, 226 230, 222 252 
+           C 218 276, 228 296, 222 312 
+           C 188 286, 172 242, 190 196 
+           C 206 156, 232 140, 256 100 Z" 
+        fill="url(#sFlameGrad)" />
+
+  <!-- Core Flame -->
+  <path d="M 256 150 
+           C 268 180, 284 196, 290 224 
+           C 300 256, 288 284, 268 298 
+           C 260 278, 268 262, 262 246 
+           C 256 230, 246 218, 242 204 
+           C 238 224, 228 234, 226 250 
+           C 224 264, 230 278, 226 290 
+           C 206 270, 210 242, 218 220 
+           C 228 192, 242 182, 256 150 Z" 
+        fill="url(#sFlameCore)" />
+
+  <!-- Crossed Skewers -->
+  <g>
+    <line x1="130" y1="360" x2="350" y2="204" stroke="url(#sGoldGrad)" stroke-width="8" stroke-linecap="round" />
+    <line x1="136" y1="355" x2="190" y2="317" stroke="#D92323" stroke-width="13" stroke-linecap="round" />
+    <line x1="134" y1="357" x2="139" y2="353" stroke="#F9D817" stroke-width="15" stroke-linecap="round" />
+    <path d="M 334 216 L 360 196 M 326 205 L 352 185" stroke="url(#sGoldGrad)" stroke-width="5" stroke-linecap="round" />
+  </g>
+  <g>
+    <line x1="382" y1="360" x2="162" y2="204" stroke="url(#sGoldGrad)" stroke-width="8" stroke-linecap="round" />
+    <line x1="376" y1="355" x2="322" y2="317" stroke="#D92323" stroke-width="13" stroke-linecap="round" />
+    <line x1="378" y1="357" x2="373" y2="353" stroke="#F9D817" stroke-width="15" stroke-linecap="round" />
+    <path d="M 178 216 L 152 196 M 186 205 L 160 185" stroke="url(#sGoldGrad)" stroke-width="5" stroke-linecap="round" />
+  </g>
+
+  <!-- Joint Star -->
+  <circle cx="256" cy="282" r="10" fill="#FFE853" />
+  <circle cx="256" cy="282" r="5" fill="#FFFFFF" />
+
+  <!-- Wordmark Banner at Base of Circle -->
+  <rect x="116" y="380" width="280" height="42" rx="21" fill="#171714" stroke="url(#sGoldGrad)" stroke-width="3" />
+  <text x="256" y="408" font-family="'Outfit', 'Inter', system-ui, sans-serif" font-weight="900" font-size="21" fill="#F9D817" text-anchor="middle" letter-spacing="3">
+    KALAHARI PUB
+  </text>
+  <text x="256" y="442" font-family="'Outfit', 'Inter', system-ui, sans-serif" font-weight="800" font-size="12" fill="#E5E7EB" text-anchor="middle" letter-spacing="2">
+    &amp; RESTAURANT • ACCRA
+  </text>
+</svg>

@@ -20,6 +20,7 @@ import {
   Plus,
   Truck,
   Building2,
+  Phone,
 } from "lucide-react";
 
 export const metadata: Metadata = {
@@ -248,72 +249,139 @@ export default async function AdminDashboardOverviewPage() {
               </p>
             </div>
           ) : (
-            <div className="overflow-x-auto">
-              <table className="w-full text-left text-xs">
-                <thead>
-                  <tr className="border-b border-brand-charcoal-muted text-gray-400 uppercase tracking-wider font-semibold">
-                    <th className="pb-3 pr-4">Order Ref</th>
-                    <th className="pb-3 px-4">Customer</th>
-                    <th className="pb-3 px-4">Fulfillment</th>
-                    <th className="pb-3 px-4">Items</th>
-                    <th className="pb-3 px-4">Total</th>
-                    <th className="pb-3 px-4">Status</th>
-                    <th className="pb-3 pl-4 text-right">Action</th>
-                  </tr>
-                </thead>
-                <tbody className="divide-y divide-brand-charcoal-muted/50">
-                  {metrics.recentOrders.map((order) => {
-                    const statusColors: Record<string, string> = {
-                      pending: "bg-amber-500/10 text-amber-300 border-amber-500/30",
-                      confirmed: "bg-blue-500/10 text-blue-300 border-blue-500/30",
-                      preparing: "bg-purple-500/10 text-purple-300 border-purple-500/30",
-                      ready: "bg-teal-500/10 text-teal-300 border-teal-500/30",
-                      completed: "bg-emerald-500/10 text-emerald-300 border-emerald-500/30",
-                      cancelled: "bg-red-500/10 text-red-300 border-red-500/30",
-                    };
+            <>
+              {/* Mobile Recent Orders Cards (Phones < 768px) */}
+              <div className="md:hidden space-y-3">
+                {metrics.recentOrders.map((order) => {
+                  const statusColors: Record<string, string> = {
+                    pending: "bg-amber-500/10 text-amber-300 border-amber-500/30",
+                    confirmed: "bg-blue-500/10 text-blue-300 border-blue-500/30",
+                    preparing: "bg-purple-500/10 text-purple-300 border-purple-500/30",
+                    ready: "bg-teal-500/10 text-teal-300 border-teal-500/30",
+                    completed: "bg-emerald-500/10 text-emerald-300 border-emerald-500/30",
+                    cancelled: "bg-red-500/10 text-red-300 border-red-500/30",
+                  };
 
-                    return (
-                      <tr key={order.id} className="hover:bg-white/5 transition-colors">
-                        <td className="py-3.5 pr-4 font-mono font-bold text-white">
+                  return (
+                    <div
+                      key={order.id}
+                      className="bg-brand-charcoal border border-brand-charcoal-muted rounded-2xl p-4 space-y-2.5"
+                    >
+                      <div className="flex items-center justify-between">
+                        <span className="font-mono font-bold text-xs text-brand-yellow">
                           {order.order_number}
-                        </td>
-                        <td className="py-3.5 px-4">
+                        </span>
+                        <span
+                          className={`inline-flex px-2 py-0.5 rounded-full text-[10px] font-bold uppercase border ${
+                            statusColors[order.status] || "bg-gray-800 text-gray-300 border-gray-700"
+                          }`}
+                        >
+                          {order.status}
+                        </span>
+                      </div>
+
+                      <div className="flex items-center justify-between text-xs">
+                        <div>
                           <span className="font-bold text-white block">{order.customer_name}</span>
-                          <span className="text-[11px] text-gray-400">{order.customer_phone}</span>
-                        </td>
-                        <td className="py-3.5 px-4 capitalize text-gray-300">
-                          {order.order_type}
-                        </td>
-                        <td className="py-3.5 px-4 text-gray-300">
-                          {order.order_items.length} {order.order_items.length === 1 ? "dish" : "dishes"}
-                        </td>
-                        <td className="py-3.5 px-4 font-bold text-white">
-                          {formatCurrency(order.total)}
-                        </td>
-                        <td className="py-3.5 px-4">
-                          <span
-                            className={`inline-flex px-2 py-0.5 rounded-full text-[10px] font-bold uppercase border ${
-                              statusColors[order.status] || "bg-gray-800 text-gray-300 border-gray-700"
-                            }`}
-                          >
-                            {order.status}
+                          <span className="text-[11px] text-gray-400 capitalize">
+                            {order.order_type} &bull; {order.order_items.length} {order.order_items.length === 1 ? "dish" : "dishes"}
                           </span>
-                        </td>
-                        <td className="py-3.5 pl-4 text-right">
-                          <Link
-                            href={`/admin/orders/${order.id}`}
-                            className="inline-flex items-center gap-1 text-[11px] font-bold text-brand-yellow hover:underline"
-                          >
-                            <span>Manage</span>
-                            <ArrowRight className="w-3 h-3" />
-                          </Link>
-                        </td>
-                      </tr>
-                    );
-                  })}
-                </tbody>
-              </table>
-            </div>
+                        </div>
+                        <span className="font-black text-white text-sm">
+                          {formatCurrency(order.total)}
+                        </span>
+                      </div>
+
+                      <div className="pt-2 border-t border-brand-charcoal-muted/60 flex items-center justify-between">
+                        <a
+                          href={`tel:${order.customer_phone}`}
+                          className="text-[11px] font-semibold text-gray-300 hover:text-brand-yellow flex items-center gap-1 min-h-[36px]"
+                        >
+                          <Phone className="w-3 h-3 text-brand-red" />
+                          <span>{order.customer_phone}</span>
+                        </a>
+
+                        <Link
+                          href={`/admin/orders/${order.id}`}
+                          className="inline-flex items-center gap-1 px-3 py-1.5 rounded-lg bg-brand-yellow text-brand-charcoal font-black text-xs min-h-[36px]"
+                        >
+                          <span>Manage</span>
+                          <ArrowRight className="w-3 h-3" />
+                        </Link>
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+
+              {/* Desktop Table View (>= 768px) */}
+              <div className="hidden md:block overflow-x-auto">
+                <table className="w-full text-left text-xs">
+                  <thead>
+                    <tr className="border-b border-brand-charcoal-muted text-gray-400 uppercase tracking-wider font-semibold">
+                      <th className="pb-3 pr-4">Order Ref</th>
+                      <th className="pb-3 px-4">Customer</th>
+                      <th className="pb-3 px-4">Fulfillment</th>
+                      <th className="pb-3 px-4">Items</th>
+                      <th className="pb-3 px-4">Total</th>
+                      <th className="pb-3 px-4">Status</th>
+                      <th className="pb-3 pl-4 text-right">Action</th>
+                    </tr>
+                  </thead>
+                  <tbody className="divide-y divide-brand-charcoal-muted/50">
+                    {metrics.recentOrders.map((order) => {
+                      const statusColors: Record<string, string> = {
+                        pending: "bg-amber-500/10 text-amber-300 border-amber-500/30",
+                        confirmed: "bg-blue-500/10 text-blue-300 border-blue-500/30",
+                        preparing: "bg-purple-500/10 text-purple-300 border-purple-500/30",
+                        ready: "bg-teal-500/10 text-teal-300 border-teal-500/30",
+                        completed: "bg-emerald-500/10 text-emerald-300 border-emerald-500/30",
+                        cancelled: "bg-red-500/10 text-red-300 border-red-500/30",
+                      };
+
+                      return (
+                        <tr key={order.id} className="hover:bg-white/5 transition-colors">
+                          <td className="py-3.5 pr-4 font-mono font-bold text-white">
+                            {order.order_number}
+                          </td>
+                          <td className="py-3.5 px-4">
+                            <span className="font-bold text-white block">{order.customer_name}</span>
+                            <span className="text-[11px] text-gray-400">{order.customer_phone}</span>
+                          </td>
+                          <td className="py-3.5 px-4 capitalize text-gray-300">
+                            {order.order_type}
+                          </td>
+                          <td className="py-3.5 px-4 text-gray-300">
+                            {order.order_items.length} {order.order_items.length === 1 ? "dish" : "dishes"}
+                          </td>
+                          <td className="py-3.5 px-4 font-bold text-white">
+                            {formatCurrency(order.total)}
+                          </td>
+                          <td className="py-3.5 px-4">
+                            <span
+                              className={`inline-flex px-2 py-0.5 rounded-full text-[10px] font-bold uppercase border ${
+                                statusColors[order.status] || "bg-gray-800 text-gray-300 border-gray-700"
+                              }`}
+                            >
+                              {order.status}
+                            </span>
+                          </td>
+                          <td className="py-3.5 pl-4 text-right">
+                            <Link
+                              href={`/admin/orders/${order.id}`}
+                              className="inline-flex items-center gap-1 text-[11px] font-bold text-brand-yellow hover:underline"
+                            >
+                              <span>Manage</span>
+                              <ArrowRight className="w-3 h-3" />
+                            </Link>
+                          </td>
+                        </tr>
+                      );
+                    })}
+                  </tbody>
+                </table>
+              </div>
+            </>
           )}
         </div>
       </div>

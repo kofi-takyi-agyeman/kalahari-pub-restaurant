@@ -167,12 +167,12 @@ export default function CartPage() {
 
                     <div className="flex items-center justify-between w-full sm:w-auto gap-4 pt-2 sm:pt-0">
                       {/* Quantity Controls */}
-                      <div className="flex items-center gap-2 border border-brand-cream-border rounded-xl p-1 bg-brand-cream/40">
+                      <div className="flex items-center gap-1 border border-brand-cream-border rounded-xl p-1 bg-brand-cream/60">
                         <button
                           onClick={() =>
                             updateQuantity(cartItem.id, cartItem.quantity - 1)
                           }
-                          className="p-1 hover:bg-white rounded-lg text-gray-600 transition-colors"
+                          className="w-8 h-8 flex items-center justify-center hover:bg-white rounded-lg text-gray-700 hover:text-brand-charcoal transition-colors active:scale-95"
                           aria-label={`Decrease quantity of ${cartItem.item.name}`}
                         >
                           <Minus className="w-4 h-4" />
@@ -184,7 +184,7 @@ export default function CartPage() {
                           onClick={() =>
                             updateQuantity(cartItem.id, Math.min(50, cartItem.quantity + 1))
                           }
-                          className="p-1 hover:bg-white rounded-lg text-gray-600 transition-colors"
+                          className="w-8 h-8 flex items-center justify-center hover:bg-white rounded-lg text-gray-700 hover:text-brand-charcoal transition-colors active:scale-95"
                           aria-label={`Increase quantity of ${cartItem.item.name}`}
                         >
                           <Plus className="w-4 h-4" />

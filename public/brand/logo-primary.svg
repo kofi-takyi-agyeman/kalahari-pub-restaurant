@@ -1,0 +1,107 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" width="100%" height="100%">
+  <defs>
+    <linearGradient id="goldGradLg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FFE853" />
+      <stop offset="50%" stop-color="#F9D817" />
+      <stop offset="100%" stop-color="#C99E05" />
+    </linearGradient>
+    <linearGradient id="flameGradLg" x1="0%" y1="100%" x2="0%" y2="0%">
+      <stop offset="0%" stop-color="#9E1212" />
+      <stop offset="30%" stop-color="#D92323" />
+      <stop offset="70%" stop-color="#F59E0B" />
+      <stop offset="100%" stop-color="#F9D817" />
+    </linearGradient>
+    <linearGradient id="flameCoreGradLg" x1="0%" y1="100%" x2="0%" y2="0%">
+      <stop offset="0%" stop-color="#D92323" />
+      <stop offset="60%" stop-color="#F9D817" />
+      <stop offset="100%" stop-color="#FFF9C4" />
+    </linearGradient>
+
+    <!-- Top Text Arc: KALAHARI -->
+    <path id="arcKalahari" d="M 60 200 A 140 140 0 1 1 340 200" fill="none" />
+    <!-- Bottom Text Arc: PUB & RESTAURANT -->
+    <path id="arcSub" d="M 330 200 A 130 130 0 0 1 70 200" fill="none" />
+  </defs>
+
+  <!-- Outer Ring with Gold Border -->
+  <circle cx="200" cy="200" r="192" fill="#171714" stroke="url(#goldGradLg)" stroke-width="8" />
+  
+  <!-- Cream Border Ring -->
+  <circle cx="200" cy="200" r="176" fill="#F7F4EC" stroke="#171714" stroke-width="3" />
+
+  <!-- Inner Charcoal Badge Disc -->
+  <circle cx="200" cy="200" r="118" fill="#171714" stroke="url(#goldGradLg)" stroke-width="4" />
+  <circle cx="200" cy="200" r="110" fill="#1D1D19" stroke="#D92323" stroke-width="1.5" stroke-dasharray="5 3" />
+
+  <!-- Arching Top Text: KALAHARI in Cream Banner -->
+  <text font-family="'Outfit', 'Inter', system-ui, -apple-system, sans-serif" font-weight="900" font-size="34" fill="#171714" letter-spacing="4">
+    <textPath href="#arcKalahari" startOffset="50%" text-anchor="middle">
+      KALAHARI
+    </textPath>
+  </text>
+
+  <!-- Arching Bottom Text: PUB & RESTAURANT -->
+  <text font-family="'Outfit', 'Inter', system-ui, -apple-system, sans-serif" font-weight="800" font-size="19" fill="#171714" letter-spacing="2">
+    <textPath href="#arcSub" startOffset="50%" text-anchor="middle">
+      PUB &amp; RESTAURANT
+    </textPath>
+  </text>
+
+  <!-- Stars flanking top text -->
+  <polygon points="80,188 82,193 87,193 83,196 85,201 80,198 75,201 77,196 73,193 78,193" fill="#D92323" />
+  <polygon points="320,188 322,193 327,193 323,196 325,201 320,198 315,201 317,196 313,193 318,193" fill="#D92323" />
+
+  <!-- Center Roaring Flame -->
+  <!-- Outer Flame -->
+  <path d="M 200 114 
+           C 214 138, 230 148, 240 172 
+           C 252 201, 242 229, 220 244 
+           C 214 229, 218 215, 214 202 
+           C 209 190, 197 181, 195 166 
+           C 190 183, 180 193, 178 207 
+           C 176 222, 183 234, 178 244 
+           C 156 229, 146 200, 158 171 
+           C 168 147, 185 138, 200 114 Z" 
+        fill="url(#flameGradLg)" />
+
+  <!-- Inner High-Heat Core Flame -->
+  <path d="M 200 144 
+           C 208 162, 218 172, 222 189 
+           C 228 208, 220 225, 208 234 
+           C 203 222, 208 212, 204 202 
+           C 200 192, 193 185, 191 176 
+           C 188 188, 181 195, 180 205 
+           C 179 214, 183 222, 180 229 
+           C 167 217, 169 200, 175 186 
+           C 181 169, 191 163, 200 144 Z" 
+        fill="url(#flameCoreGradLg)" />
+
+  <!-- Crossed Culinary Skewers / Grill Forks -->
+  <!-- Fork 1 -->
+  <g>
+    <line x1="126" y1="268" x2="262" y2="172" stroke="url(#goldGradLg)" stroke-width="5" stroke-linecap="round" />
+    <line x1="130" y1="265" x2="162" y2="242" stroke="#D92323" stroke-width="8" stroke-linecap="round" />
+    <line x1="128" y1="266" x2="131" y2="264" stroke="#F9D817" stroke-width="9" stroke-linecap="round" />
+    <path d="M 252 179 L 268 167 M 247 172 L 263 160" stroke="url(#goldGradLg)" stroke-width="3.5" stroke-linecap="round" />
+    <path d="M 242 185 Q 254 177 261 172" fill="none" stroke="url(#goldGradLg)" stroke-width="4" />
+  </g>
+
+  <!-- Fork 2 -->
+  <g>
+    <line x1="274" y1="268" x2="138" y2="172" stroke="url(#goldGradLg)" stroke-width="5" stroke-linecap="round" />
+    <line x1="270" y1="265" x2="238" y2="242" stroke="#D92323" stroke-width="8" stroke-linecap="round" />
+    <line x1="272" y1="266" x2="269" y2="264" stroke="#F9D817" stroke-width="9" stroke-linecap="round" />
+    <path d="M 148 179 L 132 167 M 153 172 L 137 160" stroke="url(#goldGradLg)" stroke-width="3.5" stroke-linecap="round" />
+    <path d="M 158 185 Q 146 177 139 172" fill="none" stroke="url(#goldGradLg)" stroke-width="4" />
+  </g>
+
+  <!-- Center Golden Joint Star -->
+  <circle cx="200" cy="220" r="6" fill="#FFE853" />
+  <circle cx="200" cy="220" r="3" fill="#FFFFFF" />
+
+  <!-- Sub-Badge at bottom: ACCRA, GHANA -->
+  <rect x="135" y="340" width="130" height="26" rx="13" fill="#171714" stroke="url(#goldGradLg)" stroke-width="2" />
+  <text x="200" y="357" font-family="'Outfit', 'Inter', system-ui, sans-serif" font-weight="800" font-size="11" fill="#F9D817" text-anchor="middle" letter-spacing="2">
+    ★ ACCRA, GHANA ★
+  </text>
+</svg>

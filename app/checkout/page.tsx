@@ -256,10 +256,11 @@ export default function CheckoutPage() {
                   id="customerName"
                   type="text"
                   required
+                  autoComplete="name"
                   value={customerName}
                   onChange={(e) => setCustomerName(e.target.value)}
                   placeholder="e.g. Kwame Mensah"
-                  className={`w-full px-4 py-3 rounded-xl border text-sm text-brand-charcoal placeholder-gray-400 focus:outline-hidden focus:ring-2 focus:ring-brand-yellow transition-all ${
+                  className={`w-full px-4 py-3.5 rounded-xl border text-sm text-brand-charcoal placeholder-gray-400 focus:outline-hidden focus:ring-2 focus:ring-brand-yellow transition-all min-h-[46px] ${
                     fieldErrors.customerName
                       ? "border-red-400 bg-red-50/40"
                       : "border-brand-cream-border bg-white"
@@ -287,10 +288,12 @@ export default function CheckoutPage() {
                     id="customerPhone"
                     type="tel"
                     required
+                    autoComplete="tel"
+                    inputMode="tel"
                     value={customerPhone}
                     onChange={(e) => setCustomerPhone(e.target.value)}
                     placeholder="e.g. 024 565 6849 or 020 715 7071"
-                    className={`w-full pl-10 pr-4 py-3 rounded-xl border text-sm text-brand-charcoal placeholder-gray-400 focus:outline-hidden focus:ring-2 focus:ring-brand-yellow transition-all ${
+                    className={`w-full pl-10 pr-4 py-3.5 rounded-xl border text-sm text-brand-charcoal placeholder-gray-400 focus:outline-hidden focus:ring-2 focus:ring-brand-yellow transition-all min-h-[46px] ${
                       fieldErrors.customerPhone
                         ? "border-red-400 bg-red-50/40"
                         : "border-brand-cream-border bg-white"
@@ -401,17 +404,17 @@ export default function CheckoutPage() {
                       </p>
                     )}
                     {/* Quick Select Neighborhood Chips */}
-                    <div className="flex flex-wrap items-center gap-1.5 mt-2">
-                      <span className="text-[11px] text-gray-500 font-medium mr-1">Quick Select:</span>
+                    <div className="flex flex-wrap items-center gap-2 mt-2">
+                      <span className="text-[11px] text-gray-500 font-semibold mr-0.5">Quick Select:</span>
                       {["A-Lang", "Sowutuom", "Kwashieman", "Lapaz", "Santa Maria", "Odorkor"].map((zone) => (
                         <button
                           key={zone}
                           type="button"
                           onClick={() => setDeliveryArea(zone)}
-                          className={`px-2.5 py-1 rounded-lg text-xs font-semibold transition-all ${
+                          className={`px-3 py-1.5 rounded-xl text-xs font-bold transition-all min-h-[36px] active:scale-95 ${
                             deliveryArea.toLowerCase() === zone.toLowerCase()
-                              ? "bg-brand-charcoal text-brand-yellow font-bold shadow-xs"
-                              : "bg-brand-cream border border-brand-cream-border text-gray-600 hover:text-brand-charcoal"
+                              ? "bg-brand-charcoal text-brand-yellow font-black shadow-xs ring-2 ring-brand-yellow"
+                              : "bg-brand-cream border border-brand-cream-border text-gray-700 hover:text-brand-charcoal hover:bg-brand-cream/80"
                           }`}
                         >
                           {zone}
@@ -431,10 +434,11 @@ export default function CheckoutPage() {
                     <input
                       id="deliveryAddress"
                       type="text"
+                      autoComplete="street-address"
                       value={deliveryAddress}
                       onChange={(e) => setDeliveryAddress(e.target.value)}
                       placeholder="e.g. Taxi Rank Road, Main Sowutuom Highway"
-                      className={`w-full px-4 py-3 rounded-xl border text-sm text-brand-charcoal placeholder-gray-400 focus:outline-hidden focus:ring-2 focus:ring-brand-yellow transition-all ${
+                      className={`w-full px-4 py-3.5 rounded-xl border text-sm text-brand-charcoal placeholder-gray-400 focus:outline-hidden focus:ring-2 focus:ring-brand-yellow transition-all min-h-[46px] ${
                         fieldErrors.deliveryAddress
                           ? "border-red-400 bg-red-50/40"
                           : "border-brand-cream-border bg-white"

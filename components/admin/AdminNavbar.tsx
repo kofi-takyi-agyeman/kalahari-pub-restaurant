@@ -3,8 +3,8 @@
 import React, { useState } from "react";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
-import { businessConfig } from "@/lib/businessConfig";
 import { adminLogoutAction } from "@/app/actions/adminAuthActions";
+import { Logo } from "@/components/ui/Logo";
 import {
   LayoutDashboard,
   ShoppingBag,
@@ -54,16 +54,19 @@ export function AdminNavbar({ userEmail }: AdminNavbarProps) {
         <div className="flex items-center justify-between h-16">
           {/* Brand & Badge */}
           <div className="flex items-center gap-3">
-            <Link href="/admin" className="flex items-center gap-2">
-              <span className="w-8 h-8 rounded-lg bg-brand-yellow text-brand-charcoal font-black flex items-center justify-center text-sm shadow-xs">
-                KP
-              </span>
-              <span className="font-display font-extrabold text-base tracking-tight text-white hidden sm:inline">
-                {businessConfig.name}
-              </span>
+            <Link href="/admin" className="flex items-center gap-2 group">
+              <Logo variant="icon" size="sm" />
+              <div className="flex flex-col">
+                <span className="font-display font-black text-sm sm:text-base tracking-tight text-white leading-none">
+                  KALAHARI <span className="text-brand-yellow font-extrabold text-xs">PUB</span>
+                </span>
+                <span className="text-[10px] text-gray-400 uppercase tracking-widest hidden sm:inline">
+                  Admin Portal
+                </span>
+              </div>
             </Link>
             <span className="text-[10px] uppercase font-bold tracking-wider px-2 py-0.5 rounded bg-brand-charcoal-card border border-brand-charcoal-muted text-brand-yellow">
-              Admin
+              Staff
             </span>
           </div>
 
@@ -133,10 +136,13 @@ export function AdminNavbar({ userEmail }: AdminNavbarProps) {
 
       {/* Mobile Nav Drawer */}
       {mobileMenuOpen && (
-        <div className="md:hidden border-t border-brand-charcoal-muted bg-brand-charcoal-card px-4 pt-3 pb-5 space-y-1">
-          <div className="pb-2 mb-2 border-b border-brand-charcoal-muted flex items-center justify-between text-xs text-gray-400">
-            <span>Signed in as:</span>
-            <span className="font-bold text-white">{userEmail}</span>
+        <div className="md:hidden border-t border-brand-charcoal-muted bg-brand-charcoal-card px-4 pt-3 pb-5 space-y-2">
+          <div className="pb-3 border-b border-brand-charcoal-muted flex items-center justify-between">
+            <Logo variant="dark" size="xs" />
+            <div className="text-right">
+              <span className="text-[10px] text-gray-400 block">Logged in as:</span>
+              <span className="font-bold text-white text-xs">{userEmail}</span>
+            </div>
           </div>
 
           {navLinks.map((link) => {

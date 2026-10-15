@@ -100,7 +100,7 @@ export function FoodCard({ item }: FoodCardProps) {
               onClick={handleAdd}
               disabled={!item.isAvailable}
               aria-label={`Add ${item.name} to cart`}
-              className={`inline-flex items-center gap-1.5 px-4 py-2.5 rounded-xl font-semibold text-sm transition-all duration-200 active:scale-95 ${
+              className={`inline-flex items-center justify-center gap-1.5 px-4 py-2.5 rounded-xl font-bold text-sm min-h-[44px] transition-all duration-200 active:scale-95 ${
                 justAdded
                   ? "bg-brand-green text-white shadow-sm"
                   : item.isAvailable

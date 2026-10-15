@@ -18,6 +18,7 @@ import {
 } from "lucide-react";
 import { OrderConfirmationClient } from "./OrderConfirmationClient";
 import { OrderTrackerStepper } from "@/components/orders/OrderTrackerStepper";
+import { Logo } from "@/components/ui/Logo";
 
 export const metadata: Metadata = {
   title: `Order Confirmation | ${businessConfig.name}`,
@@ -112,6 +113,11 @@ export default async function OrderConfirmationPage({
       <OrderConfirmationClient orderNumber={order.order_number} />
 
       <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
+        {/* Brand Receipt Header */}
+        <div className="flex justify-center pt-2">
+          <Logo variant="compact" size="md" asLink href="/" />
+        </div>
+
         {/* Success Header Card */}
         <div className="bg-white rounded-3xl border border-brand-cream-border p-6 sm:p-10 shadow-xs text-center space-y-4">
           <div className="w-16 h-16 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center mx-auto shadow-xs">
