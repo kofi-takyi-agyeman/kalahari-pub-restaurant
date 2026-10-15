@@ -7,6 +7,7 @@ import {
 } from "@/lib/orders/orderValidation";
 import { isSupabaseConfigured } from "@/lib/supabase/config";
 import { createSupabaseServerClient } from "@/lib/supabase/server";
+import { getSupabaseAdminClient } from "@/lib/supabase/admin";
 import { menuItems as localFallbackItems } from "@/data/menuItems";
 import { devOrderStore } from "@/lib/orders/devOrderStore";
 import { devAdminStore } from "@/lib/admin/devAdminStore";
@@ -30,6 +31,14 @@ export interface SubmitOrderResponse {
  */
 export async function submitOrder(payload: CheckoutPayload): Promise<SubmitOrderResponse> {
   try {
+    // 0. Strict production guard: Fail safely if running in production without database credentials
+    if (process.env.NODE_ENV === "production" && !isSupabaseConfigured()) {
+      return {
+        success: false,
+        error: "Online ordering is temporarily unavailable due to server configuration. Please call the restaurant directly at 024 565 6849 to place your order.",
+      };
+    }
+
     // 1. Fetch current delivery config and validate customer/cart payload
     const deliveryConfig = await getDeliveryConfig();
     const validation = validateCheckoutInput(payload, deliveryConfig);
@@ -202,7 +211,8 @@ export async function submitOrder(payload: CheckoutPayload): Promise<SubmitOrder
 
     // 6. Atomic Database Persistence
     if (isSupabaseConfigured()) {
-      const supabase = await createSupabaseServerClient();
+      const adminClient = getSupabaseAdminClient();
+      const supabase = adminClient || (await createSupabaseServerClient());
       if (!supabase) {
         return {
           success: false,
@@ -265,6 +275,15 @@ export async function submitOrder(payload: CheckoutPayload): Promise<SubmitOrder
           error: "Failed to save order details. Please contact the restaurant.",
         };
       }
+
+      // Create initial audit log entry for order creation
+      await supabase.from("order_status_logs").insert({
+        order_id: orderId,
+        previous_status: null,
+        new_status: "pending",
+        changed_by: "customer-checkout",
+        notes: `Order created via online checkout (${cleanCustomer.orderType})`,
+      });
     } else {
       // Save to development in-memory store
       const orderHeader: OrderRow = {
@@ -331,18 +350,23 @@ export async function getOrderConfirmation(orderNumber: string, accessToken: str
   }
 
   if (isSupabaseConfigured()) {
-    const supabase = await createSupabaseServerClient();
+    const adminClient = getSupabaseAdminClient();
+    const supabase = adminClient || (await createSupabaseServerClient());
     if (!supabase) return null;
 
     const { data: order } = await supabase
       .from("orders")
-      .select("*, order_items(*)")
+      .select("*, order_items(*), order_status_logs(*)")
       .eq("order_number", orderNumber)
       .eq("access_token", accessToken)
       .maybeSingle();
 
     return order as OrderWithItems | null;
   } else {
+    // If in production without database credentials, refuse in-memory fallback
+    if (process.env.NODE_ENV === "production") {
+      return null;
+    }
     return devOrderStore.getOrderByNumber(orderNumber, accessToken);
   }
 }

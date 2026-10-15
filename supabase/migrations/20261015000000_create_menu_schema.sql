@@ -13,7 +13,7 @@ CREATE EXTENSION IF NOT EXISTS "pgcrypto";
 -- 1. Table: menu_categories
 -- ------------------------------------------------------------------------------
 CREATE TABLE IF NOT EXISTS public.menu_categories (
-    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+    id VARCHAR(64) PRIMARY KEY,
     name VARCHAR(100) NOT NULL,
     slug VARCHAR(100) NOT NULL,
     description TEXT,
@@ -33,8 +33,8 @@ COMMENT ON COLUMN public.menu_categories.is_active IS 'Controls whether the cate
 -- 2. Table: menu_items
 -- ------------------------------------------------------------------------------
 CREATE TABLE IF NOT EXISTS public.menu_items (
-    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
-    category_id UUID NOT NULL REFERENCES public.menu_categories(id) ON DELETE RESTRICT,
+    id VARCHAR(64) PRIMARY KEY,
+    category_id VARCHAR(64) NOT NULL REFERENCES public.menu_categories(id) ON DELETE RESTRICT,
     name VARCHAR(150) NOT NULL,
     slug VARCHAR(150) NOT NULL,
     description TEXT,

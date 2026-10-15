@@ -69,7 +69,16 @@ export async function getAdminSession(): Promise<AdminAuthSession> {
     }
   }
 
-  // Development Fallback: Verify secure session cookie
+  // In production, reject development fallback if Supabase is unconfigured
+  if (process.env.NODE_ENV === "production") {
+    return {
+      isAuthenticated: false,
+      user: null,
+      error: "Production administrator authentication is not configured.",
+    };
+  }
+
+  // Development Fallback: Verify secure session cookie (DEVELOPMENT ONLY)
   try {
     const cookieStore = await cookies();
     const sessionCookie = cookieStore.get(ADMIN_SESSION_COOKIE)?.value;
@@ -78,7 +87,7 @@ export async function getAdminSession(): Promise<AdminAuthSession> {
       return { isAuthenticated: false, user: null };
     }
 
-    // Verify token format (email:signature)
+    // Verify token format (email:expires:signature)
     const [email, expiresStr, signature] = sessionCookie.split(":");
     if (!email || !expiresStr || !signature) {
       return { isAuthenticated: false, user: null };
@@ -89,8 +98,9 @@ export async function getAdminSession(): Promise<AdminAuthSession> {
       return { isAuthenticated: false, user: null, error: "Session expired." };
     }
 
+    const devSecret = process.env.DEV_SESSION_SECRET || "kalahari-dev-secret-key-salt";
     const expectedSig = crypto
-      .createHmac("sha256", "kalahari-dev-secret-key-salt")
+      .createHmac("sha256", devSecret)
       .update(`${email}:${expiresStr}`)
       .digest("hex");
 
@@ -157,21 +167,30 @@ export async function loginAdmin(
     }
   }
 
-  // Development Fallback Authentication
+  // Strictly disallow development authentication in production environment
+  if (process.env.NODE_ENV === "production") {
+    return {
+      success: false,
+      error: "Development authentication is strictly disabled in production. Please configure Supabase Auth.",
+    };
+  }
+
+  // Development Fallback Authentication (LOCAL DEV ONLY)
   if (
     email === DEFAULT_DEV_ADMIN_EMAIL.toLowerCase() &&
     password === DEFAULT_DEV_ADMIN_PASSWORD
   ) {
     const cookieStore = await cookies();
     const expires = Date.now() + 24 * 60 * 60 * 1000; // 24 hours
+    const devSecret = process.env.DEV_SESSION_SECRET || "kalahari-dev-secret-key-salt";
     const signature = crypto
-      .createHmac("sha256", "kalahari-dev-secret-key-salt")
+      .createHmac("sha256", devSecret)
       .update(`${email}:${expires}`)
       .digest("hex");
 
     cookieStore.set(ADMIN_SESSION_COOKIE, `${email}:${expires}:${signature}`, {
       httpOnly: true,
-      secure: process.env.NODE_ENV === "production",
+      secure: false, // Local development cookie fallback only
       sameSite: "lax",
       path: "/",
       maxAge: 24 * 60 * 60,

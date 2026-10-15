@@ -51,7 +51,7 @@ COMMENT ON COLUMN public.orders.idempotency_key IS 'Unique submission key preven
 CREATE TABLE IF NOT EXISTS public.order_items (
     id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
     order_id UUID NOT NULL REFERENCES public.orders(id) ON DELETE CASCADE,
-    menu_item_id UUID REFERENCES public.menu_items(id) ON DELETE SET NULL,
+    menu_item_id VARCHAR(64) REFERENCES public.menu_items(id) ON DELETE SET NULL,
     item_name VARCHAR(150) NOT NULL,
     unit_price NUMERIC(10, 2) NOT NULL,
     quantity INTEGER NOT NULL,
@@ -138,3 +138,113 @@ CREATE POLICY "Admin can view all order items"
     WITH CHECK (
         (auth.jwt() -> 'app_metadata' ->> 'role') = 'admin'
     );
+
+-- ------------------------------------------------------------------------------
+-- 6. Atomic Order Creation Function (SECURITY DEFINER)
+-- ------------------------------------------------------------------------------
+-- Atomically inserts order header, all line items, and the initial status audit log.
+CREATE OR REPLACE FUNCTION public.create_customer_order(
+    p_order jsonb,
+    p_items jsonb
+)
+RETURNS jsonb
+LANGUAGE plpgsql
+SECURITY DEFINER
+AS $$
+DECLARE
+    v_order_id uuid;
+    v_order_number text;
+    v_access_token text;
+    v_item jsonb;
+BEGIN
+    v_order_id := coalesce((p_order->>'id')::uuid, gen_random_uuid());
+    v_order_number := p_order->>'order_number';
+    v_access_token := p_order->>'access_token';
+
+    -- 1. Insert Order Header
+    INSERT INTO public.orders (
+        id,
+        order_number,
+        access_token,
+        idempotency_key,
+        customer_name,
+        customer_phone,
+        order_type,
+        delivery_address,
+        delivery_area,
+        delivery_instructions,
+        customer_note,
+        status,
+        currency,
+        subtotal,
+        delivery_fee,
+        total
+    ) VALUES (
+        v_order_id,
+        v_order_number,
+        v_access_token,
+        p_order->>'idempotency_key',
+        p_order->>'customer_name',
+        p_order->>'customer_phone',
+        p_order->>'order_type',
+        p_order->>'delivery_address',
+        p_order->>'delivery_area',
+        p_order->>'delivery_instructions',
+        p_order->>'customer_note',
+        'pending',
+        coalesce(p_order->>'currency', 'GHS'),
+        (p_order->>'subtotal')::numeric,
+        coalesce((p_order->>'delivery_fee')::numeric, 0.00),
+        (p_order->>'total')::numeric
+    );
+
+    -- 2. Insert Order Items
+    FOR v_item IN SELECT * FROM jsonb_array_elements(p_items)
+    LOOP
+        INSERT INTO public.order_items (
+            id,
+            order_id,
+            menu_item_id,
+            item_name,
+            unit_price,
+            quantity,
+            line_total
+        ) VALUES (
+            coalesce((v_item->>'id')::uuid, gen_random_uuid()),
+            v_order_id,
+            v_item->>'menu_item_id',
+            v_item->>'item_name',
+            (v_item->>'unit_price')::numeric,
+            (v_item->>'quantity')::integer,
+            (v_item->>'line_total')::numeric
+        );
+    END LOOP;
+
+    -- 3. Insert Initial Audit Log Entry
+    INSERT INTO public.order_status_logs (
+        id,
+        order_id,
+        previous_status,
+        new_status,
+        changed_by,
+        notes
+    ) VALUES (
+        gen_random_uuid(),
+        v_order_id,
+        NULL,
+        'pending',
+        'customer-checkout',
+        'Order created via online checkout (' || (p_order->>'order_type') || ')'
+    );
+
+    RETURN jsonb_build_object(
+        'success', true,
+        'order_id', v_order_id,
+        'order_number', v_order_number,
+        'access_token', v_access_token
+    );
+EXCEPTION
+    WHEN OTHERS THEN
+        RAISE EXCEPTION 'Failed to create order atomically: %', SQLERRM;
+END;
+$$;
