@@ -1,4 +1,9 @@
-export type CategoryId = "local-dishes" | "grilled-food" | "rice-meals" | "drinks";
+export type CategoryId =
+  | "local-dishes"
+  | "grilled-food"
+  | "rice-meals"
+  | "drinks"
+  | (string & {});
 
 export interface Category {
   id: CategoryId;

@@ -2,12 +2,16 @@ import { Suspense } from "react";
 import type { Metadata } from "next";
 import { MenuBrowser } from "@/components/menu/MenuBrowser";
 import { businessConfig } from "@/lib/businessConfig";
+import { getLiveMenuData } from "@/lib/supabase/menuQueries";
 import { UtensilsCrossed, Loader2 } from "lucide-react";
 
 export const metadata: Metadata = {
   title: `Our Menu | ${businessConfig.name}`,
   description: `Browse Ghanaian local dishes, charcoal-grilled tilapia, rice meals, and chilled drinks at ${businessConfig.name}.`,
 };
+
+// Revalidate menu data periodically or on demand
+export const revalidate = 60;
 
 function MenuLoadingFallback() {
   return (
@@ -18,7 +22,10 @@ function MenuLoadingFallback() {
   );
 }
 
-export default function MenuPage() {
+export default async function MenuPage() {
+  // Server-side data fetch from Supabase (with graceful fallback/unconfigured handling)
+  const menuData = await getLiveMenuData();
+
   return (
     <div className="min-h-screen bg-[#FDFCF9] py-10 sm:py-16">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10">
@@ -39,7 +46,13 @@ export default function MenuPage() {
 
         {/* Menu Interactive Browser */}
         <Suspense fallback={<MenuLoadingFallback />}>
-          <MenuBrowser />
+          <MenuBrowser
+            initialCategories={menuData.categories}
+            initialItems={menuData.items}
+            isDatabaseConnected={menuData.isDatabaseConnected}
+            isFallback={menuData.isFallback}
+            error={menuData.error}
+          />
         </Suspense>
       </div>
     </div>
