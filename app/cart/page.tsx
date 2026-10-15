@@ -11,80 +11,80 @@ import {
   Plus,
   Minus,
   Trash2,
-  MapPin,
-  PhoneCall,
   AlertTriangle,
   ArrowRight,
+  ArrowLeft,
   ShieldAlert,
-  Info,
-  CheckCircle2,
+  RotateCcw,
 } from "lucide-react";
 
 export default function CartPage() {
   const { items, removeFromCart, updateQuantity, clearCart, subtotal, totalItems } =
     useCart();
 
-  const [orderType, setOrderType] = useState<"pickup" | "delivery">("pickup");
-  const [customerName, setCustomerName] = useState("");
-  const [customerPhone, setCustomerPhone] = useState("");
-  const [deliveryAddress, setDeliveryAddress] = useState("");
-  const [formSubmitted, setFormSubmitted] = useState(false);
+  const [showClearConfirm, setShowClearConfirm] = useState(false);
 
-  const handleReviewOrder = (e: React.FormEvent) => {
-    e.preventDefault();
-    setFormSubmitted(true);
+  const handleClear = () => {
+    clearCart();
+    setShowClearConfirm(false);
   };
 
   return (
     <div className="min-h-screen bg-[#FDFCF9] py-10 sm:py-16">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
-        {/* Page Title */}
+      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
+        {/* Navigation Breadcrumb & Title */}
         <div className="border-b border-brand-cream-border pb-6 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
           <div>
+            <div className="flex items-center gap-2 text-xs font-semibold text-gray-500 mb-1">
+              <Link href="/menu" className="hover:text-brand-red flex items-center gap-1">
+                <ArrowLeft className="w-3.5 h-3.5" />
+                <span>Menu</span>
+              </Link>
+              <span>/</span>
+              <span className="text-brand-charcoal">Cart ({totalItems})</span>
+            </div>
             <h1 className="font-display text-3xl sm:text-4xl font-black text-brand-charcoal tracking-tight">
-              Your Order Summary
+              Your Shopping Cart
             </h1>
-            <p className="text-sm text-gray-500 mt-1">
-              Review your selected dishes, estimated subtotal, and ordering details.
-            </p>
           </div>
 
           <Link
             href="/menu"
-            className="inline-flex items-center gap-1.5 text-sm font-bold text-brand-red hover:underline"
+            className="inline-flex items-center gap-2 text-sm font-bold text-brand-red hover:underline self-start sm:self-auto"
           >
-            <span>&larr; Back to Menu</span>
+            <span>Continue Shopping</span>
+            <ArrowRight className="w-4 h-4" />
           </Link>
         </div>
 
-        {/* Global Notice Banner */}
-        <div className="rounded-2xl bg-amber-50 border border-amber-200/90 p-4 sm:p-5 text-amber-950 flex items-start gap-3.5">
+        {/* Sample Price Notice Banner */}
+        <div className="rounded-2xl bg-amber-50 border border-amber-200/90 p-4 sm:p-5 text-amber-950 flex items-start gap-3.5 shadow-xs">
           <AlertTriangle className="w-5 h-5 text-amber-700 shrink-0 mt-0.5" />
           <div className="text-xs sm:text-sm space-y-1">
             <p className="font-bold uppercase tracking-wide">
-              Phase 1 Order Preparation Notice
+              Demonstration Pricing &amp; Checkout Rules
             </p>
             <p className="text-amber-900/85 leading-relaxed">
-              All dish prices are development demonstration figures (
-              <span className="font-semibold">{businessConfig.samplePriceNotice}</span>
-              ). Automatic payment processing and database checkout will launch in
-              Phase 2. You can use this summary to review your choices, then call our
-              kitchen directly to place and confirm your order.
+              Dishes flagged with &quot;{businessConfig.samplePriceNotice}&quot; use temporary demonstration
+              estimates. Per restaurant policy, items with unconfirmed prices cannot be finalized as commercial
+              orders online until approved by management. You can review your cart here and proceed to checkout
+              to see fulfillment details or call the restaurant directly.
             </p>
           </div>
         </div>
 
         {items.length === 0 ? (
+          /* Empty Cart State */
           <div className="bg-white rounded-3xl border border-brand-cream-border p-12 text-center max-w-md mx-auto my-12 shadow-xs space-y-4">
             <div className="w-20 h-20 rounded-full bg-brand-cream text-brand-charcoal/40 flex items-center justify-center mx-auto">
               <ShoppingBag className="w-10 h-10 stroke-[1.5]" />
             </div>
             <h2 className="font-display text-xl font-bold text-brand-charcoal">
-              Your bag is currently empty
+              Your cart is empty
             </h2>
             <p className="text-sm text-gray-500">
-              Browse our delicious Ghanaian dishes, fresh grilled food, and chilled
-              drinks to get started.
+              Browse our authentic Ghanaian dishes, flame-grilled tilapia, and chilled
+              pub drinks to start your order.
             </p>
             <div className="pt-2">
               <Link
@@ -97,20 +97,41 @@ export default function CartPage() {
             </div>
           </div>
         ) : (
+          /* Cart Grid */
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
             {/* Left Items Column */}
-            <div className="lg:col-span-7 bg-white rounded-3xl border border-brand-cream-border p-6 sm:p-8 shadow-xs space-y-6">
+            <div className="lg:col-span-8 bg-white rounded-3xl border border-brand-cream-border p-6 sm:p-8 shadow-xs space-y-6">
               <div className="flex items-center justify-between pb-4 border-b border-brand-cream-border">
                 <h2 className="font-display text-xl font-bold text-brand-charcoal flex items-center gap-2">
                   <ShoppingBag className="w-5 h-5 text-brand-red" />
-                  <span>Selected Items ({totalItems})</span>
+                  <span>Cart Items ({totalItems})</span>
                 </h2>
-                <button
-                  onClick={clearCart}
-                  className="text-xs text-gray-400 hover:text-brand-red transition-colors"
-                >
-                  Clear Bag
-                </button>
+
+                {showClearConfirm ? (
+                  <div className="flex items-center gap-2 text-xs">
+                    <span className="text-gray-500">Clear all?</span>
+                    <button
+                      onClick={handleClear}
+                      className="px-2.5 py-1 rounded bg-brand-red text-white font-bold hover:bg-brand-red-hover transition-colors"
+                    >
+                      Yes, Clear
+                    </button>
+                    <button
+                      onClick={() => setShowClearConfirm(false)}
+                      className="px-2 py-1 rounded text-gray-500 hover:text-brand-charcoal"
+                    >
+                      Cancel
+                    </button>
+                  </div>
+                ) : (
+                  <button
+                    onClick={() => setShowClearConfirm(true)}
+                    className="text-xs text-gray-400 hover:text-brand-red transition-colors flex items-center gap-1"
+                  >
+                    <RotateCcw className="w-3.5 h-3.5" />
+                    <span>Clear Cart</span>
+                  </button>
+                )}
               </div>
 
               {/* Items List */}
@@ -118,10 +139,10 @@ export default function CartPage() {
                 {items.map((cartItem) => (
                   <div
                     key={cartItem.id}
-                    className="py-4 first:pt-0 last:pb-0 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4"
+                    className="py-5 first:pt-0 last:pb-0 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4"
                   >
-                    <div className="flex items-center gap-3">
-                      <div className="relative w-16 h-16 rounded-xl overflow-hidden bg-gray-100 shrink-0 border border-brand-cream-border">
+                    <div className="flex items-center gap-3.5">
+                      <div className="relative w-20 h-20 rounded-2xl overflow-hidden bg-gray-100 shrink-0 border border-brand-cream-border">
                         <Image
                           src={cartItem.item.image}
                           alt={cartItem.item.name}
@@ -129,28 +150,30 @@ export default function CartPage() {
                           className="object-cover"
                         />
                       </div>
-                      <div>
-                        <h3 className="text-sm font-bold text-brand-charcoal">
+                      <div className="space-y-1">
+                        <h3 className="text-base font-bold text-brand-charcoal leading-snug">
                           {cartItem.item.name}
                         </h3>
-                        <span className="text-[11px] text-amber-800 font-medium block">
-                          Sample unit price: {formatCurrency(cartItem.item.samplePrice)}
-                        </span>
-                        <span className="text-xs font-black text-brand-charcoal mt-1 block">
-                          Subtotal: {formatCurrency(cartItem.item.samplePrice * cartItem.quantity)}
+                        {cartItem.item.isSamplePrice && (
+                          <span className="inline-block text-[10px] font-semibold text-amber-800 bg-amber-50 px-2 py-0.5 rounded border border-amber-200">
+                            SAMPLE PRICE
+                          </span>
+                        )}
+                        <span className="text-xs text-gray-500 block font-medium">
+                          Unit: {formatCurrency(cartItem.item.samplePrice)}
                         </span>
                       </div>
                     </div>
 
-                    <div className="flex items-center justify-between w-full sm:w-auto gap-4">
-                      {/* Quantity Buttons */}
+                    <div className="flex items-center justify-between w-full sm:w-auto gap-4 pt-2 sm:pt-0">
+                      {/* Quantity Controls */}
                       <div className="flex items-center gap-2 border border-brand-cream-border rounded-xl p-1 bg-brand-cream/40">
                         <button
                           onClick={() =>
                             updateQuantity(cartItem.id, cartItem.quantity - 1)
                           }
                           className="p-1 hover:bg-white rounded-lg text-gray-600 transition-colors"
-                          aria-label="Decrease quantity"
+                          aria-label={`Decrease quantity of ${cartItem.item.name}`}
                         >
                           <Minus className="w-4 h-4" />
                         </button>
@@ -159,19 +182,27 @@ export default function CartPage() {
                         </span>
                         <button
                           onClick={() =>
-                            updateQuantity(cartItem.id, cartItem.quantity + 1)
+                            updateQuantity(cartItem.id, Math.min(50, cartItem.quantity + 1))
                           }
                           className="p-1 hover:bg-white rounded-lg text-gray-600 transition-colors"
-                          aria-label="Increase quantity"
+                          aria-label={`Increase quantity of ${cartItem.item.name}`}
                         >
                           <Plus className="w-4 h-4" />
                         </button>
                       </div>
 
+                      {/* Line Total */}
+                      <div className="text-right min-w-[80px]">
+                        <span className="text-sm font-black text-brand-charcoal">
+                          {formatCurrency(cartItem.item.samplePrice * cartItem.quantity)}
+                        </span>
+                      </div>
+
+                      {/* Remove Button */}
                       <button
                         onClick={() => removeFromCart(cartItem.id)}
                         className="p-2 text-gray-400 hover:text-brand-red rounded-lg transition-colors"
-                        aria-label="Remove item"
+                        aria-label={`Remove ${cartItem.item.name} from cart`}
                       >
                         <Trash2 className="w-4 h-4" />
                       </button>
@@ -181,190 +212,64 @@ export default function CartPage() {
               </div>
             </div>
 
-            {/* Right Summary & Details Column */}
-            <div className="lg:col-span-5 space-y-6">
-              {/* Order Options & Calculation Box */}
-              <div className="bg-white rounded-3xl border border-brand-cream-border p-6 sm:p-8 shadow-xs space-y-6">
-                <h2 className="font-display text-xl font-bold text-brand-charcoal">
-                  Fulfillment &amp; Contact
-                </h2>
+            {/* Right Summary Column */}
+            <div className="lg:col-span-4 bg-white rounded-3xl border border-brand-cream-border p-6 sm:p-8 shadow-xs space-y-6">
+              <h2 className="font-display text-xl font-bold text-brand-charcoal">
+                Cart Summary
+              </h2>
 
-                {/* Pickup / Delivery Choice */}
-                <div className="space-y-2">
-                  <label className="text-xs font-bold text-gray-700 uppercase tracking-wider block">
-                    Choose Order Type:
-                  </label>
-                  <div className="grid grid-cols-2 gap-2 bg-gray-100 p-1.5 rounded-xl">
-                    <button
-                      type="button"
-                      onClick={() => setOrderType("pickup")}
-                      className={`py-2 text-xs font-bold rounded-lg transition-all ${
-                        orderType === "pickup"
-                          ? "bg-white text-brand-charcoal shadow-sm"
-                          : "text-gray-600 hover:text-brand-charcoal"
-                      }`}
-                    >
-                      Pickup at Pub
-                    </button>
-                    <button
-                      type="button"
-                      onClick={() => setOrderType("delivery")}
-                      className={`py-2 text-xs font-bold rounded-lg transition-all ${
-                        orderType === "delivery"
-                          ? "bg-white text-brand-charcoal shadow-sm"
-                          : "text-gray-600 hover:text-brand-charcoal"
-                      }`}
-                    >
-                      Delivery Request
-                    </button>
-                  </div>
+              <div className="space-y-3 text-sm">
+                <div className="flex justify-between text-gray-600">
+                  <span>Selected Dishes ({totalItems}):</span>
+                  <span className="font-bold text-brand-charcoal">
+                    {formatCurrency(subtotal)}
+                  </span>
                 </div>
 
-                {orderType === "pickup" ? (
-                  <div className="p-3 bg-brand-cream/80 border border-brand-cream-border rounded-xl text-xs text-brand-charcoal flex items-start gap-2.5">
-                    <MapPin className="w-4 h-4 text-brand-red shrink-0 mt-0.5" />
-                    <div>
-                      <strong>Pickup Point:</strong> {businessConfig.location}
-                      <p className="text-gray-500 mt-0.5">
-                        Your order will be packaged for pickup once confirmed by phone.
-                      </p>
-                    </div>
-                  </div>
-                ) : (
-                  <div className="p-3 bg-brand-cream/80 border border-brand-cream-border rounded-xl text-xs text-gray-700 flex items-start gap-2.5">
-                    <Info className="w-4 h-4 text-brand-green shrink-0 mt-0.5" />
-                    <div>
-                      <strong>Delivery Notice:</strong> Delivery fee and delivery zone
-                      will be confirmed with the restaurant staff when placing your call.
-                    </div>
-                  </div>
-                )}
-
-                {/* Customer Details Form */}
-                <form onSubmit={handleReviewOrder} className="space-y-4">
-                  <div>
-                    <label className="text-xs font-bold text-gray-700 block mb-1">
-                      Your Name
-                    </label>
-                    <input
-                      type="text"
-                      required
-                      value={customerName}
-                      onChange={(e) => setCustomerName(e.target.value)}
-                      placeholder="e.g. Kwame Mensah"
-                      className="w-full px-3.5 py-2.5 rounded-xl border border-brand-cream-border text-sm focus:outline-hidden focus:ring-2 focus:ring-brand-yellow"
-                    />
-                  </div>
-
-                  <div>
-                    <label className="text-xs font-bold text-gray-700 block mb-1">
-                      Your Phone Number
-                    </label>
-                    <input
-                      type="tel"
-                      required
-                      value={customerPhone}
-                      onChange={(e) => setCustomerPhone(e.target.value)}
-                      placeholder="e.g. 024XXXXXXX"
-                      className="w-full px-3.5 py-2.5 rounded-xl border border-brand-cream-border text-sm focus:outline-hidden focus:ring-2 focus:ring-brand-yellow"
-                    />
-                  </div>
-
-                  {orderType === "delivery" && (
-                    <div>
-                      <label className="text-xs font-bold text-gray-700 block mb-1">
-                        Delivery Landmark / Address
-                      </label>
-                      <textarea
-                        rows={2}
-                        required
-                        value={deliveryAddress}
-                        onChange={(e) => setDeliveryAddress(e.target.value)}
-                        placeholder="e.g. Near Taxi Rank junction, Blue Gate..."
-                        className="w-full px-3.5 py-2.5 rounded-xl border border-brand-cream-border text-sm focus:outline-hidden focus:ring-2 focus:ring-brand-yellow"
-                      />
-                    </div>
-                  )}
-
-                  {/* Calculations */}
-                  <div className="pt-4 border-t border-brand-cream-border space-y-2 text-sm">
-                    <div className="flex justify-between text-gray-600">
-                      <span>Items Subtotal (Sample Prices):</span>
-                      <span className="font-bold text-brand-charcoal">
-                        {formatCurrency(subtotal)}
-                      </span>
-                    </div>
-
-                    <div className="flex justify-between text-gray-600 text-xs">
-                      <span>Delivery Fee:</span>
-                      <span className="italic text-gray-500">
-                        {orderType === "pickup"
-                          ? "GHS 0.00 (Self Pickup)"
-                          : "TBD / Confirm on Call"}
-                      </span>
-                    </div>
-
-                    <div className="pt-2 border-t border-brand-cream-border flex justify-between items-baseline">
-                      <div>
-                        <span className="text-base font-extrabold text-brand-charcoal">
-                          Estimated Subtotal:
-                        </span>
-                        <span className="block text-[10px] text-amber-800">
-                          Final price confirmed upon phone order
-                        </span>
-                      </div>
-                      <span className="text-2xl font-black text-brand-charcoal">
-                        {formatCurrency(subtotal)}
-                      </span>
-                    </div>
-                  </div>
-
-                  {formSubmitted && (
-                    <div className="p-3.5 rounded-xl bg-green-50 border border-green-200 text-green-900 text-xs flex items-start gap-2">
-                      <CheckCircle2 className="w-4 h-4 text-green-700 shrink-0 mt-0.5" />
-                      <div>
-                        <strong>Order Summary Ready!</strong> Now call any of our verified
-                        numbers below to give your name ({customerName || "Customer"}) and
-                        confirm your order with kitchen staff.
-                      </div>
-                    </div>
-                  )}
-
-                  {/* Call to Order Trigger */}
-                  <div className="pt-2 space-y-2">
-                    <p className="text-xs font-bold text-brand-charcoal text-center">
-                      Tap to call restaurant and place order:
-                    </p>
-                    <div className="grid grid-cols-1 gap-2">
-                      {businessConfig.phones.map((phone) => (
-                        <a
-                          key={phone.raw}
-                          href={phone.telLink}
-                          className="flex items-center justify-between px-4 py-3 rounded-xl bg-brand-yellow hover:bg-brand-yellow-hover text-brand-charcoal font-black text-sm transition-all shadow-sm active:scale-98"
-                        >
-                          <span className="flex items-center gap-2">
-                            <PhoneCall className="w-4 h-4 text-brand-red" />
-                            {phone.formatted}
-                          </span>
-                          <span className="text-xs font-medium bg-white/70 px-2 py-0.5 rounded">
-                            {phone.label}
-                          </span>
-                        </a>
-                      ))}
-                    </div>
-                  </div>
-                </form>
-
-                {/* Honest Architecture Disclaimer */}
-                <div className="p-3.5 rounded-xl bg-gray-50 border border-gray-200 text-[11px] text-gray-500 flex items-start gap-2">
-                  <ShieldAlert className="w-4 h-4 text-gray-400 shrink-0 mt-0.5" />
-                  <p>
-                    <strong>Honest Feature Status:</strong> This interface implements
-                    complete client-side cart logic. An online automated order dispatch
-                    backend with Supabase persistence and payment gateways will be
-                    integrated in Phase 2.
-                  </p>
+                <div className="flex justify-between text-gray-600 text-xs">
+                  <span>Fulfillment Fee:</span>
+                  <span className="text-gray-500 italic">
+                    Calculated at Checkout
+                  </span>
                 </div>
+
+                <div className="pt-3 border-t border-brand-cream-border flex justify-between items-baseline">
+                  <div>
+                    <span className="text-base font-extrabold text-brand-charcoal block">
+                      Estimated Subtotal
+                    </span>
+                    <span className="text-[10px] text-amber-800">
+                      Subject to restaurant price confirmation
+                    </span>
+                  </div>
+                  <span className="text-2xl font-black text-brand-charcoal">
+                    {formatCurrency(subtotal)}
+                  </span>
+                </div>
+              </div>
+
+              {/* Proceed to Checkout CTA */}
+              <div className="pt-2 space-y-3">
+                <Link
+                  href="/checkout"
+                  className="w-full inline-flex items-center justify-center gap-2 bg-brand-yellow hover:bg-brand-yellow-hover text-brand-charcoal font-black py-4 px-6 rounded-xl transition-all shadow-md active:scale-95 text-base text-center"
+                >
+                  <span>Proceed to Checkout</span>
+                  <ArrowRight className="w-5 h-5" />
+                </Link>
+
+                <p className="text-[11px] text-gray-500 text-center leading-relaxed">
+                  Choose Pickup at A-Lang Taxi Rank or Delivery. Form details and server validation on the next step.
+                </p>
+              </div>
+
+              {/* Security Advisory */}
+              <div className="p-3.5 rounded-xl bg-gray-50 border border-gray-200 text-[11px] text-gray-500 flex items-start gap-2">
+                <ShieldAlert className="w-4 h-4 text-gray-400 shrink-0 mt-0.5" />
+                <p>
+                  <strong>Data Integrity Guard:</strong> All item IDs and prices are re-validated
+                  on the server before order creation. Client-side modifications are rejected.
+                </p>
               </div>
             </div>
           </div>

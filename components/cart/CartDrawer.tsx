@@ -12,7 +12,6 @@ import {
   Minus,
   Trash2,
   ShoppingBag,
-  PhoneCall,
   AlertTriangle,
   Info,
   MapPin,
@@ -81,20 +80,20 @@ export function CartDrawer() {
 
           {/* Body Content */}
           <div className="flex-1 overflow-y-auto p-6 space-y-6">
-            {/* Phase 1 Advisory Notice */}
+            {/* Phase 3 Advisory Notice */}
             <div className="rounded-xl bg-amber-50 border border-amber-200 p-3.5 text-xs text-amber-900 leading-relaxed flex gap-2.5 items-start">
               <AlertTriangle className="w-4 h-4 text-amber-700 shrink-0 mt-0.5" />
               <div>
                 <p className="font-bold text-amber-950 mb-1">
-                  Phase 1 Ordering Notice
+                  Demonstration Pricing &amp; Order Notice
                 </p>
                 <p>
                   Prices are temporary demonstration estimates (
                   <span className="font-semibold">
-                    SAMPLE PRICE — CONFIRM WITH RESTAURANT
+                    {businessConfig.samplePriceNotice}
                   </span>
-                  ). The online ordering backend is launching in Phase 2. To place your
-                  order today, please call any of our verified phone numbers.
+                  ). You can proceed to checkout for pickup review or call any of our
+                  verified phone numbers for instant preparation.
                 </p>
               </div>
             </div>
@@ -154,8 +153,8 @@ export function CartDrawer() {
                   <div className="flex items-start gap-2 text-xs text-gray-700 bg-brand-cream/80 p-2.5 rounded-lg border border-brand-cream-border">
                     <Info className="w-4 h-4 text-brand-green shrink-0 mt-0.5" />
                     <span>
-                      Delivery fees and radius will be confirmed when you call. Official
-                      address validation will be added in Phase 2.
+                      Delivery fees and zones are pending management confirmation. Please
+                      select Pickup or call our verified numbers to coordinate delivery.
                     </span>
                   </div>
                 )}
@@ -267,38 +266,32 @@ export function CartDrawer() {
                 </div>
               </div>
 
-              {/* Call to Order CTA */}
-              <div className="space-y-2">
-                <p className="text-xs font-semibold text-brand-charcoal text-center">
-                  Call our verified lines to place this order now:
-                </p>
-                <div className="grid grid-cols-1 gap-2">
-                  {businessConfig.phones.map((phone) => (
-                    <a
-                      key={phone.raw}
-                      href={phone.telLink}
-                      className="flex items-center justify-between px-4 py-2.5 rounded-xl bg-brand-yellow hover:bg-brand-yellow-hover text-brand-charcoal font-bold text-sm transition-all shadow-sm active:scale-98"
-                    >
-                      <span className="flex items-center gap-2">
-                        <PhoneCall className="w-4 h-4 text-brand-red" />
-                        {phone.formatted}
-                      </span>
-                      <span className="text-xs bg-white/70 px-2 py-0.5 rounded-md font-medium">
-                        {phone.label}
-                      </span>
-                    </a>
-                  ))}
-                </div>
-              </div>
-
-              <div className="text-center">
+              {/* Checkout & Review Actions */}
+              <div className="space-y-2 pt-1">
                 <Link
-                  href="/cart"
+                  href="/checkout"
                   onClick={() => setIsCartOpen(false)}
-                  className="text-xs text-gray-600 hover:text-brand-charcoal underline"
+                  className="w-full flex items-center justify-center gap-2 bg-brand-yellow hover:bg-brand-yellow-hover text-brand-charcoal font-black py-3.5 px-4 rounded-xl text-sm transition-all shadow-md active:scale-98"
                 >
-                  View full order summary & details page
+                  <span>Proceed to Checkout</span>
                 </Link>
+
+                <div className="flex items-center justify-between text-xs px-1">
+                  <Link
+                    href="/cart"
+                    onClick={() => setIsCartOpen(false)}
+                    className="text-gray-600 hover:text-brand-charcoal underline"
+                  >
+                    View detailed cart page
+                  </Link>
+                  <span className="text-gray-400">&bull;</span>
+                  <a
+                    href={businessConfig.phones[0].telLink}
+                    className="text-brand-red font-bold hover:underline"
+                  >
+                    Call {businessConfig.phones[0].formatted}
+                  </a>
+                </div>
               </div>
             </div>
           )}
