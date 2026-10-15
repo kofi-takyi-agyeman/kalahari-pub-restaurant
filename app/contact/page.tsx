@@ -1,7 +1,8 @@
 import React from "react";
 import type { Metadata } from "next";
 import { businessConfig } from "@/lib/businessConfig";
-import { MapPin, Phone, MessageSquare, Clock, AlertTriangle, ShieldCheck } from "lucide-react";
+import { RestaurantMap } from "@/components/contact/RestaurantMap";
+import { MapPin, Phone, MessageSquare, Clock } from "lucide-react";
 
 export const metadata: Metadata = {
   title: `Contact Us | ${businessConfig.name}`,
@@ -62,9 +63,9 @@ export default function ContactPage() {
         </div>
 
         {/* Location & Map Section */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-stretch">
-          {/* Verified Address */}
-          <div className="bg-white rounded-3xl p-8 border border-brand-cream-border shadow-xs space-y-6 flex flex-col justify-between">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-start">
+          {/* Verified Address & Details */}
+          <div className="bg-white rounded-3xl p-6 sm:p-8 border border-brand-cream-border shadow-xs space-y-6">
             <div className="space-y-4">
               <div className="w-12 h-12 rounded-2xl bg-brand-red text-white flex items-center justify-center">
                 <MapPin className="w-6 h-6" />
@@ -89,46 +90,14 @@ export default function ContactPage() {
             <div className="pt-4 border-t border-brand-cream-border/70 flex items-start gap-2.5 text-xs text-gray-500">
               <Clock className="w-4 h-4 text-brand-charcoal shrink-0 mt-0.5" />
               <span>
-                Operating hours and delivery radius will be published here as soon as
-                officially verified with the restaurant owner.
+                Open Monday &ndash; Saturday from 10:00 AM &ndash; 11:00 PM, and Sundays from 12:00 PM &ndash; 11:00 PM. Dine-in, Takeaway &amp; Delivery available.
               </span>
             </div>
           </div>
 
-          {/* Map Readiness Notice (No guessed coordinates) */}
-          <div className="bg-brand-charcoal rounded-3xl p-8 border border-brand-charcoal-muted text-white flex flex-col justify-between space-y-6">
-            <div className="space-y-4">
-              <div className="w-12 h-12 rounded-2xl bg-brand-charcoal-muted flex items-center justify-center text-brand-yellow">
-                <MapPin className="w-6 h-6 text-brand-red" />
-              </div>
-              <h2 className="font-display text-2xl font-bold text-white">
-                Map &amp; GPS Verification
-              </h2>
-              <p className="text-sm text-gray-300 leading-relaxed">
-                To guarantee absolute accuracy for our visitors, this map module is
-                prepared to embed official Google Maps coordinates as soon as the owner
-                submits verified business coordinates.
-              </p>
-
-              <div className="rounded-xl bg-amber-950/40 border border-amber-800/60 p-4 text-xs text-amber-300 flex items-start gap-2.5">
-                <AlertTriangle className="w-4 h-4 shrink-0 text-amber-400 mt-0.5" />
-                <div>
-                  <strong className="block font-bold mb-0.5 text-amber-200">
-                    No Guessed Coordinates Used
-                  </strong>
-                  Per engineering specifications, we do not guess GPS coordinates. If you
-                  need directions right now, please call any of our verified phone numbers!
-                </div>
-              </div>
-            </div>
-
-            <div className="pt-4 border-t border-brand-charcoal-muted flex items-center justify-between text-xs text-gray-400">
-              <span className="flex items-center gap-1.5 text-brand-yellow font-medium">
-                <ShieldCheck className="w-4 h-4" />
-                Verified Business Profile
-              </span>
-              <span>{businessConfig.developer.credit}</span>
-            </div>
+          {/* Interactive Google Map Component */}
+          <div className="lg:col-span-2">
+            <RestaurantMap />
           </div>
         </div>
 

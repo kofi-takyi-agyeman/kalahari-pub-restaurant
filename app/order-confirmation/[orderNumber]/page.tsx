@@ -17,6 +17,7 @@ import {
   MessageCircle,
 } from "lucide-react";
 import { OrderConfirmationClient } from "./OrderConfirmationClient";
+import { OrderTrackerStepper } from "@/components/orders/OrderTrackerStepper";
 
 export const metadata: Metadata = {
   title: `Order Confirmation | ${businessConfig.name}`,
@@ -145,6 +146,11 @@ export default async function OrderConfirmationPage({
               <span>Status: {order.status.toUpperCase()} (Awaiting Restaurant Review)</span>
             </span>
           </div>
+
+          {/* Visual Order Progress Stepper */}
+          <div className="pt-2 border-t border-brand-cream-border/80">
+            <OrderTrackerStepper status={order.status} orderType={order.order_type} />
+          </div>
         </div>
 
         {/* Order Details & Summary Card */}
@@ -246,10 +252,10 @@ export default async function OrderConfirmationPage({
               href={whatsappUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center justify-center gap-2 bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-3 px-4 rounded-xl text-xs transition-colors shadow-sm"
+              className="flex items-center justify-center gap-2 bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-3.5 px-4 rounded-xl text-xs transition-colors shadow-sm"
             >
               <MessageCircle className="w-4 h-4" />
-              <span>Send Summary on WhatsApp</span>
+              <span>Send Summary &amp; Share Live Location on WhatsApp</span>
             </a>
 
             <a

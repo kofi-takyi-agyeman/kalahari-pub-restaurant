@@ -32,6 +32,8 @@ export default function CheckoutPage() {
   const [orderType, setOrderType] = useState<"pickup" | "delivery">("pickup");
   const [deliveryAddress, setDeliveryAddress] = useState("");
   const [deliveryArea, setDeliveryArea] = useState("");
+  const [landmark, setLandmark] = useState("");
+  const [gpsAddress, setGpsAddress] = useState("");
   const [deliveryInstructions, setDeliveryInstructions] = useState("");
   const [customerNote, setCustomerNote] = useState("");
 
@@ -81,13 +83,21 @@ export default function CheckoutPage() {
 
     setIsSubmitting(true);
 
+    const combinedAddress = [
+      deliveryAddress.trim(),
+      landmark.trim() ? `(Landmark: ${landmark.trim()})` : "",
+      gpsAddress.trim() ? `(GhanaPost GPS: ${gpsAddress.trim()})` : "",
+    ]
+      .filter(Boolean)
+      .join(" ");
+
     try {
       const response = await submitOrder({
         customer: {
           customerName,
           customerPhone,
           orderType,
-          deliveryAddress: orderType === "delivery" ? deliveryAddress : undefined,
+          deliveryAddress: orderType === "delivery" ? combinedAddress : undefined,
           deliveryArea: orderType === "delivery" ? deliveryArea : undefined,
           deliveryInstructions: orderType === "delivery" ? deliveryInstructions : undefined,
           customerNote: customerNote || undefined,
@@ -365,19 +375,65 @@ export default function CheckoutPage() {
                     </div>
                   </div>
 
+                  {/* Delivery Area with preset chips */}
+                  <div>
+                    <label
+                      htmlFor="deliveryArea"
+                      className="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-1"
+                    >
+                      Delivery Area / Neighborhood <span className="text-brand-red">*</span>
+                    </label>
+                    <input
+                      id="deliveryArea"
+                      type="text"
+                      value={deliveryArea}
+                      onChange={(e) => setDeliveryArea(e.target.value)}
+                      placeholder="e.g. A-Lang, Sowutuom, Kwashieman, Lapaz"
+                      className={`w-full px-4 py-3 rounded-xl border text-sm text-brand-charcoal placeholder-gray-400 focus:outline-hidden focus:ring-2 focus:ring-brand-yellow transition-all ${
+                        fieldErrors.deliveryArea
+                          ? "border-red-400 bg-red-50/40"
+                          : "border-brand-cream-border bg-white"
+                      }`}
+                    />
+                    {fieldErrors.deliveryArea && (
+                      <p className="text-xs text-red-600 mt-1 font-medium">
+                        {fieldErrors.deliveryArea}
+                      </p>
+                    )}
+                    {/* Quick Select Neighborhood Chips */}
+                    <div className="flex flex-wrap items-center gap-1.5 mt-2">
+                      <span className="text-[11px] text-gray-500 font-medium mr-1">Quick Select:</span>
+                      {["A-Lang", "Sowutuom", "Kwashieman", "Lapaz", "Santa Maria", "Odorkor"].map((zone) => (
+                        <button
+                          key={zone}
+                          type="button"
+                          onClick={() => setDeliveryArea(zone)}
+                          className={`px-2.5 py-1 rounded-lg text-xs font-semibold transition-all ${
+                            deliveryArea.toLowerCase() === zone.toLowerCase()
+                              ? "bg-brand-charcoal text-brand-yellow font-bold shadow-xs"
+                              : "bg-brand-cream border border-brand-cream-border text-gray-600 hover:text-brand-charcoal"
+                          }`}
+                        >
+                          {zone}
+                        </button>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* Street Address */}
                   <div>
                     <label
                       htmlFor="deliveryAddress"
                       className="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-1"
                     >
-                      Delivery Street Address / Landmark <span className="text-brand-red">*</span>
+                      Street Address / Road Name <span className="text-brand-red">*</span>
                     </label>
                     <input
                       id="deliveryAddress"
                       type="text"
                       value={deliveryAddress}
                       onChange={(e) => setDeliveryAddress(e.target.value)}
-                      placeholder="e.g. Near Taxi Rank junction, Blue Gate House"
+                      placeholder="e.g. Taxi Rank Road, Main Sowutuom Highway"
                       className={`w-full px-4 py-3 rounded-xl border text-sm text-brand-charcoal placeholder-gray-400 focus:outline-hidden focus:ring-2 focus:ring-brand-yellow transition-all ${
                         fieldErrors.deliveryAddress
                           ? "border-red-400 bg-red-50/40"
@@ -391,49 +447,58 @@ export default function CheckoutPage() {
                     )}
                   </div>
 
+                  {/* Landmark and GhanaPost GPS in 2 columns */}
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div>
                       <label
-                        htmlFor="deliveryArea"
+                        htmlFor="landmark"
                         className="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-1"
                       >
-                        Area / Neighborhood <span className="text-brand-red">*</span>
+                        Prominent Landmark <span className="text-[11px] text-gray-400 font-normal lowercase">(for rider)</span>
                       </label>
                       <input
-                        id="deliveryArea"
+                        id="landmark"
                         type="text"
-                        value={deliveryArea}
-                        onChange={(e) => setDeliveryArea(e.target.value)}
-                        placeholder="e.g. A-Lang, Sowutuom, Kwashieman"
-                        className={`w-full px-4 py-3 rounded-xl border text-sm text-brand-charcoal placeholder-gray-400 focus:outline-hidden focus:ring-2 focus:ring-brand-yellow transition-all ${
-                          fieldErrors.deliveryArea
-                            ? "border-red-400 bg-red-50/40"
-                            : "border-brand-cream-border bg-white"
-                        }`}
+                        value={landmark}
+                        onChange={(e) => setLandmark(e.target.value)}
+                        placeholder="e.g. Opposite Shell station, Blue Gate"
+                        className="w-full px-4 py-3 rounded-xl border border-brand-cream-border bg-white text-sm text-brand-charcoal placeholder-gray-400 focus:outline-hidden focus:ring-2 focus:ring-brand-yellow transition-all"
                       />
-                      {fieldErrors.deliveryArea && (
-                        <p className="text-xs text-red-600 mt-1 font-medium">
-                          {fieldErrors.deliveryArea}
-                        </p>
-                      )}
                     </div>
 
                     <div>
                       <label
-                        htmlFor="deliveryInstructions"
+                        htmlFor="gpsAddress"
                         className="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-1"
                       >
-                        Directions / Notes (Optional)
+                        GhanaPost GPS <span className="text-[11px] text-gray-400 font-normal lowercase">(optional)</span>
                       </label>
                       <input
-                        id="deliveryInstructions"
+                        id="gpsAddress"
                         type="text"
-                        value={deliveryInstructions}
-                        onChange={(e) => setDeliveryInstructions(e.target.value)}
-                        placeholder="e.g. Call upon arrival"
-                        className="w-full px-4 py-3 rounded-xl border border-brand-cream-border text-sm text-brand-charcoal placeholder-gray-400 focus:outline-hidden focus:ring-2 focus:ring-brand-yellow"
+                        value={gpsAddress}
+                        onChange={(e) => setGpsAddress(e.target.value)}
+                        placeholder="e.g. GA-123-4567"
+                        className="w-full px-4 py-3 rounded-xl border border-brand-cream-border bg-white text-sm text-brand-charcoal placeholder-gray-400 focus:outline-hidden focus:ring-2 focus:ring-brand-yellow transition-all uppercase"
                       />
                     </div>
+                  </div>
+
+                  <div>
+                    <label
+                      htmlFor="deliveryInstructions"
+                      className="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-1"
+                    >
+                      Rider Drop-off Instructions (Optional)
+                    </label>
+                    <input
+                      id="deliveryInstructions"
+                      type="text"
+                      value={deliveryInstructions}
+                      onChange={(e) => setDeliveryInstructions(e.target.value)}
+                      placeholder="e.g. 2nd floor, call on arrival, leave at gate"
+                      className="w-full px-4 py-3 rounded-xl border border-brand-cream-border text-sm text-brand-charcoal placeholder-gray-400 focus:outline-hidden focus:ring-2 focus:ring-brand-yellow"
+                    />
                   </div>
                 </div>
               )}
