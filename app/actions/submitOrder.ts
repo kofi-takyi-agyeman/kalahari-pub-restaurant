@@ -9,6 +9,8 @@ import { isSupabaseConfigured } from "@/lib/supabase/config";
 import { createSupabaseServerClient } from "@/lib/supabase/server";
 import { menuItems as localFallbackItems } from "@/data/menuItems";
 import { devOrderStore } from "@/lib/orders/devOrderStore";
+import { devAdminStore } from "@/lib/admin/devAdminStore";
+import { getDeliveryConfig } from "@/lib/admin/settingsService";
 import { OrderRow, OrderItemRow, OrderWithItems } from "@/types/database.types";
 import { businessConfig } from "@/lib/businessConfig";
 
@@ -28,8 +30,9 @@ export interface SubmitOrderResponse {
  */
 export async function submitOrder(payload: CheckoutPayload): Promise<SubmitOrderResponse> {
   try {
-    // 1. Validate customer and cart payload on the server
-    const validation = validateCheckoutInput(payload);
+    // 1. Fetch current delivery config and validate customer/cart payload
+    const deliveryConfig = await getDeliveryConfig();
+    const validation = validateCheckoutInput(payload, deliveryConfig);
     if (!validation.isValid) {
       return {
         success: false,
@@ -141,7 +144,18 @@ export async function submitOrder(payload: CheckoutPayload): Promise<SubmitOrder
     } else {
       // Local fallback lookup when Supabase environment variables have not been connected
       for (const reqItem of cleanItems) {
-        const localItem = localFallbackItems.find((l) => l.id === reqItem.id);
+        // Check devAdminStore first (reflects any live owner updates), then fallback static items
+        const adminItem = devAdminStore.getMenuItemById(reqItem.id);
+        const localItem = adminItem
+          ? {
+              id: adminItem.id,
+              name: adminItem.name,
+              samplePrice: adminItem.price,
+              isAvailable: adminItem.is_available,
+              isSamplePrice: adminItem.is_sample_price,
+            }
+          : localFallbackItems.find((l) => l.id === reqItem.id);
+
         if (!localItem || !localItem.isAvailable) {
           return {
             success: false,
@@ -175,7 +189,7 @@ export async function submitOrder(payload: CheckoutPayload): Promise<SubmitOrder
 
     // 4. Calculate Server-Side Financials
     const subtotal = verifiedItems.reduce((sum, item) => sum + item.lineTotal, 0);
-    const deliveryFee = 0.0; // Pickup orders have 0.00 fee; unconfirmed delivery was already rejected by validation
+    const deliveryFee = cleanCustomer.orderType === "delivery" ? validation.approvedDeliveryFee : 0.0;
     const total = Math.round((subtotal + deliveryFee) * 100) / 100;
 
     // 5. Generate secure identifiers

@@ -21,6 +21,7 @@ import {
 import { submitOrder, getOrderConfirmation } from "../app/actions/submitOrder";
 import { menuItems } from "../data/menuItems";
 import { devOrderStore } from "../lib/orders/devOrderStore";
+import { devAdminStore } from "../lib/admin/devAdminStore";
 
 let passedCount = 0;
 let failedCount = 0;
@@ -207,7 +208,7 @@ async function runTests() {
       "CRITICAL: Order containing sample-priced item was blocked from final order creation"
     );
     assert(
-      submissionResult.error?.includes("temporary demonstration price"),
+      Boolean(submissionResult.error?.includes("temporary demonstration price")),
       "Helpful explanatory notice and phone contact returned to customer"
     );
   }
@@ -221,7 +222,7 @@ async function runTests() {
       idempotencyKey: "test-idem-unavail-" + Date.now(),
     });
     assert(
-      !unavailableResult.success && unavailableResult.error?.includes("unavailable"),
+      Boolean(!unavailableResult.success && unavailableResult.error?.includes("unavailable")),
       "Unavailable dish rejected by server action"
     );
   } else {
@@ -232,7 +233,7 @@ async function runTests() {
       idempotencyKey: "test-idem-fake-" + Date.now(),
     });
     assert(
-      !fakeResult.success && fakeResult.error?.includes("unavailable"),
+      Boolean(!fakeResult.success && fakeResult.error?.includes("unavailable")),
       "Non-existent menu item rejected by server action"
     );
   }
@@ -244,8 +245,7 @@ async function runTests() {
 
   // Temporarily simulate an approved-price item to test end-to-end creation
   const testItem = menuItems[0];
-  const originalSampleState = testItem.isSamplePrice;
-  (testItem as any).isSamplePrice = false; // Temporarily simulate owner price confirmation
+  devAdminStore.approveMenuPrice(testItem.id);
 
   const idempotencyKey = "test-unique-key-" + Date.now();
   const successfulOrder = await submitOrder({
@@ -313,7 +313,7 @@ async function runTests() {
   }
 
   // Restore original state
-  (testItem as any).isSamplePrice = originalSampleState;
+  devAdminStore.updateMenuItem(testItem.id, { is_sample_price: true });
 
   // -------------------------------------------------------------------
   // SUMMARY

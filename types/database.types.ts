@@ -227,6 +227,68 @@ export interface Database {
           }
         ];
       };
+      order_status_logs: {
+        Row: {
+          id: string;
+          order_id: string;
+          previous_status: OrderStatus | null;
+          new_status: OrderStatus;
+          changed_by: string;
+          notes: string | null;
+          created_at: string;
+        };
+        Insert: {
+          id?: string;
+          order_id: string;
+          previous_status?: OrderStatus | null;
+          new_status: OrderStatus;
+          changed_by?: string;
+          notes?: string | null;
+          created_at?: string;
+        };
+        Update: {
+          id?: string;
+          order_id?: string;
+          previous_status?: OrderStatus | null;
+          new_status?: OrderStatus;
+          changed_by?: string;
+          notes?: string | null;
+          created_at?: string;
+        };
+        Relationships: [
+          {
+            foreignKeyName: "order_status_logs_order_id_fkey";
+            columns: ["order_id"];
+            isOneToOne: false;
+            referencedRelation: "orders";
+            referencedColumns: ["id"];
+          }
+        ];
+      };
+      restaurant_settings: {
+        Row: {
+          id: string;
+          key: string;
+          value: Json;
+          description: string | null;
+          updated_at: string;
+        };
+        Insert: {
+          id?: string;
+          key: string;
+          value: Json;
+          description?: string | null;
+          updated_at?: string;
+        };
+        Update: {
+          id?: string;
+          key?: string;
+          value?: Json;
+          description?: string | null;
+          updated_at?: string;
+        };
+        Relationships: [];
+      };
     };
     Views: {
       [_ in never]: never;
@@ -247,6 +309,29 @@ export type MenuCategoryRow = Database["public"]["Tables"]["menu_categories"]["R
 export type MenuItemRow = Database["public"]["Tables"]["menu_items"]["Row"];
 export type OrderRow = Database["public"]["Tables"]["orders"]["Row"];
 export type OrderItemRow = Database["public"]["Tables"]["order_items"]["Row"];
+export type OrderStatusLogRow = Database["public"]["Tables"]["order_status_logs"]["Row"];
+export type RestaurantSettingRow = Database["public"]["Tables"]["restaurant_settings"]["Row"];
+
+export type PaymentStatus = "unpaid" | "pending" | "paid" | "failed" | "refunded";
+
+export interface DeliveryZone {
+  area: string;
+  fee: number;
+}
+
+export interface DeliveryConfig {
+  enabled: boolean;
+  policy_notice?: string;
+  zones: DeliveryZone[];
+  min_order: number;
+}
+
+export interface OperatingHoursConfig {
+  monday_saturday: string;
+  sunday: string;
+  pickup_enabled: boolean;
+  location: string;
+}
 
 export type MenuItemWithCategory = MenuItemRow & {
   category?: MenuCategoryRow | null;
@@ -254,4 +339,5 @@ export type MenuItemWithCategory = MenuItemRow & {
 
 export type OrderWithItems = OrderRow & {
   order_items: OrderItemRow[];
+  order_status_logs?: OrderStatusLogRow[];
 };

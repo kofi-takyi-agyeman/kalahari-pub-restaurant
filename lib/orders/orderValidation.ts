@@ -24,11 +24,14 @@ export interface CheckoutPayload {
   idempotencyKey?: string;
 }
 
+import { DeliveryConfig } from "@/types/database.types";
+
 export interface ValidationSuccess {
   isValid: true;
   normalizedPhone: string;
   cleanCustomer: CheckoutCustomerInput;
   cleanItems: CheckoutItemInput[];
+  approvedDeliveryFee: number;
 }
 
 export interface ValidationFailure {
@@ -74,7 +77,10 @@ export function normalizeGhanaPhone(phone: string): { normalized: string | null;
 /**
  * Validates checkout inputs on the server before processing database records.
  */
-export function validateCheckoutInput(payload: CheckoutPayload): ValidationResult {
+export function validateCheckoutInput(
+  payload: CheckoutPayload,
+  deliveryConfig?: DeliveryConfig
+): ValidationResult {
   const fieldErrors: Record<string, string> = {};
 
   if (!payload || typeof payload !== "object") {
@@ -86,6 +92,7 @@ export function validateCheckoutInput(payload: CheckoutPayload): ValidationResul
   }
 
   const { customer, items } = payload;
+  let approvedDeliveryFee = 0.0;
 
   // 1. Customer Name
   if (!customer?.customerName || customer.customerName.trim().length < 2) {
@@ -121,11 +128,26 @@ export function validateCheckoutInput(payload: CheckoutPayload): ValidationResul
 
     if (!customer.deliveryArea || customer.deliveryArea.trim().length < 2) {
       fieldErrors.deliveryArea = "Area or neighborhood is required for delivery.";
-    }
+    } else if (deliveryConfig && deliveryConfig.enabled) {
+      // Find matching approved zone
+      const cleanArea = customer.deliveryArea.toLowerCase().trim();
+      const matchedZone = deliveryConfig.zones.find(
+        (z) =>
+          z.area.toLowerCase().trim() === cleanArea ||
+          cleanArea.includes(z.area.toLowerCase().trim())
+      );
 
-    // CRITICAL BUSINESS RULE: Delivery fee & coverage are unconfirmed by restaurant owner
-    fieldErrors.orderType =
-      "Online delivery ordering is currently pending confirmation of delivery coverage and fees by restaurant management. Please choose Pickup at A-Lang Taxi Rank or call us directly at 024 565 6849 to arrange delivery with our team.";
+      if (matchedZone) {
+        approvedDeliveryFee = matchedZone.fee;
+      } else {
+        const zoneNames = deliveryConfig.zones.map((z) => z.area).join(", ");
+        fieldErrors.deliveryArea = `We currently deliver to: ${zoneNames}. Please choose an approved zone or Pickup at A-Lang Taxi Rank.`;
+      }
+    } else {
+      // CRITICAL BUSINESS RULE: Delivery fee & coverage are unconfirmed by restaurant owner
+      fieldErrors.orderType =
+        "Online delivery ordering is currently pending confirmation of delivery coverage and fees by restaurant management. Please choose Pickup at A-Lang Taxi Rank or call us directly at 024 565 6849 to arrange delivery with our team.";
+    }
   }
 
   // 5. Cart Items Validation
@@ -170,5 +192,6 @@ export function validateCheckoutInput(payload: CheckoutPayload): ValidationResul
       id: i.id.trim(),
       quantity: Math.floor(i.quantity),
     })),
+    approvedDeliveryFee,
   };
 }
