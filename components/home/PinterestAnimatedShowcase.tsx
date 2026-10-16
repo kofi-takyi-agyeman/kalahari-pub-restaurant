@@ -24,11 +24,13 @@ import {
 
 interface PinterestAnimatedShowcaseProps {
   isOpenVideoModal?: boolean;
+  onOpenVideoModal?: () => void;
   onCloseVideoModal?: () => void;
 }
 
 export function PinterestAnimatedShowcase({
   isOpenVideoModal = false,
+  onOpenVideoModal,
   onCloseVideoModal,
 }: PinterestAnimatedShowcaseProps) {
   // Video Modal State
@@ -241,13 +243,9 @@ export function PinterestAnimatedShowcase({
                   <span>Reserve Your Table</span>
                 </a>
 
-                {onCloseVideoModal && (
+                {onOpenVideoModal && (
                   <button
-                    onClick={() => {
-                      if (onCloseVideoModal) {
-                        // toggle
-                      }
-                    }}
+                    onClick={onOpenVideoModal}
                     className="inline-flex items-center gap-2 px-5 py-3.5 rounded-full bg-[#181820] hover:bg-[#22222C] border border-[#2F2F3D] text-gray-200 text-sm font-bold transition-all active:scale-95"
                   >
                     <Play className="w-4 h-4 text-[#FFC20E] fill-[#FFC20E]" />

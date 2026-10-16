@@ -129,6 +129,7 @@ export default function HomePage() {
       */}
       <PinterestAnimatedShowcase
         isOpenVideoModal={isVideoModalOpen}
+        onOpenVideoModal={() => setIsVideoModalOpen(true)}
         onCloseVideoModal={() => setIsVideoModalOpen(false)}
       />
     </div>
