@@ -29,6 +29,16 @@ if (!globalThis.__kalahari_dev_menu_items) {
   globalThis.__kalahari_dev_menu_items = new Map<string, MenuItemRow>();
 }
 const now = new Date().toISOString();
+const validIds = new Set(defaultMenuItems.map((i) => i.id));
+
+// Remove any stale obsolete items
+for (const [id] of Array.from(globalThis.__kalahari_dev_menu_items.entries())) {
+  if (!validIds.has(id)) {
+    globalThis.__kalahari_dev_menu_items.delete(id);
+  }
+}
+
+// Sync all canonical menu items
 defaultMenuItems.forEach((item, index) => {
   const existing = globalThis.__kalahari_dev_menu_items!.get(item.id);
   if (!existing) {
@@ -48,11 +58,14 @@ defaultMenuItems.forEach((item, index) => {
       updated_at: now,
     });
   } else {
-    if (item.image.startsWith("/dishes/") && existing.image_url !== item.image) {
-      existing.image_url = item.image;
-    }
+    existing.image_url = item.image;
     existing.name = item.name;
     existing.description = item.description;
+    existing.category_id = item.category;
+    existing.price = item.samplePrice;
+    existing.is_sample_price = item.isSamplePrice;
+    existing.is_featured = Boolean(item.isFeatured);
+    existing.updated_at = now;
   }
 });
 

@@ -5,7 +5,7 @@ export const categories: Category[] = [
     id: "local-dishes",
     name: "Local Dishes",
     description: "Authentic Ghanaian soups, swallows, and stews prepared with traditional aromatic spices.",
-    image: "/dishes/red_red_plantain.jpg",
+    image: "/dishes/fufu_light_soup.jpg",
     badge: "House Specialty",
   },
   {
@@ -26,7 +26,7 @@ export const categories: Category[] = [
     id: "drinks",
     name: "Drinks",
     description: "Chilled lagers, stout, malt, soft drinks, and cold refreshing beverages.",
-    image: "https://images.unsplash.com/photo-1551024709-8f23befc6f87?auto=format&fit=crop&w=800&q=80",
+    image: "https://images.unsplash.com/photo-1535958636474-b021ee887b13?auto=format&fit=crop&w=800&q=80",
     badge: "Ice Chilled",
   },
 ];

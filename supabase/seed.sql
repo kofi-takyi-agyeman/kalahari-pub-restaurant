@@ -1,9 +1,10 @@
 -- ==============================================================================
 -- Seed: seed.sql
--- Project: Kalahari Pub & Restaurant
+-- Project: Kalahari Dine
 -- Developer: Data_Nova
--- Description: Idempotent demonstration menu seed data based on Kalahari flyers.
+-- Description: Idempotent demonstration menu seed data based on Kalahari Dine offerings.
 --              Conspicuously flags all items with is_sample_price = true.
+--              Every dish image precisely matches its title and culinary presentation.
 --              Safe to execute repeatedly without generating duplicates.
 -- ==============================================================================
 
@@ -17,7 +18,7 @@ VALUES
         'Local Dishes',
         'local-dishes',
         'Authentic Ghanaian soups, swallows, and stews prepared with traditional aromatic spices.',
-        'https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=800&q=80',
+        '/dishes/fufu_light_soup.jpg',
         1,
         true
     ),
@@ -26,7 +27,7 @@ VALUES
         'Grilled Food',
         'grilled-food',
         'Charcoal-grilled whole tilapia, seasoned meats, and savory kebabs hot off the flames.',
-        'https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=800&q=80',
+        '/dishes/grilled_tilapia_platter.jpg',
         2,
         true
     ),
@@ -35,7 +36,7 @@ VALUES
         'Rice Meals',
         'rice-meals',
         'Richly spiced Ghanaian Jollof rice, fried rice, and succulent protein pairings.',
-        'https://images.unsplash.com/photo-1563379091339-03b21ab4a4f8?auto=format&fit=crop&w=800&q=80',
+        '/dishes/assorted_jollof_deluxe.jpg',
         3,
         true
     ),
@@ -43,8 +44,8 @@ VALUES
         'c0000001-0000-0000-0000-000000000004',
         'Drinks',
         'drinks',
-        'Chilled lagers, stout, malt, soft drinks, and cold pub beverages.',
-        'https://images.unsplash.com/photo-1551024709-8f23befc6f87?auto=format&fit=crop&w=800&q=80',
+        'Chilled lagers, stout, malt, soft drinks, and cold refreshing beverages.',
+        'https://images.unsplash.com/photo-1535958636474-b021ee887b13?auto=format&fit=crop&w=800&q=80',
         4,
         true
     )
@@ -63,170 +64,243 @@ INSERT INTO public.menu_items (
     is_sample_price, is_available, is_featured, display_order
 )
 VALUES
-    -- 1. Banku and Tilapia with Okro Stew (Flyer Dish)
+    -- 1. Pounded Fufu with Goat Meat Light Soup
     (
         'd0000001-0000-0000-0000-000000000001',
         'c0000001-0000-0000-0000-000000000001',
-        'Banku and Tilapia with Okro Stew',
-        'banku-tilapia-okro-stew',
-        'Freshly molded corn and cassava dough paired with seasoned grilled tilapia fish and rich, savory Ghanaian okro stew.',
-        'https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=800&q=80',
-        95.00,
+        'Pounded Fufu with Goat Meat Light Soup',
+        'fufu-light-soup',
+        'Smooth, velvety pounded cassava and plantain fufu served in an authentic Ghanaian Asanka earthenware bowl with aromatic, spicy tomato and garden egg light soup loaded with tender goat meat pieces.',
+        '/dishes/fufu_light_soup.jpg',
+        85.00,
         true,
         true,
         true,
         1
     ),
-    -- 2. Fufu with Goat Meat and Okro Soup (Flyer Dish)
+    -- 2. Pounded Fufu with Rich Palm Nut Soup (Abenkwan)
     (
         'd0000001-0000-0000-0000-000000000002',
         'c0000001-0000-0000-0000-000000000001',
-        'Fufu with Goat Meat and Okro Soup',
-        'fufu-goat-meat-okro-soup',
-        'Soft, silky pounded cassava and plantain fufu served submerged in traditional seasoned okro soup with tender goat meat pieces.',
-        'https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=800&q=80',
+        'Pounded Fufu with Rich Palm Nut Soup (Abenkwan)',
+        'fufu-palmnut-soup',
+        'Silky pounded fufu submerged in thick, fragrant palm fruit broth slow-simmered with smoked fish, dried spices, tender beef, and scotch bonnet peppers.',
+        '/dishes/fufu_palmnut_soup.jpg',
         85.00,
         true,
         true,
         true,
         2
     ),
-    -- 3. Omo Tuo with Assorted Meat (Flyer Dish)
+    -- 3. Hot Banku with Okro Stew & Fresh Crab
     (
         'd0000001-0000-0000-0000-000000000003',
         'c0000001-0000-0000-0000-000000000001',
-        'Omo Tuo with Assorted Meat',
-        'omo-tuo-assorted-meat',
-        'Smooth, rounded rice balls paired with rich groundnut (peanut) soup or palm nut soup, enriched with assorted meats and fish.',
-        'https://images.unsplash.com/photo-1563379091339-03b21ab4a4f8?auto=format&fit=crop&w=800&q=80',
-        75.00,
+        'Hot Banku with Okro Stew & Fresh Crab',
+        'banku-okro-stew',
+        'Two freshly steamed, fermented corn and cassava banku dumplings served with rich, glistening green okro stew loaded with whole blue sea crab, tender beef, and savory wele.',
+        '/dishes/banku_okro_stew.jpg',
+        90.00,
         true,
         true,
         true,
         3
     ),
-    -- 4. Grilled Fish / Charcoal Grilled Tilapia (Flyer Dish)
+    -- 4. Traditional Red Red with Fried Fish & Plantains
     (
         'd0000001-0000-0000-0000-000000000004',
-        'c0000001-0000-0000-0000-000000000002',
-        'Charcoal Grilled Tilapia',
-        'charcoal-grilled-tilapia',
-        'Whole fresh tilapia seasoned with ginger, garlic, chili, and local spices, charcoal-grilled to smoky tenderness and served with hot shito and sliced onions.',
-        'https://images.unsplash.com/photo-1534939561126-855b8675edd7?auto=format&fit=crop&w=800&q=80',
-        110.00,
+        'c0000001-0000-0000-0000-000000000001',
+        'Traditional Red Red with Fried Fish & Plantains',
+        'red-red-plantain',
+        'Hearty black-eyed beans slow-cooked in fragrant red palm oil and tomato stew, garnished with roasted cassava gari granules and accompanied by sweet fried ripe plantains (dodo) and seasoned fried fish.',
+        '/dishes/red_red_plantain.jpg',
+        55.00,
         true,
         true,
         true,
         4
     ),
-    -- 5. Jollof Rice with Chicken (Flyer Dish)
+    -- 5. Charcoal Grilled Tilapia Platter
     (
         'd0000001-0000-0000-0000-000000000005',
-        'c0000001-0000-0000-0000-000000000003',
-        'Ghanaian Jollof Rice with Chicken',
-        'jollof-rice-with-chicken',
-        'Smoky, aromatic long-grain rice slow-cooked in rich seasoned tomato stew, served with seasoned fried chicken, fried sweet plantain (kelewele), and coleslaw.',
-        'https://images.unsplash.com/photo-1604382354936-07c5d9983bd3?auto=format&fit=crop&w=800&q=80',
-        60.00,
+        'c0000001-0000-0000-0000-000000000002',
+        'Charcoal Grilled Tilapia Platter',
+        'grilled-tilapia-whole',
+        'Fresh Lake Volta whole tilapia scored and marinated in fresh ginger, garlic, chili, and local herbs, charcoal-grilled to smoky perfection and served with two balls of hot banku, authentic black shito, and sliced onions.',
+        '/dishes/grilled_tilapia_platter.jpg',
+        110.00,
         true,
         true,
         true,
         5
     ),
-    -- 6. Fufu with Light Soup (Flyer Dish)
+    -- 6. Charcoal Beef Suya Khebab (3 Skewers)
     (
         'd0000001-0000-0000-0000-000000000006',
-        'c0000001-0000-0000-0000-000000000001',
-        'Fufu with Light Soup',
-        'fufu-with-light-soup',
-        'Classic Ghanaian fufu served in fragrant, spicy tomato-based light soup loaded with seasoned fish and assorted meat cuts.',
-        'https://images.unsplash.com/photo-1547592180-85f173990554?auto=format&fit=crop&w=800&q=80',
-        80.00,
+        'c0000001-0000-0000-0000-000000000002',
+        'Charcoal Beef Suya Khebab (3 Skewers)',
+        'beef-suya-khebab',
+        'Tender skewered lean beef strips coated generously in fragrant northern yaji (kuli-kuli peanut, ginger, and chili) spice rub, flame-grilled over glowing coals and served with sliced red onions and fresh tomatoes.',
+        '/dishes/beef_suya_khebab.jpg',
+        50.00,
         true,
         true,
         true,
         6
     ),
-    -- 7. Kokonte with Palm Nut Soup (Flyer Dish)
+    -- 7. Kalahari Hot Spiced Kelewele
     (
         'd0000001-0000-0000-0000-000000000007',
-        'c0000001-0000-0000-0000-000000000001',
-        'Kokonte with Palm Nut Soup',
-        'kokonte-with-palm-nut-soup',
-        'Hearty brown cassava flour swallow accompanied by richly simmered aromatic palm nut soup and slow-cooked meat cuts.',
-        'https://images.unsplash.com/photo-1512058564366-18510be2db19?auto=format&fit=crop&w=800&q=80',
-        70.00,
+        'c0000001-0000-0000-0000-000000000002',
+        'Kalahari Hot Spiced Kelewele',
+        'spicy-kelewele',
+        'Golden ripe plantain cubes marinated in crushed ginger, hot chili peppers, nutmeg, and cloves, fried until caramelized with crispy edges and served piping hot with roasted Ghanaian peanuts.',
+        '/dishes/spicy_kelewele.jpg',
+        35.00,
         true,
         true,
         true,
         7
     ),
-    -- Additional Grill & Rice specialties
+    -- 8. Charcoal Grilled Guinea Fowl (Akonfem)
     (
         'd0000001-0000-0000-0000-000000000008',
         'c0000001-0000-0000-0000-000000000002',
-        'Grilled Spiced Quarter Chicken',
-        'grilled-spiced-quarter-chicken',
-        'Juicy chicken quarter marinated in Ghanaian pepper blend, flame-grilled and served with chili glaze and fresh garnish.',
+        'Charcoal Grilled Guinea Fowl (Akonfem)',
+        'grilled-guinea-fowl',
+        'Succulent flame-grilled guinea fowl quarter seasoned in traditional northern Ghanaian pepper rub, grilled with smoky crispy skin and served with hot chili dipping glaze and fresh sliced onions.',
+        '/dishes/grilled_guinea_fowl.jpg',
+        75.00,
+        true,
+        true,
+        true,
+        8
+    ),
+    -- 9. Flame-Grilled Spiced Quarter Chicken
+    (
+        'd0000001-0000-0000-0000-000000000009',
+        'c0000001-0000-0000-0000-000000000002',
+        'Flame-Grilled Spiced Quarter Chicken',
+        'grilled-spiced-chicken',
+        'Juicy chicken quarter steeped in crushed garlic, ginger, and spicy pepper marinade, flame-charred to seal in juices, served with fresh cucumber slices and spicy house sauce.',
         'https://images.unsplash.com/photo-1598515214211-89d3c73ae83b?auto=format&fit=crop&w=800&q=80',
         65.00,
         true,
         true,
         false,
-        8
+        9
     ),
+    -- 10. Charcoal Grilled Spiced Pork Chops
     (
-        'd0000001-0000-0000-0000-000000000009',
+        'd0000001-0000-0000-0000-000000000010',
+        'c0000001-0000-0000-0000-000000000002',
+        'Charcoal Grilled Spiced Pork Chops',
+        'grilled-spiced-pork',
+        'Tender, well-marinated pork cuts seasoned with local herbs, garlic, and coarse black pepper, flame-grilled until caramelized and served with spicy green pepper dip and onions.',
+        'https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=800&q=80',
+        70.00,
+        true,
+        false,
+        false,
+        10
+    ),
+    -- 11. Deluxe Ghanaian Jollof Rice with Fried Chicken
+    (
+        'd0000001-0000-0000-0000-000000000011',
         'c0000001-0000-0000-0000-000000000003',
-        'Kalahari Special Fried Rice',
-        'kalahari-special-fried-rice',
-        'Wok-tossed rice with crisp diced bell peppers, carrots, spring onions, and oriental spices, served with golden crispy chicken.',
-        'https://images.unsplash.com/photo-1512058564366-18510be2db19?auto=format&fit=crop&w=800&q=80',
+        'Deluxe Ghanaian Jollof Rice with Fried Chicken',
+        'jollof-rice-chicken',
+        'Iconic Ghanaian smoky jollof rice simmered in rich spiced tomato and rosemary stew, accompanied by golden crispy fried chicken quarter, sweet fried plantains (dodo), crunchy coleslaw, and house shito.',
+        '/dishes/assorted_jollof_deluxe.jpg',
+        65.00,
+        true,
+        true,
+        true,
+        11
+    ),
+    -- 12. Authentic Ghanaian Waakye Special on Leaf
+    (
+        'd0000001-0000-0000-0000-000000000012',
+        'c0000001-0000-0000-0000-000000000003',
+        'Authentic Ghanaian Waakye Special on Leaf',
+        'waakye-special',
+        'Traditional Ghanaian rice and cowpea beans cooked with red sorghum leaf sheaths, served on fresh banana leaf with tender beef stew, spaghetti (talia), fried sweet plantain, hard-boiled egg, wele, and signature hot black shito.',
+        '/dishes/waakye_special.jpg',
+        65.00,
+        true,
+        true,
+        true,
+        12
+    ),
+    -- 13. Kalahari Special Fried Rice with Crispy Chicken
+    (
+        'd0000001-0000-0000-0000-000000000013',
+        'c0000001-0000-0000-0000-000000000003',
+        'Kalahari Special Fried Rice with Crispy Chicken',
+        'fried-rice-chicken',
+        'Wok-tossed seasoned golden rice loaded with crisp diced carrots, sweet corn, green peas, and scallions, served with a seasoned golden fried chicken quarter, coleslaw, and shito.',
+        'https://images.unsplash.com/photo-1603133872878-684f208fb84b?auto=format&fit=crop&w=800&q=80',
         60.00,
         true,
         true,
         false,
-        9
+        13
     ),
-    -- Pub Chilled Drinks
+    -- 14. Chilled Club / Star Lager Beer (Large 625ml)
     (
-        'd0000001-0000-0000-0000-000000000010',
+        'd0000001-0000-0000-0000-000000000014',
         'c0000001-0000-0000-0000-000000000004',
-        'Chilled Club / Star Lager Beer (Large)',
-        'chilled-club-star-lager-beer',
-        'Ice-cold large bottle of Ghana crisp lager beer, straight from the Kalahari pub cooler.',
-        'https://images.unsplash.com/photo-1608270116666-3d23f7bb54c9?auto=format&fit=crop&w=800&q=80',
+        'Chilled Club / Star Lager Beer (Large 625ml)',
+        'chilled-lager-beer',
+        'Ice-cold large bottle of Ghana''s favorite crisp lager beer poured with a rich frothy head straight from the Kalahari cooler.',
+        'https://images.unsplash.com/photo-1535958636474-b021ee887b13?auto=format&fit=crop&w=800&q=80',
         25.00,
         true,
         true,
         false,
-        10
+        14
     ),
+    -- 15. Guinness Foreign Extra Stout (Chilled)
     (
-        'd0000001-0000-0000-0000-000000000011',
+        'd0000001-0000-0000-0000-000000000015',
         'c0000001-0000-0000-0000-000000000004',
-        'Guinness Foreign Extra Stout',
-        'guinness-foreign-extra-stout',
-        'Rich, dark, and bittersweet iconic stout served chilled.',
-        'https://images.unsplash.com/photo-1584225064785-c62a8b43d148?auto=format&fit=crop&w=800&q=80',
+        'Guinness Foreign Extra Stout (Chilled)',
+        'guinness-foreign-extra',
+        'Rich, dark, and bittersweet iconic stout served cold with a velvety tan foam, straight from the cooler.',
+        'https://images.unsplash.com/photo-1527661591475-527312dd65f5?auto=format&fit=crop&w=800&q=80',
         28.00,
         true,
         true,
         false,
-        11
+        15
     ),
+    -- 16. Chilled Malta Guinness / Alvaro
     (
-        'd0000001-0000-0000-0000-000000000012',
+        'd0000001-0000-0000-0000-000000000016',
         'c0000001-0000-0000-0000-000000000004',
         'Chilled Malta Guinness / Alvaro',
-        'chilled-malta-guinness-alvaro',
-        'Non-alcoholic nourishing malt beverage or refreshing malted pear drink served ice-cold.',
-        'https://images.unsplash.com/photo-1551024709-8f23befc6f87?auto=format&fit=crop&w=800&q=80',
+        'malt-drink-chilled',
+        'Premium non-alcoholic nourishing malt beverage or sparkling malted pear drink served ice-cold.',
+        'https://images.unsplash.com/photo-1622483767028-3f66f32aef97?auto=format&fit=crop&w=800&q=80',
         18.00,
         true,
         true,
         false,
-        12
+        16
+    ),
+    -- 17. Chilled Kalahari Hibiscus Sobolo (Spiced)
+    (
+        'd0000001-0000-0000-0000-000000000017',
+        'c0000001-0000-0000-0000-000000000004',
+        'Chilled Kalahari Hibiscus Sobolo (Spiced)',
+        'chilled-hibiscus-sobolo',
+        'Refreshing Ghanaian spiced hibiscus flower drink brewed with fresh pineapple peel, crushed ginger, cloves, and grains of selim (hwentia), served ice-cold over ice.',
+        'https://images.unsplash.com/photo-1556881286-fc6915169721?auto=format&fit=crop&w=800&q=80',
+        20.00,
+        true,
+        true,
+        false,
+        17
     )
 ON CONFLICT (slug) DO UPDATE SET
     category_id = EXCLUDED.category_id,

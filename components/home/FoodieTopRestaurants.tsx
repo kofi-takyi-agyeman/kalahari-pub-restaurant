@@ -38,7 +38,7 @@ export function FoodieTopRestaurants() {
     {
       id: "drinks-lounge",
       name: "Chilled Drinks & Beverage Lounge",
-      image: "/dishes/spicy_kelewele.jpg",
+      image: "https://images.unsplash.com/photo-1535958636474-b021ee887b13?auto=format&fit=crop&w=800&q=80",
       rating: 4.8,
       reviewCount: "850",
       distance: "Ice-Cold Brews & Softs",
