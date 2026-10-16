@@ -180,3 +180,175 @@ body {
 .animate-text-drift {
   animation: textDrift 8s ease-in-out infinite;
 }
+
+/* ==============================================================================
+   DYNAMIC INTERACTIVE ANIMATIONS & MICRO-INTERACTIONS
+   ============================================================================== */
+
+/* 1. Continuous Smooth Infinite Marquee */
+@keyframes marquee {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes marqueeReverse {
+  0% {
+    transform: translateX(-50%);
+  }
+  100% {
+    transform: translateX(0%);
+  }
+}
+
+.animate-marquee {
+  display: flex;
+  width: max-content;
+  animation: marquee 32s linear infinite;
+}
+
+.animate-marquee:hover {
+  animation-play-state: paused;
+}
+
+.animate-marquee-reverse {
+  display: flex;
+  width: max-content;
+  animation: marqueeReverse 32s linear infinite;
+}
+
+.animate-marquee-reverse:hover {
+  animation-play-state: paused;
+}
+
+/* 2. Shimmer & Sheen Light Sweep */
+@keyframes shimmerSweep {
+  0% {
+    transform: translateX(-150%) rotate(25deg);
+    opacity: 0;
+  }
+  50% {
+    opacity: 0.7;
+  }
+  100% {
+    transform: translateX(200%) rotate(25deg);
+    opacity: 0;
+  }
+}
+
+.animate-shimmer-sweep {
+  animation: shimmerSweep 3.5s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+
+/* 3. Glowing Golden Pulse Aura */
+@keyframes goldPulseGlow {
+  0%, 100% {
+    box-shadow: 0 0 15px rgba(255, 194, 14, 0.25), 0 0 35px rgba(217, 35, 35, 0.12);
+  }
+  50% {
+    box-shadow: 0 0 35px rgba(255, 194, 14, 0.65), 0 0 60px rgba(217, 35, 35, 0.35);
+  }
+}
+
+.animate-gold-pulse {
+  animation: goldPulseGlow 2.8s ease-in-out infinite;
+}
+
+/* 4. Flame Sizzle & Ember Flicker */
+@keyframes flameDance {
+  0%, 100% {
+    transform: scale(1) rotate(-1.5deg);
+    filter: drop-shadow(0 0 6px rgba(255, 194, 14, 0.6));
+  }
+  50% {
+    transform: scale(1.15) rotate(2deg);
+    filter: drop-shadow(0 0 14px rgba(217, 35, 35, 0.85));
+  }
+}
+
+.animate-flame {
+  animation: flameDance 1.6s ease-in-out infinite;
+}
+
+/* 5. Floating Badge Micro-bounce */
+@keyframes floatBadge {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-5px);
+  }
+}
+
+.animate-float-badge {
+  animation: floatBadge 3.2s ease-in-out infinite;
+}
+
+/* 6. Tactile Pop & Scale In */
+@keyframes popIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.92);
+  }
+  70% {
+    transform: scale(1.04);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.animate-pop-in {
+  animation: popIn 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* 7. Staggered Smooth Fade In Up */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 0.5s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+/* 8. Glowing Ember Float */
+@keyframes emberRise {
+  0% {
+    transform: translateY(0px) scale(0.6) rotate(0deg);
+    opacity: 0;
+  }
+  20% {
+    opacity: 0.9;
+  }
+  80% {
+    opacity: 0.6;
+  }
+  100% {
+    transform: translateY(-55px) scale(1.2) rotate(45deg);
+    opacity: 0;
+  }
+}
+
+.animate-ember-1 {
+  animation: emberRise 3s ease-out infinite;
+}
+
+.animate-ember-2 {
+  animation: emberRise 3.6s ease-out 1s infinite;
+}
+
+.animate-ember-3 {
+  animation: emberRise 4.2s ease-out 1.8s infinite;
+}
+
