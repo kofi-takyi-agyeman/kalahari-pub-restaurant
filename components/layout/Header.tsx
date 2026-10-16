@@ -82,17 +82,17 @@ export function Header() {
             </div>
 
             {/* Desktop Navigation Links (Pill Style) */}
-            <div className="hidden md:flex items-center gap-2 lg:gap-3 bg-[#181820] p-1.5 rounded-full border border-[#2B2B36]">
+            <div className="hidden md:flex items-center gap-1 lg:gap-2 bg-[#181820] p-1.5 rounded-full border border-[#2B2B36]">
               {navLinks.map((link) => {
                 const isActive = pathname === link.href;
                 return (
                   <Link
                     key={link.href}
                     href={link.href}
-                    className={`font-bold text-xs lg:text-sm tracking-wide transition-all duration-200 px-4 py-2 rounded-full ${
+                    className={`font-medium text-xs lg:text-sm tracking-wide transition-all duration-200 px-4 py-2 rounded-full ${
                       isActive
-                        ? "bg-[#FFC20E] text-black shadow-sm font-black"
-                        : "text-gray-300 hover:text-white hover:bg-white/10"
+                        ? "text-white font-bold"
+                        : "text-gray-300 hover:text-white hover:bg-white/5"
                     }`}
                   >
                     {link.label}
