@@ -79,13 +79,8 @@ export function FoodieTopRestaurants() {
           <Link
             key={place.id}
             href="/menu"
-            className="group relative flex flex-col justify-between overflow-hidden rounded-2xl sm:rounded-3xl bg-[#141419] border border-[#22222B] hover:border-[#FFC20E]/50 p-2.5 sm:p-3 transition-all duration-400 hover:shadow-[0_15px_35px_rgba(0,0,0,0.8),0_0_20px_rgba(255,194,14,0.18)] hover:-translate-y-2"
+            className="group relative flex flex-col justify-between overflow-hidden rounded-2xl sm:rounded-3xl bg-[#141419] border border-[#22222B] hover:border-[#3A3A4A] p-2.5 sm:p-3 transition-all duration-300 hover:shadow-[0_10px_25px_rgba(0,0,0,0.6)] hover:-translate-y-1"
           >
-            {/* Shimmer light reflection swipe on hover */}
-            <div className="absolute inset-0 pointer-events-none overflow-hidden rounded-2xl sm:rounded-3xl z-10">
-              <div className="w-1/2 h-full bg-gradient-to-r from-transparent via-white/8 to-transparent transform -skew-x-20 -translate-x-full group-hover:translate-x-[300%] transition-transform duration-1000 ease-out" />
-            </div>
-
             {/* Top Image */}
             <div className="relative aspect-[16/10] w-full overflow-hidden rounded-xl sm:rounded-2xl bg-[#0B0B0E]">
               <Image
@@ -93,18 +88,18 @@ export function FoodieTopRestaurants() {
                 alt={place.name}
                 fill
                 sizes="(max-width: 640px) 50vw, (max-width: 1024px) 25vw, 20vw"
-                className="object-cover transition-transform duration-700 ease-out group-hover:scale-110"
+                className="object-cover transition-transform duration-500 group-hover:scale-108"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent pointer-events-none" />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent pointer-events-none" />
             </div>
 
             {/* Title & Chevron Row */}
-            <div className="mt-2.5 sm:mt-3 px-1 flex flex-col justify-between flex-1 relative z-20">
+            <div className="mt-2.5 sm:mt-3 px-1 flex flex-col justify-between flex-1">
               <div className="flex items-center justify-between gap-1">
-                <h3 className="font-display text-xs sm:text-sm font-extrabold text-white leading-tight truncate group-hover:text-[#FFC20E] transition-colors duration-200">
+                <h3 className="font-display text-xs sm:text-sm font-extrabold text-white leading-tight truncate group-hover:text-[#FFC20E] transition-colors">
                   {place.name}
                 </h3>
-                <ChevronRight className="w-4 h-4 text-gray-400 group-hover:text-[#FFC20E] group-hover:translate-x-1.5 transition-all duration-200 shrink-0" />
+                <ChevronRight className="w-4 h-4 text-gray-400 group-hover:text-[#FFC20E] group-hover:translate-x-0.5 transition-all shrink-0" />
               </div>
 
               {/* Rating & Distance */}

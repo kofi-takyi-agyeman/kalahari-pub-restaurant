@@ -23,12 +23,7 @@ export function FoodCard({ item }: FoodCardProps) {
   };
 
   return (
-    <article className="group relative flex flex-col justify-between overflow-hidden rounded-2xl bg-white dark:bg-[#15151B] border border-brand-cream-border/70 dark:border-[#252530] hover:border-[#FFC20E]/60 shadow-sm transition-all duration-400 hover:shadow-[0_15px_35px_rgba(0,0,0,0.15)] dark:hover:shadow-[0_15px_35px_rgba(0,0,0,0.8),0_0_20px_rgba(255,194,14,0.15)] hover:-translate-y-2">
-      {/* Shimmer light reflection swipe on hover */}
-      <div className="absolute inset-0 pointer-events-none overflow-hidden rounded-2xl z-20">
-        <div className="w-1/2 h-full bg-gradient-to-r from-transparent via-white/10 to-transparent transform -skew-x-20 -translate-x-full group-hover:translate-x-[300%] transition-transform duration-1000 ease-out" />
-      </div>
-
+    <article className="group flex flex-col justify-between overflow-hidden rounded-2xl bg-white border border-brand-cream-border/70 shadow-sm transition-all duration-300 hover:shadow-lg hover:-translate-y-1">
       {/* Top Image Container */}
       <div className="relative aspect-[4/3] w-full overflow-hidden bg-brand-charcoal/5">
         <Image
@@ -36,7 +31,7 @@ export function FoodCard({ item }: FoodCardProps) {
           alt={item.name}
           fill
           sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-          className="object-cover transition-transform duration-700 ease-out group-hover:scale-108"
+          className="object-cover transition-transform duration-500 group-hover:scale-105"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-brand-charcoal/60 via-transparent to-transparent opacity-80" />
 
@@ -107,9 +102,9 @@ export function FoodCard({ item }: FoodCardProps) {
               aria-label={`Add ${item.name} to cart`}
               className={`inline-flex items-center justify-center gap-1.5 px-4 py-2.5 rounded-xl font-bold text-sm min-h-[44px] transition-all duration-200 active:scale-95 ${
                 justAdded
-                  ? "bg-brand-green text-white shadow-[0_0_15px_rgba(16,185,129,0.6)] scale-105 animate-pop-in"
+                  ? "bg-brand-green text-white shadow-sm"
                   : item.isAvailable
-                  ? "bg-brand-yellow hover:bg-brand-yellow-hover text-brand-charcoal shadow-sm hover:shadow-[0_4px_15px_rgba(255,194,14,0.4)] hover:scale-102"
+                  ? "bg-brand-yellow hover:bg-brand-yellow-hover text-brand-charcoal shadow-sm hover:shadow-md"
                   : "bg-gray-100 text-gray-400 cursor-not-allowed"
               }`}
             >

@@ -9,7 +9,6 @@ import { FoodiePopularDishes } from "@/components/home/FoodiePopularDishes";
 import { FoodieSpecialOffer } from "@/components/home/FoodieSpecialOffer";
 import { FoodieTopRestaurants } from "@/components/home/FoodieTopRestaurants";
 import { PinterestAnimatedShowcase } from "@/components/home/PinterestAnimatedShowcase";
-import { KalahariMarqueeBanner } from "@/components/home/KalahariMarqueeBanner";
 import { menuItems } from "@/data/menuItems";
 import { MenuItem } from "@/types";
 
@@ -98,11 +97,8 @@ export default function HomePage() {
         </section>
       )}
 
-      {/* 3. Main Hero Banner: Delicious Ghanaian Food Delivered Fresh */}
+      {/* 3. Main Hero Banner: Delicious Ghanaian Food Delivered Fresh (Hot Banku • Charcoal Grill • Chilled Drinks) */}
       <FoodieHeroBanner />
-
-      {/* Dynamic Animated Infinite Marquee Ticker */}
-      <KalahariMarqueeBanner />
 
       {/* 4. Category Badges (Charcoal Grill, Local Dishes, Jollof & Rice, Suya Khebab, Chilled Drinks, Kelewele) */}
       <FoodieCategories

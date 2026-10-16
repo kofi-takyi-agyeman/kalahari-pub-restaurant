@@ -197,7 +197,7 @@ export function PinterestAnimatedShowcase() {
 
                   {/* Corner Badge */}
                   <div className="absolute top-3 left-3 bg-black/70 backdrop-blur-md border border-[#FFC20E]/40 text-[#FFC20E] text-xs font-bold px-3 py-1.5 rounded-full flex items-center gap-1.5 shadow-md">
-                    <Flame className="w-3.5 h-3.5 fill-[#FFC20E] animate-flame" />
+                    <Flame className="w-3.5 h-3.5 fill-[#FFC20E]" />
                     <span>Sizzling Over Charcoal</span>
                   </div>
                 </div>
@@ -280,12 +280,7 @@ export function PinterestAnimatedShowcase() {
           {/* 3 Levitating Plate Cards */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {/* Plate 1: Tilapia Platter */}
-            <div className="group relative p-5 rounded-3xl bg-[#14141A] border border-[#242430] hover:border-[#FFC20E]/60 transition-all duration-500 hover:-translate-y-2.5 hover:shadow-[0_20px_45px_rgba(0,0,0,0.85),0_0_25px_rgba(255,194,14,0.22)] overflow-hidden">
-              {/* Shimmer sweep on hover */}
-              <div className="absolute inset-0 pointer-events-none overflow-hidden rounded-3xl z-10">
-                <div className="w-1/2 h-full bg-gradient-to-r from-transparent via-white/8 to-transparent transform -skew-x-20 -translate-x-full group-hover:translate-x-[300%] transition-transform duration-1000 ease-out" />
-              </div>
-
+            <div className="group relative p-5 rounded-3xl bg-[#14141A] border border-[#242430] hover:border-[#FFC20E]/50 transition-all duration-500 hover:-translate-y-2">
               <div className="relative aspect-square w-full rounded-2xl overflow-hidden mb-4 bg-black animate-float-slow">
                 <Image
                   src="/dishes/grilled_tilapia_platter.jpg"
@@ -295,9 +290,9 @@ export function PinterestAnimatedShowcase() {
                   className="object-cover transition-transform duration-700 group-hover:scale-110"
                 />
               </div>
-              <div className="space-y-1.5 relative z-20">
+              <div className="space-y-1.5">
                 <div className="flex items-center justify-between">
-                  <h4 className="font-serif text-lg font-bold text-white group-hover:text-[#FFC20E] transition-colors duration-200">
+                  <h4 className="font-serif text-lg font-bold text-white group-hover:text-[#FFC20E] transition-colors">
                     Charcoal Whole Tilapia
                   </h4>
                   <span className="text-sm font-black text-[#FFC20E]">GH₵ 110</span>
@@ -309,12 +304,7 @@ export function PinterestAnimatedShowcase() {
             </div>
 
             {/* Plate 2: Deluxe Jollof Rice */}
-            <div className="group relative p-5 rounded-3xl bg-[#14141A] border border-[#242430] hover:border-[#FFC20E]/60 transition-all duration-500 hover:-translate-y-2.5 hover:shadow-[0_20px_45px_rgba(0,0,0,0.85),0_0_25px_rgba(255,194,14,0.22)] overflow-hidden">
-              {/* Shimmer sweep on hover */}
-              <div className="absolute inset-0 pointer-events-none overflow-hidden rounded-3xl z-10">
-                <div className="w-1/2 h-full bg-gradient-to-r from-transparent via-white/8 to-transparent transform -skew-x-20 -translate-x-full group-hover:translate-x-[300%] transition-transform duration-1000 ease-out" />
-              </div>
-
+            <div className="group relative p-5 rounded-3xl bg-[#14141A] border border-[#242430] hover:border-[#FFC20E]/50 transition-all duration-500 hover:-translate-y-2">
               <div className="relative aspect-square w-full rounded-2xl overflow-hidden mb-4 bg-black animate-float-reverse">
                 <Image
                   src="/dishes/assorted_jollof_deluxe.jpg"
@@ -324,9 +314,9 @@ export function PinterestAnimatedShowcase() {
                   className="object-cover transition-transform duration-700 group-hover:scale-110"
                 />
               </div>
-              <div className="space-y-1.5 relative z-20">
+              <div className="space-y-1.5">
                 <div className="flex items-center justify-between">
-                  <h4 className="font-serif text-lg font-bold text-white group-hover:text-[#FFC20E] transition-colors duration-200">
+                  <h4 className="font-serif text-lg font-bold text-white group-hover:text-[#FFC20E] transition-colors">
                     Deluxe Jollof Rice
                   </h4>
                   <span className="text-sm font-black text-[#FFC20E]">GH₵ 65</span>
@@ -338,12 +328,7 @@ export function PinterestAnimatedShowcase() {
             </div>
 
             {/* Plate 3: Traditional Red Red */}
-            <div className="group relative p-5 rounded-3xl bg-[#14141A] border border-[#242430] hover:border-[#FFC20E]/60 transition-all duration-500 hover:-translate-y-2.5 hover:shadow-[0_20px_45px_rgba(0,0,0,0.85),0_0_25px_rgba(255,194,14,0.22)] overflow-hidden">
-              {/* Shimmer sweep on hover */}
-              <div className="absolute inset-0 pointer-events-none overflow-hidden rounded-3xl z-10">
-                <div className="w-1/2 h-full bg-gradient-to-r from-transparent via-white/8 to-transparent transform -skew-x-20 -translate-x-full group-hover:translate-x-[300%] transition-transform duration-1000 ease-out" />
-              </div>
-
+            <div className="group relative p-5 rounded-3xl bg-[#14141A] border border-[#242430] hover:border-[#FFC20E]/50 transition-all duration-500 hover:-translate-y-2">
               <div className="relative aspect-square w-full rounded-2xl overflow-hidden mb-4 bg-black animate-float-slow">
                 <Image
                   src="/dishes/red_red_plantain.jpg"
@@ -353,9 +338,9 @@ export function PinterestAnimatedShowcase() {
                   className="object-cover transition-transform duration-700 group-hover:scale-110"
                 />
               </div>
-              <div className="space-y-1.5 relative z-20">
+              <div className="space-y-1.5">
                 <div className="flex items-center justify-between">
-                  <h4 className="font-serif text-lg font-bold text-white group-hover:text-[#FFC20E] transition-colors duration-200">
+                  <h4 className="font-serif text-lg font-bold text-white group-hover:text-[#FFC20E] transition-colors">
                     Traditional Red-Red
                   </h4>
                   <span className="text-sm font-black text-[#FFC20E]">GH₵ 55</span>
