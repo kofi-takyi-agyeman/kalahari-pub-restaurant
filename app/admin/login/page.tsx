@@ -102,7 +102,7 @@ export default function AdminLoginPage() {
                   autoComplete="email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  placeholder="owner@kalaharipub.com"
+                  placeholder="owner@kalaharidine.com"
                   className="w-full pl-10 pr-4 py-3 rounded-xl bg-brand-charcoal border border-brand-charcoal-muted text-sm text-white placeholder-gray-500 focus:outline-hidden focus:ring-2 focus:ring-brand-yellow focus:border-transparent transition-all"
                 />
               </div>

@@ -22,7 +22,7 @@ export function OrderingCTA() {
 
         <p className="text-gray-300 text-sm sm:text-base max-w-2xl mx-auto leading-relaxed">
           Check out our demonstration menu online. While our automated digital checkout
-          is in development for Phase 2, our kitchen and pub are ready to take your
+          is in development for Phase 2, our kitchen and restaurant team are ready to take your
           order directly over our verified phone lines!
         </p>
 

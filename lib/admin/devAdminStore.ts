@@ -67,7 +67,7 @@ defaultCategories.forEach((cat, index) => {
       id: cat.id,
       name: cat.name,
       slug: cat.id,
-      description: `Authentic ${cat.name} freshly prepared at Kalahari Pub.`,
+      description: `Authentic ${cat.name} freshly prepared at Kalahari Dine.`,
       image_url: cat.image || null,
       display_order: index,
       is_active: true,
@@ -98,7 +98,7 @@ if (!globalThis.__kalahari_dev_settings) {
     monday_saturday: "10:00 AM - 11:00 PM",
     sunday: "12:00 PM - 11:00 PM",
     pickup_enabled: true,
-    location: "Kalahari Pub, A-Lang Taxi Rank",
+    location: "Kalahari Dine, A-Lang Taxi Rank",
   };
 
   globalThis.__kalahari_dev_settings.set("delivery_config", defaultDelivery);

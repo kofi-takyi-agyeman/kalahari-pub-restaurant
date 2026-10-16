@@ -1,10 +1,10 @@
 import { BusinessConfig } from "@/types";
 
 export const businessConfig: BusinessConfig = {
-  name: "Kalahari Pub & Restaurant",
-  shortName: "Kalahari Pub",
+  name: "Kalahari Dine",
+  shortName: "Kalahari Dine",
   slogan: "Good Food, Good Drinks, Great Vibes",
-  location: "Kalahari Pub, A-Lang Taxi Rank",
+  location: "Kalahari Dine, A-Lang Taxi Rank",
   phones: [
     {
       raw: "0245656849",
@@ -26,11 +26,11 @@ export const businessConfig: BusinessConfig = {
     },
   ],
   services: [
-    "Pub & Chilled Drinks",
-    "Restaurant Dining",
-    "Authentic Ghanaian Local Dishes",
-    "Fresh Grilled Specialties",
-    "Flavorful Rice Meals",
+    "Authentic Ghanaian Dining",
+    "Fresh Charcoal Grilled Specialties",
+    "Flavorful Rice Meals & Jollof",
+    "Chilled Beverages & Refreshments",
+    "Express Takeout & Event Catering",
   ],
   developer: {
     name: "Data_Nova",

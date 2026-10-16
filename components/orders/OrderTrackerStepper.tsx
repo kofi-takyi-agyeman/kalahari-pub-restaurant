@@ -44,7 +44,7 @@ export function OrderTrackerStepper({ status, orderType }: OrderTrackerStepperPr
     {
       key: "ready",
       label: orderType === "delivery" ? "With Rider" : "Ready for Pickup",
-      desc: orderType === "delivery" ? "Dispatched" : "At pub counter",
+      desc: orderType === "delivery" ? "Dispatched" : "Ready at counter",
       icon: orderType === "delivery" ? Truck : Building2,
     },
   ];

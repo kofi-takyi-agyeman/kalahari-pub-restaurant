@@ -84,7 +84,7 @@ export default function CartPage() {
             </h2>
             <p className="text-sm text-gray-500">
               Browse our authentic Ghanaian dishes, flame-grilled tilapia, and chilled
-              pub drinks to start your order.
+              drinks to start your order.
             </p>
             <div className="pt-2">
               <Link

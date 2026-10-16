@@ -12,7 +12,7 @@ export const metadata: Metadata = {
   description: `Discover delicious Ghanaian favourites, freshly charcoal-grilled tilapia, rice meals, and refreshing drinks at ${businessConfig.name}, located at ${businessConfig.location}.`,
   openGraph: {
     title: `${businessConfig.name} — ${businessConfig.slogan}`,
-    description: `Authentic Ghanaian dishes, fresh grilled food, and chilled pub drinks at ${businessConfig.location}.`,
+    description: `Authentic Ghanaian dishes, fresh grilled food, and refreshing drinks at ${businessConfig.location}.`,
     type: "website",
     locale: "en_GH",
   },

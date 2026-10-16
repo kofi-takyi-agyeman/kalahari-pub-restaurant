@@ -58,7 +58,7 @@ export function AdminNavbar({ userEmail }: AdminNavbarProps) {
               <Logo variant="icon" size="sm" />
               <div className="flex flex-col">
                 <span className="font-display font-black text-sm sm:text-base tracking-tight text-white leading-none">
-                  KALAHARI <span className="text-brand-yellow font-extrabold text-xs">PUB</span>
+                  KALAHARI <span className="text-brand-yellow font-extrabold text-xs">DINE</span>
                 </span>
                 <span className="text-[10px] text-gray-400 uppercase tracking-widest hidden sm:inline">
                   Admin Portal

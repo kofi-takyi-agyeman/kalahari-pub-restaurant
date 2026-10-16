@@ -19,7 +19,7 @@ export function FoodieTopBar() {
           {/* Stylized Logo text with golden glow matching the screenshot */}
           <div className="relative">
             <span className="font-script text-3xl sm:text-4xl font-bold tracking-wide text-transparent bg-clip-text bg-gradient-to-r from-white via-[#FFF0B3] to-[#FFC20E] drop-shadow-[0_2px_12px_rgba(255,194,14,0.45)] group-hover:scale-105 transition-transform duration-200">
-              Kalahari <span className="text-[#FFC20E]">Pub</span>
+              Kalahari <span className="text-[#FFC20E]">Dine</span>
             </span>
             {/* Golden fork accent dot */}
             <span className="absolute -top-1 -right-3 text-[#FFC20E] text-xs animate-bounce">

@@ -61,14 +61,19 @@ export function Logo({
           />
         </div>
         <div className="mt-3">
-          <span className="font-display font-black text-brand-charcoal text-xl sm:text-2xl tracking-wider block leading-tight">
-            KALAHARI
+          <div className="flex items-center justify-center gap-2">
+            <span className="font-display font-black text-brand-charcoal text-2xl sm:text-3xl tracking-wider leading-tight">
+              KALAHARI
+            </span>
+            <span className="font-serif italic font-extrabold text-[#D92323] text-2xl sm:text-3xl leading-tight">
+              Dine
+            </span>
+          </div>
+          <span className="inline-block bg-gradient-to-r from-brand-charcoal to-black text-[#FFC20E] border border-[#FFC20E]/40 text-[10px] sm:text-xs font-black px-3 py-1 rounded-full tracking-widest uppercase mt-1.5 shadow-xs">
+            AUTHENTIC GHANAIAN DINING
           </span>
-          <span className="inline-block bg-brand-red text-white text-[10px] sm:text-xs font-black px-2.5 py-0.5 rounded-full tracking-widest uppercase mt-1">
-            PUB &amp; RESTAURANT
-          </span>
-          <span className="block text-[10px] text-gray-500 font-bold tracking-widest uppercase mt-1">
-            ACCRA, GHANA
+          <span className="block text-[10px] text-gray-500 font-bold tracking-widest uppercase mt-1.5">
+            A-LANG, ACCRA • GHANA
           </span>
         </div>
         {showSlogan && (
@@ -149,27 +154,44 @@ export function Logo({
 
       {/* Brand Wordmark & Typography */}
       <div className="flex flex-col justify-center">
-        <span
-          className={`font-display font-black tracking-wider leading-none ${nameColor} ${
-            size === "xs"
-              ? "text-sm"
-              : size === "sm"
-              ? "text-base"
-              : size === "lg"
-              ? "text-2xl"
-              : size === "xl"
-              ? "text-3xl"
-              : "text-lg sm:text-xl"
-          }`}
-        >
-          KALAHARI
-        </span>
+        <div className="flex items-center gap-1.5 leading-none">
+          <span
+            className={`font-display font-black tracking-wider leading-none ${nameColor} ${
+              size === "xs"
+                ? "text-sm"
+                : size === "sm"
+                ? "text-base"
+                : size === "lg"
+                ? "text-2xl"
+                : size === "xl"
+                ? "text-3xl"
+                : "text-lg sm:text-xl"
+            }`}
+          >
+            KALAHARI
+          </span>
+          <span
+            className={`font-serif italic font-extrabold text-[#FFC20E] tracking-wide leading-none ${
+              size === "xs"
+                ? "text-xs"
+                : size === "sm"
+                ? "text-sm"
+                : size === "lg"
+                ? "text-xl"
+                : size === "xl"
+                ? "text-2xl"
+                : "text-base sm:text-lg"
+            }`}
+          >
+            Dine
+          </span>
+        </div>
         <div className="flex items-center gap-1.5 mt-0.5 sm:mt-1">
-          <span className="bg-brand-red text-white text-[9px] sm:text-[10px] font-black px-1.5 py-0.5 rounded tracking-wider uppercase leading-none">
-            PUB &amp; RESTAURANT
+          <span className="bg-gradient-to-r from-[#D92323] to-[#B91C1C] text-white text-[8px] sm:text-[9px] font-black px-1.5 py-0.5 rounded tracking-widest uppercase leading-none shadow-xs">
+            GHANAIAN DINING
           </span>
           <span className={`text-[8px] sm:text-[9px] font-bold tracking-widest uppercase hidden xs:inline ${subtextColor}`}>
-            ACCRA
+            ACCRA, GH
           </span>
         </div>
         {showSlogan && (

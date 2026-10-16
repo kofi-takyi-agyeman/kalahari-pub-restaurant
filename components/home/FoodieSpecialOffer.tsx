@@ -71,7 +71,7 @@ export function FoodieSpecialOffer() {
             <div className="relative w-full aspect-[16/10] sm:aspect-[16/11] max-w-md mx-auto group">
               <Image
                 src="/dishes/grilled_guinea_fowl.jpg"
-                alt="Special Offer - Get 20% OFF On Your First Order - Charcoal Grilled Specialties at Kalahari Pub"
+                alt="Special Offer - Get 20% OFF On Your First Order - Charcoal Grilled Specialties at Kalahari Dine"
                 fill
                 sizes="(max-width: 768px) 100vw, 50vw"
                 className="object-cover rounded-2xl transition-transform duration-500 group-hover:scale-105"

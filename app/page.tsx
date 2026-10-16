@@ -47,7 +47,7 @@ export default function HomePage() {
 
   return (
     <div className="min-h-screen bg-[#0B0B0E] text-white selection:bg-[#FFC20E] selection:text-black">
-      {/* 1. Header Bar: Kalahari Pub Logo, Slogan, Bag Drawer, Notifications & Profile */}
+      {/* 1. Header Bar: Kalahari Dine Logo, Slogan, Bag Drawer, Notifications & Profile */}
       <FoodieTopBar />
 
       {/* 2. Search & Filter Bar */}
@@ -100,7 +100,7 @@ export default function HomePage() {
       {/* 3. Main Hero Banner: Delicious Ghanaian Food Delivered Fresh (Hot Banku • Charcoal Grill • Chilled Drinks) */}
       <FoodieHeroBanner />
 
-      {/* 4. Category Badges (Charcoal Grill, Local Dishes, Jollof & Rice, Suya Khebab, Chilled Pub, Kelewele) */}
+      {/* 4. Category Badges (Charcoal Grill, Local Dishes, Jollof & Rice, Suya Khebab, Chilled Drinks, Kelewele) */}
       <FoodieCategories
         selectedCategory={selectedCategory}
         onSelectCategory={setSelectedCategory}
@@ -112,7 +112,7 @@ export default function HomePage() {
       {/* 6. Special Offer Promo Banner: Get 20% OFF On Your First Kalahari Order */}
       <FoodieSpecialOffer />
 
-      {/* 7. Kalahari Dining & Grill Stations (Main Kitchen, Charcoal Grill, Chilled Pub, Express Takeout) */}
+      {/* 7. Kalahari Dine & Grill Stations (Main Kitchen, Charcoal Grill, Chilled Drinks, Express Takeout) */}
       <FoodieTopRestaurants />
 
       {/* 8. Native Animated UI Showcase (From Pinterest Video Concept):
@@ -120,7 +120,7 @@ export default function HomePage() {
           - Stacked Repeating Luxury Outlined Typography ('KALAHARI TASTE / CHARCOAL FLAVOUR')
           - Glowing Golden Halo Stat Pills (Locate Us, Open Hours, Direct Reservation)
           - Levitating 3D Floating Plates with Smooth Animations
-          - Interactive Service Cards (Pub Dining, Fresh Grill, Speedy Delivery)
+          - Interactive Service Cards (Dine Experience, Fresh Grill, Speedy Delivery)
           - Customer Testimonials Slider
           - Interactive Table Reservation Form
       */}

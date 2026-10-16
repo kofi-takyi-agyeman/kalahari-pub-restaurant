@@ -4,7 +4,7 @@ import { MenuItem } from "@/types";
  * DEMONSTRATION SEED MENU DATA
  *
  * NOTE FOR RESTAURANT OWNER & DEVELOPERS:
- * Official menu prices have NOT yet been finalized by Kalahari Pub & Restaurant management.
+ * Official menu prices have NOT yet been finalized by Kalahari Dine management.
  * All prices listed below are temporary demonstration estimates and are conspicuously
  * labelled across the interface as:
  * "SAMPLE PRICE — CONFIRM WITH RESTAURANT"
@@ -28,7 +28,7 @@ export const menuItems: MenuItem[] = [
     isAvailable: true,
     isFeatured: true,
     prepTimeNote: "Grilled over charcoal",
-    tags: ["Pub Specialty", "Fresh Seafood", "House Signature"],
+    tags: ["Dine Specialty", "Fresh Seafood", "House Signature"],
     isSamplePrice: true,
   },
   {
@@ -56,7 +56,7 @@ export const menuItems: MenuItem[] = [
     isAvailable: true,
     isFeatured: true,
     prepTimeNote: "Charcoal grilled to order",
-    tags: ["Suya Spice", "Night Pub Specialty", "Flame Grilled"],
+    tags: ["Suya Spice", "Night Dine Specialty", "Flame Grilled"],
     isSamplePrice: true,
   },
   {
@@ -70,7 +70,7 @@ export const menuItems: MenuItem[] = [
     isAvailable: true,
     isFeatured: true,
     prepTimeNote: "Fried fresh on order",
-    tags: ["Spicy Snack", "Pub Favorite", "Vegetarian Friendly"],
+    tags: ["Spicy Snack", "Dine Favorite", "Vegetarian Friendly"],
     isSamplePrice: true,
   },
   {
@@ -84,7 +84,7 @@ export const menuItems: MenuItem[] = [
     isAvailable: true,
     isFeatured: true,
     prepTimeNote: "Smoky charcoal grill",
-    tags: ["Akonfem", "Pub Specialty", "High Protein"],
+    tags: ["Akonfem", "Dine Specialty", "High Protein"],
     isSamplePrice: true,
   },
   // --- EXISTING LOCAL MENU SELECTIONS ---
@@ -155,7 +155,7 @@ export const menuItems: MenuItem[] = [
     isAvailable: true,
     isFeatured: true,
     prepTimeNote: "Grilled over charcoal",
-    tags: ["Pub Specialty", "Fresh Seafood", "House Signature"],
+    tags: ["Dine Specialty", "Fresh Seafood", "House Signature"],
     isSamplePrice: true,
   },
   {
@@ -183,7 +183,7 @@ export const menuItems: MenuItem[] = [
     isAvailable: true,
     isFeatured: true,
     prepTimeNote: "Smoky charcoal grill",
-    tags: ["Akonfem", "Pub Specialty", "High Protein"],
+    tags: ["Akonfem", "Dine Specialty", "High Protein"],
     isSamplePrice: true,
   },
   {
@@ -197,7 +197,7 @@ export const menuItems: MenuItem[] = [
     isAvailable: true,
     isFeatured: true,
     prepTimeNote: "Charcoal grilled to order",
-    tags: ["Suya Spice", "Night Pub Specialty", "Flame Grilled"],
+    tags: ["Suya Spice", "Night Dine Specialty", "Flame Grilled"],
     isSamplePrice: true,
   },
   {
@@ -211,7 +211,7 @@ export const menuItems: MenuItem[] = [
     isAvailable: true,
     isFeatured: true,
     prepTimeNote: "Fried fresh on order",
-    tags: ["Spicy Snack", "Pub Favorite", "Vegetarian Friendly"],
+    tags: ["Spicy Snack", "Dine Favorite", "Vegetarian Friendly"],
     isSamplePrice: true,
   },
   {
@@ -273,7 +273,7 @@ export const menuItems: MenuItem[] = [
   {
     id: "chilled-lager-beer",
     name: "Chilled Club / Star Lager Beer (Large)",
-    description: "Ice-cold large bottle of Ghana's favorite crisp lager beer, straight from the Kalahari pub cooler.",
+    description: "Ice-cold large bottle of Ghana's favorite crisp lager beer, straight from the Kalahari cooler.",
     category: "drinks",
     samplePrice: 25.0,
     currency: "GHS",
@@ -281,7 +281,7 @@ export const menuItems: MenuItem[] = [
     isAvailable: true,
     isFeatured: false,
     prepTimeNote: "Ice cold from cooler",
-    tags: ["Alcoholic", "Pub Favorite"],
+    tags: ["Alcoholic", "Dine Favorite"],
     isSamplePrice: true,
   },
   {

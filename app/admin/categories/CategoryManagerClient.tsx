@@ -185,7 +185,7 @@ export function CategoryManagerClient({ categories }: CategoryManagerClientProps
                 </span>
               </div>
               <p className="text-xs text-gray-400 leading-relaxed line-clamp-2">
-                {cat.description || "Authentic dishes served at Kalahari Pub."}
+                {cat.description || "Authentic dishes served at Kalahari Dine."}
               </p>
             </div>
 

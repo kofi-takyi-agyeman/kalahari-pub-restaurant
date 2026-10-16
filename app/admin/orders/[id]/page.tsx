@@ -58,7 +58,7 @@ export default async function AdminOrderDetailPage({ params }: OrderDetailPagePr
     .join(", ");
   const cleanPhone = order.customer_phone.replace(/^0/, "233").replace(/[^0-9]/g, "");
   const whatsappUrl = `https://wa.me/${cleanPhone}?text=${encodeURIComponent(
-    `Hello ${order.customer_name}, this is Kalahari Pub & Restaurant regarding your order #${order.order_number} (${itemsSummaryText}). Status: ${order.status.toUpperCase()}.`
+    `Hello ${order.customer_name}, this is Kalahari Dine regarding your order #${order.order_number} (${itemsSummaryText}). Status: ${order.status.toUpperCase()}.`
   )}`;
 
   return (
@@ -157,7 +157,7 @@ export default async function AdminOrderDetailPage({ params }: OrderDetailPagePr
                   {order.order_type === "pickup" ? (
                     <>
                       <Building2 className="w-4 h-4 text-brand-red" />
-                      <span className="font-bold text-white capitalize">Pickup at Pub</span>
+                      <span className="font-bold text-white capitalize">Pickup at Kalahari Dine</span>
                     </>
                   ) : (
                     <>

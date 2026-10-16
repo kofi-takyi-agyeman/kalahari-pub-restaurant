@@ -62,7 +62,7 @@ export function FoodieHeroBanner() {
             <div className="relative w-full aspect-[16/10] sm:aspect-[16/11] max-w-md mx-auto group">
               <Image
                 src="/dishes/grilled_tilapia_platter.jpg"
-                alt="Delicious Charcoal Grilled Tilapia Platter with Banku and Shito at Kalahari Pub"
+                alt="Delicious Charcoal Grilled Tilapia Platter with Banku and Shito at Kalahari Dine"
                 fill
                 priority
                 sizes="(max-width: 768px) 100vw, 50vw"

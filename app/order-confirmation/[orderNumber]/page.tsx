@@ -102,7 +102,7 @@ export default async function OrderConfirmationPage({
     .map((item) => `${item.quantity}x ${item.item_name}`)
     .join(", ");
   const whatsappMessage = encodeURIComponent(
-    `Hello Kalahari Pub & Restaurant! I just submitted order #${order.order_number} for ${order.customer_name} (${order.order_type.toUpperCase()}). Items: ${itemsSummaryText}. Total: GHS ${order.total.toFixed(2)}. Please confirm receipt!`
+    `Hello Kalahari Dine! I just submitted order #${order.order_number} for ${order.customer_name} (${order.order_type.toUpperCase()}). Items: ${itemsSummaryText}. Total: GHS ${order.total.toFixed(2)}. Please confirm receipt!`
   );
   const primaryPhoneDigits = businessConfig.phones[0].raw.replace(/^0/, "233");
   const whatsappUrl = `https://wa.me/${primaryPhoneDigits}?text=${whatsappMessage}`;
@@ -197,7 +197,7 @@ export default async function OrderConfirmationPage({
             </div>
 
             <div className="flex justify-between">
-              <span>Fulfillment ({order.order_type === "pickup" ? "Pickup at Pub" : "Delivery"}):</span>
+              <span>Fulfillment ({order.order_type === "pickup" ? "Pickup at Dine" : "Delivery"}):</span>
               <span className="font-semibold text-brand-charcoal">
                 {formatCurrency(order.delivery_fee)}
               </span>

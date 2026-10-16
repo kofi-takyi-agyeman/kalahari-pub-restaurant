@@ -21,7 +21,7 @@ export function RestaurantMap() {
             Find Us at A-Lang Taxi Rank
           </h2>
           <p className="text-xs sm:text-sm text-gray-500 mt-0.5">
-            Kalahari Pub &amp; Restaurant is located right at the bustling A-Lang Taxi Rank hub in Accra.
+            Kalahari Dine is located right at the bustling A-Lang Taxi Rank hub in Accra.
           </p>
         </div>
 
@@ -40,7 +40,7 @@ export function RestaurantMap() {
       {/* Embedded Map Frame */}
       <div className="relative w-full h-80 sm:h-96 rounded-2xl overflow-hidden border border-brand-cream-border shadow-inner bg-gray-100">
         <iframe
-          title="Kalahari Pub Location Map"
+          title="Kalahari Dine Location Map"
           src={embedUrl}
           className="w-full h-full border-0"
           loading="lazy"

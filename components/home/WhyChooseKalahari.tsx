@@ -23,7 +23,7 @@ export function WhyChooseKalahari() {
       icon: Beer,
       title: "Food & Drinks Under One Roof",
       description:
-        "A true pub and restaurant experience where you can enjoy hot Ghanaian meals paired with cold beers, stouts, malt, and refreshing beverages.",
+        "A true dining experience where you can enjoy hot Ghanaian meals paired with cold beers, stouts, malt, and refreshing beverages.",
       color: "text-brand-yellow",
       bg: "bg-brand-charcoal",
     },
@@ -45,11 +45,11 @@ export function WhyChooseKalahari() {
             <span>The Kalahari Experience</span>
           </div>
           <h2 className="font-display text-3xl sm:text-4xl font-extrabold text-brand-charcoal tracking-tight">
-            Why Visit Kalahari Pub &amp; Restaurant
+            Why Visit Kalahari Dine
           </h2>
           <p className="text-gray-600 text-sm sm:text-base mt-3 leading-relaxed">
             A welcoming destination at A-Lang Taxi Rank combining hearty Ghanaian
-            cooking, freshly grilled food, and a relaxed pub atmosphere.
+            cooking, freshly grilled food, and a relaxed dining atmosphere.
           </p>
         </div>
 

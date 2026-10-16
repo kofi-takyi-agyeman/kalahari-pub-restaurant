@@ -36,13 +36,13 @@ export function FoodieTopRestaurants() {
       tag: "Whole Tilapia & Meats",
     },
     {
-      id: "pub-bar",
-      name: "Chilled Pub & Beer Garden",
+      id: "drinks-lounge",
+      name: "Chilled Drinks & Beverage Lounge",
       image: "/dishes/spicy_kelewele.jpg",
       rating: 4.8,
       reviewCount: "850",
-      distance: "Ice-Cold Brews",
-      tag: "Club, Guinness & Malt",
+      distance: "Ice-Cold Brews & Softs",
+      tag: "Club, Guinness, Malt & Softs",
     },
     {
       id: "express-takeout",
@@ -61,7 +61,7 @@ export function FoodieTopRestaurants() {
       <div className="flex items-center justify-between mb-4 sm:mb-6">
         <h2 className="flex items-center gap-2 text-xl sm:text-2xl font-black text-white tracking-tight">
           <MapPin className="w-5 h-5 text-[#FFC20E] shrink-0" />
-          <span>Kalahari Dining &amp; Grill Stations</span>
+          <span>Kalahari Dine &amp; Grill Stations</span>
         </h2>
 
         <Link

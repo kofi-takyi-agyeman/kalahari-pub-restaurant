@@ -332,7 +332,7 @@ export default function CheckoutPage() {
                   }`}
                 >
                   <Building2 className="w-4 h-4 text-brand-red" />
-                  <span>Pickup at Pub</span>
+                  <span>Pickup at Dine</span>
                 </button>
 
                 <button
@@ -356,7 +356,7 @@ export default function CheckoutPage() {
                     <span>Pickup Location: {businessConfig.location}</span>
                   </div>
                   <p className="text-gray-600 leading-relaxed">
-                    Your meal will be freshly packaged and ready for collection at Kalahari Pub,
+                    Your meal will be freshly packaged and ready for collection at Kalahari Dine,
                     A-Lang Taxi Rank once confirmed by phone.
                   </p>
                 </div>

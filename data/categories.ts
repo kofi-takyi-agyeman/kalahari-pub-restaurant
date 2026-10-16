@@ -25,8 +25,8 @@ export const categories: Category[] = [
   {
     id: "drinks",
     name: "Drinks",
-    description: "Chilled lagers, stout, malt, soft drinks, and cold pub beverages.",
+    description: "Chilled lagers, stout, malt, soft drinks, and cold refreshing beverages.",
     image: "https://images.unsplash.com/photo-1551024709-8f23befc6f87?auto=format&fit=crop&w=800&q=80",
-    badge: "Pub Chilled",
+    badge: "Ice Chilled",
   },
 ];

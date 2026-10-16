@@ -330,7 +330,7 @@ export function SettingsManagerClient({
           />
           <div className="text-xs space-y-0.5">
             <span className="font-bold text-white block">
-              Pickup at Pub Enabled ({initialHours.location})
+              Pickup at Kalahari Dine Enabled ({initialHours.location})
             </span>
             <p className="text-gray-400 leading-relaxed text-[11px]">
               Allows customers to place pickup orders for in-person collection with zero delivery charges.

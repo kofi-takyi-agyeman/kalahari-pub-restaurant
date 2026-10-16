@@ -16,7 +16,7 @@ export function FeaturedDishes() {
           <div>
             <div className="inline-flex items-center gap-1.5 text-brand-red font-bold text-xs uppercase tracking-widest mb-2">
               <Sparkles className="w-4 h-4 fill-brand-red" />
-              <span>Chef &amp; Pub Recommendations</span>
+              <span>Chef &amp; Dine Recommendations</span>
             </div>
             <h2 className="font-display text-3xl sm:text-4xl font-extrabold text-brand-charcoal tracking-tight">
               Featured Specialties

@@ -21,15 +21,15 @@ export default function AboutPage() {
             <Logo variant="primary" size="lg" />
           </div>
           <div className="inline-flex items-center gap-1.5 text-brand-red font-bold text-xs uppercase tracking-widest">
-            <span>About Kalahari Pub &amp; Restaurant</span>
+            <span>About Kalahari Dine</span>
           </div>
           <h1 className="font-display text-3xl sm:text-4xl md:text-5xl font-black text-brand-charcoal tracking-tight">
             Good Food, Good Drinks, Great Vibes
           </h1>
           <p className="text-gray-600 text-base sm:text-lg leading-relaxed">
-            Welcome to Kalahari Pub &amp; Restaurant. Located at A-Lang Taxi Rank,
+            Welcome to Kalahari Dine. Located at A-Lang Taxi Rank,
             we bring together the very best of Ghanaian culinary comfort and relaxed
-            pub hospitality in one lively spot.
+            hospitality in one lively spot.
           </p>
         </div>
 
@@ -58,14 +58,14 @@ export default function AboutPage() {
               Our Vision &amp; Atmosphere
             </h2>
             <p className="text-gray-600 text-sm leading-relaxed">
-              At Kalahari Pub &amp; Restaurant, our goal is simple: offer everyday
+              At Kalahari Dine, our goal is simple: offer everyday
               customers, travelers, and friends a welcoming space to enjoy delicious
               Ghanaian staples alongside refreshing cold drinks.
             </p>
             <p className="text-gray-600 text-sm leading-relaxed">
               Whether you are stopping by for an afternoon meal of Banku with Okro
               stew, picking up freshly flame-grilled tilapia, or spending the evening
-              unwinding with friends over cold drinks, Kalahari Pub provides a vibrant,
+              unwinding with friends over cold drinks, Kalahari Dine provides a vibrant,
               hospitable setting.
             </p>
 
@@ -126,11 +126,11 @@ export default function AboutPage() {
                 <Beer className="w-5 h-5" />
               </div>
               <h3 className="font-display text-base font-bold text-brand-charcoal">
-                Pub Drinks &amp; Refreshments
+                Chilled Drinks &amp; Refreshments
               </h3>
               <p className="text-xs text-gray-600 leading-relaxed">
                 Chilled Ghana lagers, classic stouts, Malta Guinness, Alvaro, soft
-                drinks, and juices served ice-cold from our pub coolers.
+                drinks, and juices served ice-cold from our coolers.
               </p>
             </div>
           </div>

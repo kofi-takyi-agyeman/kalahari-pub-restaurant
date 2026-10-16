@@ -21,7 +21,7 @@ export function Hero() {
             {/* Pill Tag */}
             <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-brand-charcoal-card border border-brand-yellow/30 text-brand-yellow text-xs font-semibold tracking-wide shadow-xs">
               <Logo variant="icon" size="xs" />
-              <span>Authentic Ghanaian Flavors &amp; Chilled Pub Drinks</span>
+              <span>Authentic Ghanaian Flavors &amp; Chilled Drinks</span>
             </div>
 
             {/* Main Headline */}
@@ -34,7 +34,7 @@ export function Hero() {
             {/* Supporting Text */}
             <p className="text-base sm:text-lg text-gray-300 max-w-2xl mx-auto lg:mx-0 leading-relaxed font-normal">
               Discover delicious Ghanaian favourites, freshly grilled dishes, and
-              refreshing drinks at Kalahari Pub &amp; Restaurant.
+              refreshing drinks at Kalahari Dine.
             </p>
 
             {/* CTAs */}
@@ -82,7 +82,7 @@ export function Hero() {
                   <Beer className="w-4 h-4" />
                 </div>
                 <div>
-                  <h4 className="text-xs font-bold text-white">Ice-Cold Pub</h4>
+                  <h4 className="text-xs font-bold text-white">Chilled Drinks</h4>
                   <p className="text-[11px] text-gray-400">Beers, Stouts &amp; Softs</p>
                 </div>
               </div>

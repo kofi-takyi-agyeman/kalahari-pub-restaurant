@@ -25,7 +25,7 @@ export function LocationContact() {
             <div className="space-y-6">
               <div>
                 <h3 className="font-display text-xl font-bold text-brand-charcoal mb-2">
-                  Kalahari Pub &amp; Restaurant
+                  Kalahari Dine
                 </h3>
                 <p className="text-sm text-gray-600">
                   {businessConfig.slogan}

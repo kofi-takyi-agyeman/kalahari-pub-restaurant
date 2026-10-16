@@ -62,7 +62,7 @@ export function PinterestAnimatedShowcase() {
   const services = [
     {
       id: 0,
-      label: "Pub Dining & Events",
+      label: "Dine & Special Events",
       icon: Calendar,
       desc: "Private group tables & weekend celebrations",
     },
@@ -142,10 +142,10 @@ export function PinterestAnimatedShowcase() {
               </div>
 
               <p className="text-gray-300 text-sm sm:text-base leading-relaxed max-w-xl">
-                Kalahari Pub &amp; Restaurant is not just an eatery — it is a sanctuary for your
+                Kalahari Dine is not just an eatery — it is a sanctuary for your
                 taste buds and great memories. Here, fresh Lake Volta tilapia is seasoned in
                 aromatic Ghanaian spices, flame-grilled over glowing coals, and paired with hot
-                banku and refreshing pub drinks.
+                banku and refreshing chilled drinks.
               </p>
 
               {/* Action Buttons */}
@@ -188,7 +188,7 @@ export function PinterestAnimatedShowcase() {
                 <div className="relative w-full h-full rounded-2xl overflow-hidden animate-float-slow">
                   <Image
                     src="/dishes/grilled_tilapia_platter.jpg"
-                    alt="Sizzling Charcoal Grilled Tilapia Platter at Kalahari Pub"
+                    alt="Sizzling Charcoal Grilled Tilapia Platter at Kalahari Dine"
                     fill
                     sizes="(max-width: 1024px) 100vw, 50vw"
                     className="object-cover transition-transform duration-700 group-hover:scale-110"
@@ -473,7 +473,7 @@ export function PinterestAnimatedShowcase() {
               Book Your Table at Kalahari
             </h3>
             <p className="text-xs sm:text-sm text-gray-400">
-              Join us for authentic Ghanaian culinary delights and ice-cold pub drinks at A-Lang Taxi Rank.
+              Join us for authentic Ghanaian culinary delights and ice-cold refreshments at A-Lang Taxi Rank.
             </p>
           </div>
 

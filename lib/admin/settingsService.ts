@@ -25,7 +25,7 @@ export const DEFAULT_HOURS_CONFIG: OperatingHoursConfig = {
   monday_saturday: "10:00 AM - 11:00 PM",
   sunday: "12:00 PM - 11:00 PM",
   pickup_enabled: true,
-  location: "Kalahari Pub, A-Lang Taxi Rank",
+  location: "Kalahari Dine, A-Lang Taxi Rank",
 };
 
 export async function getDeliveryConfig(): Promise<DeliveryConfig> {

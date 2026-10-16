@@ -105,7 +105,7 @@ export function FoodieCategories({
     },
     {
       id: "drinks",
-      name: "Chilled Pub",
+      name: "Chilled Drinks",
       svgIcon: (
         <svg
           viewBox="0 0 24 24"

@@ -74,10 +74,10 @@
 
   <!-- Wordmark Banner at Base of Circle -->
   <rect x="116" y="380" width="280" height="42" rx="21" fill="#171714" stroke="url(#sGoldGrad)" stroke-width="3" />
-  <text x="256" y="408" font-family="'Outfit', 'Inter', system-ui, sans-serif" font-weight="900" font-size="21" fill="#F9D817" text-anchor="middle" letter-spacing="3">
-    KALAHARI PUB
+  <text x="256" y="408" font-family="'Outfit', 'Inter', system-ui, sans-serif" font-weight="900" font-size="22" fill="#F9D817" text-anchor="middle" letter-spacing="3">
+    KALAHARI DINE
   </text>
   <text x="256" y="442" font-family="'Outfit', 'Inter', system-ui, sans-serif" font-weight="800" font-size="12" fill="#E5E7EB" text-anchor="middle" letter-spacing="2">
-    &amp; RESTAURANT • ACCRA
+    ★ ACCRA, GHANA ★
   </text>
 </svg>

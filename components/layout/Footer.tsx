@@ -22,7 +22,7 @@ export function Footer() {
             </p>
             <p className="text-gray-400 text-sm leading-relaxed">
               Ghanaian local dishes, fresh flame-grilled specialties, flavorful
-              rice meals, and ice-cold pub beverages in a relaxed, vibrant atmosphere.
+              rice meals, and ice-cold beverages in a relaxed, vibrant dining atmosphere.
             </p>
             <div className="pt-2">
               <span className="inline-block text-xs text-gray-400 bg-brand-charcoal-card px-3 py-1.5 rounded-lg border border-brand-charcoal-muted">
@@ -58,7 +58,7 @@ export function Footer() {
                   href="/about"
                   className="hover:text-brand-yellow transition-colors inline-block"
                 >
-                  About Kalahari Pub
+                  About Kalahari Dine
                 </Link>
               </li>
               <li>
@@ -115,7 +115,7 @@ export function Footer() {
                   href="/menu?category=drinks"
                   className="hover:text-brand-yellow transition-colors inline-block"
                 >
-                  Chilled Pub Drinks
+                  Chilled Drinks &amp; Beverages
                 </Link>
               </li>
             </ul>
@@ -160,7 +160,7 @@ export function Footer() {
             menu prices currently displayed on this demonstration site are development sample
             figures (<span className="text-brand-yellow">{businessConfig.samplePriceNotice}</span>
             ). Digital ordering backend and live menu management are scheduled for upcoming
-            phases. Please contact the pub directly for confirmed pricing and daily availability.
+            phases. Please contact the restaurant directly for confirmed pricing and daily availability.
           </p>
         </div>
       </div>

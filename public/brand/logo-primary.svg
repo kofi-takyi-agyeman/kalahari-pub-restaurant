@@ -40,10 +40,10 @@
     </textPath>
   </text>
 
-  <!-- Arching Bottom Text: PUB & RESTAURANT -->
-  <text font-family="'Outfit', 'Inter', system-ui, -apple-system, sans-serif" font-weight="800" font-size="19" fill="#171714" letter-spacing="2">
+  <!-- Arching Bottom Text: DINE -->
+  <text font-family="'Outfit', 'Inter', system-ui, -apple-system, sans-serif" font-weight="900" font-size="22" fill="#D92323" letter-spacing="6">
     <textPath href="#arcSub" startOffset="50%" text-anchor="middle">
-      PUB &amp; RESTAURANT
+      ★ DINE ★
     </textPath>
   </text>
 

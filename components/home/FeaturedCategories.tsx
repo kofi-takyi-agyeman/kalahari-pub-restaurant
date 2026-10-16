@@ -20,7 +20,7 @@ export function FeaturedCategories() {
             </h2>
             <p className="text-gray-600 text-sm sm:text-base mt-2 max-w-xl">
               From comforting local Ghanaian soups to smoky charcoal grill and
-              refreshing drinks, explore our kitchen and pub selections.
+              refreshing drinks, explore our kitchen and dine selections.
             </p>
           </div>
 
