@@ -8,7 +8,10 @@ export function cn(...inputs: ClassValue[]) {
 /**
  * Format amounts into Ghanaian Cedi (GHS)
  */
-export function formatCurrency(amount: number): string {
+export function formatCurrency(amount: number, currency: string = "GHS"): string {
+  if (currency === "Rs." || currency === "Rs" || currency === "INR" || currency === "PKR") {
+    return `Rs. ${Math.round(amount)}`;
+  }
   return new Intl.NumberFormat("en-GH", {
     style: "currency",
     currency: "GHS",
