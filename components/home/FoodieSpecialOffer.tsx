@@ -37,7 +37,7 @@ export function FoodieSpecialOffer() {
 
             {/* Subtitle */}
             <p className="text-sm sm:text-base text-gray-300 font-medium">
-              On Your First Order
+              On Your First Kalahari Order
             </p>
 
             {/* CTA & Promo Code Copy */}
@@ -56,7 +56,7 @@ export function FoodieSpecialOffer() {
                 title="Click to copy promo code"
               >
                 <Tag className="w-3.5 h-3.5 text-[#FFC20E]" />
-                <span>Code: FOODIE20</span>
+                <span>Code: KALAHARI20</span>
                 {copied && (
                   <span className="text-[#10B981] flex items-center gap-1 text-[11px] ml-1 font-extrabold">
                     <Check className="w-3 h-3 stroke-[3]" /> Applied!
@@ -66,12 +66,12 @@ export function FoodieSpecialOffer() {
             </div>
           </div>
 
-          {/* Right Image Column: Crispy Chicken & Cheeseburger */}
+          {/* Right Image Column: Crispy Grilled Guinea Fowl */}
           <div className="md:col-span-6 lg:col-span-5 relative flex items-center justify-center">
             <div className="relative w-full aspect-[16/10] sm:aspect-[16/11] max-w-md mx-auto group">
               <Image
-                src="/images/foodie/special_offer_wings_burger.jpg"
-                alt="Special Offer - Get 20% OFF On Your First Order - Crispy Fried Chicken and Gourmet Burger"
+                src="/dishes/grilled_guinea_fowl.jpg"
+                alt="Special Offer - Get 20% OFF On Your First Order - Charcoal Grilled Specialties at Kalahari Pub"
                 fill
                 sizes="(max-width: 768px) 100vw, 50vw"
                 className="object-cover rounded-2xl transition-transform duration-500 group-hover:scale-105"

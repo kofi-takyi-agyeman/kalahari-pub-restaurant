@@ -138,3 +138,45 @@ body {
 .animate-pulse-halo {
   animation: pulseHalo 4s ease-in-out infinite;
 }
+
+@keyframes steamRise {
+  0% {
+    transform: translateY(0px) scale(0.9) rotate(0deg);
+    opacity: 0;
+  }
+  30% {
+    opacity: 0.6;
+  }
+  70% {
+    opacity: 0.3;
+  }
+  100% {
+    transform: translateY(-40px) scale(1.3) rotate(10deg);
+    opacity: 0;
+  }
+}
+
+@keyframes textDrift {
+  0%, 100% {
+    transform: translateX(0px);
+  }
+  50% {
+    transform: translateX(18px);
+  }
+}
+
+.animate-steam-1 {
+  animation: steamRise 3.5s ease-out infinite;
+}
+
+.animate-steam-2 {
+  animation: steamRise 4.2s ease-out 1.2s infinite;
+}
+
+.animate-steam-3 {
+  animation: steamRise 3.8s ease-out 2.1s infinite;
+}
+
+.animate-text-drift {
+  animation: textDrift 8s ease-in-out infinite;
+}

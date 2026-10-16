@@ -15,16 +15,15 @@ import { MenuItem } from "@/types";
 export default function HomePage() {
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
-  const [isVideoModalOpen, setIsVideoModalOpen] = useState(false);
 
-  // The 4 reference popular items from the screenshot
+  // The 4 authentic popular Kalahari items
   const popularReferenceDishes = useMemo(() => {
     return menuItems.filter((dish) =>
       [
-        "classic-burger",
-        "chicken-tikka-pizza",
-        "masala-fries",
-        "chocolate-lava-cake",
+        "grilled-tilapia-whole",
+        "jollof-rice-chicken",
+        "beef-suya-khebab",
+        "spicy-kelewele",
       ].includes(dish.id)
     );
   }, []);
@@ -48,15 +47,14 @@ export default function HomePage() {
 
   return (
     <div className="min-h-screen bg-[#0B0B0E] text-white selection:bg-[#FFC20E] selection:text-black">
-      {/* 1. Header Bar: Foodie Khan Logo, Tagline, Notifications, Profile, Video Reel Pill */}
-      <FoodieTopBar onOpenVideoModal={() => setIsVideoModalOpen(true)} />
+      {/* 1. Header Bar: Kalahari Pub Logo, Slogan, Bag Drawer, Notifications & Profile */}
+      <FoodieTopBar />
 
       {/* 2. Search & Filter Bar */}
       <FoodieSearch
         searchQuery={searchQuery}
         onSearchChange={setSearchQuery}
         onFilterClick={() => {
-          // If no category selected, cycle or clear
           if (selectedCategory) setSelectedCategory(null);
         }}
       />
@@ -92,46 +90,41 @@ export default function HomePage() {
               <FoodiePopularDishes items={filteredDishes} />
             ) : (
               <div className="text-center py-8 text-gray-400 text-sm">
-                No dishes found matching your criteria. Try searching for &ldquo;Burger&rdquo;, &ldquo;Pizza&rdquo;, or &ldquo;Fries&rdquo;.
+                No dishes found matching your criteria. Try searching for &ldquo;Tilapia&rdquo;, &ldquo;Jollof&rdquo;, &ldquo;Banku&rdquo;, or &ldquo;Kelewele&rdquo;.
               </div>
             )}
           </div>
         </section>
       )}
 
-      {/* 3. Main Hero Banner: Delicious Food Delivered Fresh (Hot • Fresh • On Time) */}
+      {/* 3. Main Hero Banner: Delicious Ghanaian Food Delivered Fresh (Hot Banku • Charcoal Grill • Chilled Drinks) */}
       <FoodieHeroBanner />
 
-      {/* 4. Category Badges (Burgers, Pizza, Pasta, Fries, Drinks, Desserts) */}
+      {/* 4. Category Badges (Charcoal Grill, Local Dishes, Jollof & Rice, Suya Khebab, Chilled Pub, Kelewele) */}
       <FoodieCategories
         selectedCategory={selectedCategory}
         onSelectCategory={setSelectedCategory}
       />
 
-      {/* 5. Popular Right Now (Classic Burger, Chicken Tikka Pizza, Masala Fries, Chocolate Lava Cake) */}
+      {/* 5. Popular Right Now: Whole Charcoal Tilapia (GH₵ 110), Deluxe Jollof (GH₵ 65), Beef Suya (GH₵ 50), Kelewele (GH₵ 35) */}
       <FoodiePopularDishes items={popularReferenceDishes} />
 
-      {/* 6. Special Offer Promo Banner: Get 20% OFF On Your First Order */}
+      {/* 6. Special Offer Promo Banner: Get 20% OFF On Your First Kalahari Order */}
       <FoodieSpecialOffer />
 
-      {/* 7. Top Restaurants Near You: Burger Hub, Pizza Planet, Pasta House, Chai & More */}
+      {/* 7. Kalahari Dining & Grill Stations (Main Kitchen, Charcoal Grill, Chilled Pub, Express Takeout) */}
       <FoodieTopRestaurants />
 
-      {/* 8. Cinematic Animated UI Experience from Pinterest.mp4:
-          - Sizzling Cast Iron Skillet
-          - Stacked Repeating Outlined Typography
-          - Glowing Halo Badges (Locate Us, Open Hours, Reservation)
-          - Levitating 3D Tilt Plates
-          - Interactive Services
-          - Testimonials Slider
-          - Book Your Table Form
-          - Video Reel Modal
+      {/* 8. Native Animated UI Showcase (From Pinterest Video Concept):
+          - Sizzling Whole Tilapia Pan with Real Animated Rising Steam Wisps
+          - Stacked Repeating Luxury Outlined Typography ('KALAHARI TASTE / CHARCOAL FLAVOUR')
+          - Glowing Golden Halo Stat Pills (Locate Us, Open Hours, Direct Reservation)
+          - Levitating 3D Floating Plates with Smooth Animations
+          - Interactive Service Cards (Pub Dining, Fresh Grill, Speedy Delivery)
+          - Customer Testimonials Slider
+          - Interactive Table Reservation Form
       */}
-      <PinterestAnimatedShowcase
-        isOpenVideoModal={isVideoModalOpen}
-        onOpenVideoModal={() => setIsVideoModalOpen(true)}
-        onCloseVideoModal={() => setIsVideoModalOpen(false)}
-      />
+      <PinterestAnimatedShowcase />
     </div>
   );
 }

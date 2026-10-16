@@ -16,42 +16,42 @@ export interface RestaurantItem {
 }
 
 export function FoodieTopRestaurants() {
-  const restaurants: RestaurantItem[] = [
+  const stations: RestaurantItem[] = [
     {
-      id: "burger-hub",
-      name: "Burger Hub",
-      image: "/images/foodie/restaurant_burger_hub.jpg",
-      rating: 4.5,
-      reviewCount: "1.2k",
-      distance: "0.5 km",
-      tag: "Burgers & Fast Food",
+      id: "main-dining",
+      name: "A-Lang Main Kitchen & Dining",
+      image: "/dishes/grilled_tilapia_platter.jpg",
+      rating: 4.9,
+      reviewCount: "1.4k",
+      distance: "0.0 km • Dine-in",
+      tag: "Authentic Local Dishes",
     },
     {
-      id: "pizza-planet",
-      name: "Pizza Planet",
-      image: "/images/foodie/popular_tikka_pizza.jpg",
-      rating: 4.6,
+      id: "charcoal-grill",
+      name: "Charcoal Tilapia & Smoke Grill",
+      image: "/dishes/grilled_guinea_fowl.jpg",
+      rating: 4.9,
+      reviewCount: "980",
+      distance: "Fresh Off Coals",
+      tag: "Whole Tilapia & Meats",
+    },
+    {
+      id: "pub-bar",
+      name: "Chilled Pub & Beer Garden",
+      image: "/dishes/spicy_kelewele.jpg",
+      rating: 4.8,
       reviewCount: "850",
-      distance: "1.2 km",
-      tag: "Artisan Pizzas",
+      distance: "Ice-Cold Brews",
+      tag: "Club, Guinness & Malt",
     },
     {
-      id: "pasta-house",
-      name: "Pasta House",
-      image: "/images/foodie/culinary_pasta_dish.jpg",
-      rating: 4.4,
+      id: "express-takeout",
+      name: "Express Jollof & Takeout Desk",
+      image: "/dishes/assorted_jollof_deluxe.jpg",
+      rating: 4.7,
       reviewCount: "620",
-      distance: "2.0 km",
-      tag: "Italian & Pastas",
-    },
-    {
-      id: "chai-more",
-      name: "Chai & More",
-      image: "/images/foodie/restaurant_chai_drinks.jpg",
-      rating: 4.3,
-      reviewCount: "430",
-      distance: "2.5 km",
-      tag: "Tea & Snacks Cafe",
+      distance: "Fast Dispatch",
+      tag: "Smoky Jollof & Waakye",
     },
   ];
 
@@ -61,27 +61,27 @@ export function FoodieTopRestaurants() {
       <div className="flex items-center justify-between mb-4 sm:mb-6">
         <h2 className="flex items-center gap-2 text-xl sm:text-2xl font-black text-white tracking-tight">
           <MapPin className="w-5 h-5 text-[#FFC20E] shrink-0" />
-          <span>Top Restaurants Near You</span>
+          <span>Kalahari Dining &amp; Grill Stations</span>
         </h2>
 
         <Link
           href="/menu"
           className="flex items-center gap-1.5 text-xs sm:text-sm font-bold text-gray-300 hover:text-[#FFC20E] transition-colors group"
         >
-          <span>See All</span>
+          <span>See Menu</span>
           <ArrowRight className="w-4 h-4 text-[#FFC20E] group-hover:translate-x-1 transition-transform" />
         </Link>
       </div>
 
-      {/* Grid of 4 Restaurant Cards */}
+      {/* Grid of 4 Station Cards */}
       <div className="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4 lg:gap-5">
-        {restaurants.map((place) => (
+        {stations.map((place) => (
           <Link
             key={place.id}
-            href={`/menu?vendor=${place.id}`}
+            href="/menu"
             className="group relative flex flex-col justify-between overflow-hidden rounded-2xl sm:rounded-3xl bg-[#141419] border border-[#22222B] hover:border-[#3A3A4A] p-2.5 sm:p-3 transition-all duration-300 hover:shadow-[0_10px_25px_rgba(0,0,0,0.6)] hover:-translate-y-1"
           >
-            {/* Top Restaurant Image */}
+            {/* Top Image */}
             <div className="relative aspect-[16/10] w-full overflow-hidden rounded-xl sm:rounded-2xl bg-[#0B0B0E]">
               <Image
                 src={place.image}
@@ -112,8 +112,8 @@ export function FoodieTopRestaurants() {
                   </span>
                 </div>
 
-                {/* Distance */}
-                <div className="font-medium text-gray-400">
+                {/* Status/Distance */}
+                <div className="font-medium text-gray-400 truncate max-w-[100px] text-right">
                   {place.distance}
                 </div>
               </div>

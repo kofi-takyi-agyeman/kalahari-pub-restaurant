@@ -9,7 +9,7 @@ export function FoodieHeroBanner() {
   return (
     <div className="w-full px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto my-3 sm:my-4">
       <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-[#15151A] via-[#111115] to-[#0A0A0D] border border-[#262630] shadow-2xl">
-        {/* Subtle Warm Amber Glow Behind Burger */}
+        {/* Subtle Warm Amber Glow Behind Food */}
         <div className="absolute top-1/2 right-1/4 -translate-y-1/2 w-72 sm:w-96 h-72 sm:h-96 rounded-full bg-[#FFC20E]/10 blur-3xl pointer-events-none" />
         <div className="absolute -top-10 -left-10 w-48 h-48 rounded-full bg-[#D92323]/10 blur-2xl pointer-events-none" />
 
@@ -26,23 +26,23 @@ export function FoodieHeroBanner() {
             {/* Cursive Tagline */}
             <div>
               <span className="font-script text-2xl sm:text-3xl lg:text-4xl text-[#FFC20E] font-bold tracking-wide drop-shadow-sm inline-block transform -rotate-1">
-                Delicious Food
+                Delicious Ghanaian Food
               </span>
             </div>
 
             {/* Bold Headline */}
             <h1 className="font-display text-3xl sm:text-4xl lg:text-5xl font-black text-white tracking-tight leading-[1.1]">
               Delivered <br className="hidden sm:inline" />
-              Fresh
+              Fresh &amp; Hot
             </h1>
 
             {/* Subtitle with bullet dots */}
             <div className="flex items-center gap-2 text-xs sm:text-sm text-gray-300 font-medium">
-              <span>Hot</span>
+              <span>Hot Banku</span>
               <span className="w-1.5 h-1.5 rounded-full bg-[#FFC20E]" />
-              <span>Fresh</span>
+              <span>Charcoal Grill</span>
               <span className="w-1.5 h-1.5 rounded-full bg-[#FFC20E]" />
-              <span>On Time</span>
+              <span>Chilled Drinks</span>
             </div>
 
             {/* CTA Button: Yellow Pill "Order Now ->" */}
@@ -57,12 +57,12 @@ export function FoodieHeroBanner() {
             </div>
           </div>
 
-          {/* Right Image Visual: Burger Combo with Fries & Cola */}
+          {/* Right Image Visual: Whole Charcoal Grilled Tilapia Platter */}
           <div className="md:col-span-6 lg:col-span-5 relative flex items-center justify-center">
             <div className="relative w-full aspect-[16/10] sm:aspect-[16/11] max-w-md mx-auto group">
               <Image
-                src="/images/foodie/hero_burger_combo.jpg"
-                alt="Delicious Food Delivered Fresh - Gourmet Burger, Fries in Black Box, and Iced Drink"
+                src="/dishes/grilled_tilapia_platter.jpg"
+                alt="Delicious Charcoal Grilled Tilapia Platter with Banku and Shito at Kalahari Pub"
                 fill
                 priority
                 sizes="(max-width: 768px) 100vw, 50vw"
@@ -73,7 +73,7 @@ export function FoodieHeroBanner() {
               {/* Floating Live Badge */}
               <div className="absolute bottom-3 right-3 bg-black/80 backdrop-blur-md border border-[#FFC20E]/40 text-[#FFC20E] text-[11px] font-bold px-2.5 py-1 rounded-full flex items-center gap-1.5 shadow-lg">
                 <Flame className="w-3.5 h-3.5 fill-[#FFC20E] text-[#FFC20E] animate-pulse" />
-                <span>Chef&apos;s Signature</span>
+                <span>House Signature Platter</span>
               </div>
             </div>
           </div>

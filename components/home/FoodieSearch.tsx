@@ -37,9 +37,9 @@ export function FoodieSearch({
           onChange={(e) => onSearchChange(e.target.value)}
           onFocus={() => setIsFocused(true)}
           onBlur={() => setIsFocused(false)}
-          placeholder="Search for food, restaurant or items..."
+          placeholder="Search for Tilapia, Jollof, Banku, Khebab, Drinks..."
           className="w-full py-3.5 sm:py-4 px-3 sm:px-4 bg-transparent text-sm sm:text-base text-white placeholder-gray-500 focus:outline-hidden"
-          aria-label="Search food, restaurants or items"
+          aria-label="Search Kalahari dishes and drinks"
         />
 
         {/* Clear query button if typed */}

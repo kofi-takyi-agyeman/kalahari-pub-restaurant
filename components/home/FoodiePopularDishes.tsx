@@ -99,7 +99,7 @@ export function FoodiePopularDishes({ items }: FoodiePopularDishesProps) {
                 <div className="mt-2 pt-1 flex items-center justify-between">
                   <div className="flex flex-col">
                     <span className="text-xs sm:text-sm font-black text-gray-200">
-                      Rs. {Math.round(dish.samplePrice)}
+                      GH₵ {Math.round(dish.samplePrice)}
                     </span>
                   </div>
 
