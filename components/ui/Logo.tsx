@@ -12,6 +12,7 @@ interface LogoProps {
   showSlogan?: boolean;
   asLink?: boolean;
   href?: string;
+  theme?: "dark" | "light";
 }
 
 export function Logo({
@@ -21,7 +22,11 @@ export function Logo({
   showSlogan = false,
   asLink = false,
   href = "/",
+  theme,
 }: LogoProps) {
+  // Determine if logo is rendered on a dark or light background
+  const isDarkBg = theme ? theme === "dark" : variant === "dark";
+
   // Sizing definitions
   const getEmblemSize = () => {
     switch (size) {
@@ -62,17 +67,29 @@ export function Logo({
         </div>
         <div className="mt-3">
           <div className="flex items-center justify-center gap-2">
-            <span className="font-display font-black text-brand-charcoal text-2xl sm:text-3xl tracking-wider leading-tight">
+            <span
+              className={`font-display font-black text-2xl sm:text-3xl tracking-wider leading-tight ${
+                isDarkBg ? "text-white" : "text-brand-charcoal"
+              }`}
+            >
               KALAHARI
             </span>
-            <span className="font-serif italic font-extrabold text-[#D92323] text-2xl sm:text-3xl leading-tight">
+            <span
+              className={`font-serif italic font-extrabold text-2xl sm:text-3xl leading-tight ${
+                isDarkBg ? "text-[#FFC20E]" : "text-[#D92323]"
+              }`}
+            >
               Dine
             </span>
           </div>
           <span className="inline-block bg-gradient-to-r from-brand-charcoal to-black text-[#FFC20E] border border-[#FFC20E]/40 text-[10px] sm:text-xs font-black px-3 py-1 rounded-full tracking-widest uppercase mt-1.5 shadow-xs">
             AUTHENTIC GHANAIAN DINING
           </span>
-          <span className="block text-[10px] text-gray-500 font-bold tracking-widest uppercase mt-1.5">
+          <span
+            className={`block text-[10px] font-bold tracking-widest uppercase mt-1.5 ${
+              isDarkBg ? "text-gray-400" : "text-gray-500"
+            }`}
+          >
             A-LANG, ACCRA • GHANA
           </span>
         </div>
@@ -131,8 +148,8 @@ export function Logo({
   }
 
   // Horizontal Logo Variants (compact, dark, light)
-  const isDarkBg = variant === "dark";
   const nameColor = isDarkBg ? "text-white" : "text-brand-charcoal";
+  const dineColor = isDarkBg ? "text-[#FFC20E]" : "text-[#D92323]";
   const subtextColor = isDarkBg ? "text-gray-400" : "text-gray-500";
 
   const content = (
@@ -171,7 +188,7 @@ export function Logo({
             KALAHARI
           </span>
           <span
-            className={`font-serif italic font-extrabold text-[#FFC20E] tracking-wide leading-none ${
+            className={`font-serif italic font-extrabold tracking-wide leading-none ${dineColor} ${
               size === "xs"
                 ? "text-xs"
                 : size === "sm"

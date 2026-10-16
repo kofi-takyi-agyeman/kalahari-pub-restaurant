@@ -40,14 +40,14 @@ export default function ContactPage() {
                   <div className="w-10 h-10 rounded-xl bg-brand-charcoal text-brand-yellow flex items-center justify-center">
                     <Phone className="w-5 h-5 text-brand-yellow" />
                   </div>
-                  <span className="text-xs font-bold text-gray-500 bg-brand-cream px-2.5 py-1 rounded-md border border-brand-cream-border">
+                  <span className="text-xs font-bold text-gray-700 bg-brand-cream px-2.5 py-1 rounded-md border border-brand-cream-border">
                     {phone.label}
                   </span>
                 </div>
                 <h3 className="font-display text-lg font-bold text-brand-charcoal">
                   Direct Line
                 </h3>
-                <p className="text-xs text-gray-500 mt-0.5">
+                <p className="text-xs text-gray-600 mt-0.5">
                   Orders, customer inquiries &amp; availability
                 </p>
               </div>

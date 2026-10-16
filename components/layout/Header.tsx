@@ -73,11 +73,11 @@ export function Header() {
             <div className="flex items-center">
               {/* Desktop logo */}
               <div className="hidden sm:block">
-                <Logo variant="compact" size="md" asLink href="/" />
+                <Logo variant="dark" theme="dark" size="md" asLink href="/" />
               </div>
               {/* Mobile compact logo */}
               <div className="sm:hidden">
-                <Logo variant="compact" size="sm" asLink href="/" />
+                <Logo variant="dark" theme="dark" size="sm" asLink href="/" />
               </div>
             </div>
 

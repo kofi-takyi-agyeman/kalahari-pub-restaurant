@@ -64,7 +64,7 @@ export default function AdminLoginPage() {
         {/* Brand Header */}
         <div className="text-center space-y-3">
           <div className="flex justify-center mb-1">
-            <Logo variant="primary" size="md" />
+            <Logo variant="primary" size="md" theme="dark" />
           </div>
           <h1 className="font-display text-2xl sm:text-3xl font-black text-white tracking-tight">
             Owner &amp; Staff Portal
